@@ -1,42 +1,42 @@
-###Ò»£ºCentos Ä¬ÈÏ·À»ğÇ½ firewall
-	firewallÏà¹ØÃüÁî
+ï»¿###ä¸€ï¼šCentos é»˜è®¤é˜²ç«å¢™ firewall
+	firewallç›¸å…³å‘½ä»¤
 	
-	²é¿´·À»ğÇ½×´Ì¬£º
+	æŸ¥çœ‹é˜²ç«å¢™çŠ¶æ€ï¼š
 		 firewall-cmd --state
-	¹Ø±Õ·À»ğÇ½
+	å…³é—­é˜²ç«å¢™
 		 systemctl stop firewalld.service
-	¿ªÆô·À»ğÇ½
+	å¼€å¯é˜²ç«å¢™
 		 systemctl start firewalld.service
-	ÖØÆô·À»ğÇ½
+	é‡å¯é˜²ç«å¢™
 		 firewall-cmd --reload
-	½ûÖ¹¿ª»úÆô¶¯·À»ğÇ½
+	ç¦æ­¢å¼€æœºå¯åŠ¨é˜²ç«å¢™
 		 systemctl disable firewalld.service
 
-	¿ªÆô¶Ë¿Ú
+	å¼€å¯ç«¯å£
 	firewall-cmd --zone=public --add-port=80/tcp --permanent
-		--zone #×÷ÓÃÓò
-		--add-port=80/tcp #Ìí¼Ó¶Ë¿Ú£¬¸ñÊ½Îª£º¶Ë¿Ú/Í¨Ñ¶Ğ­Òé
-		--permanent #ÓÀ¾ÃÉúĞ§£¬Ã»ÓĞ´Ë²ÎÊıÖØÆôºóÊ§Ğ§
+		--zone #ä½œç”¨åŸŸ
+		--add-port=80/tcp #æ·»åŠ ç«¯å£ï¼Œæ ¼å¼ä¸ºï¼šç«¯å£/é€šè®¯åè®®
+		--permanent #æ°¸ä¹…ç”Ÿæ•ˆï¼Œæ²¡æœ‰æ­¤å‚æ•°é‡å¯åå¤±æ•ˆ
 
-	firewall-cmd --list-all ²é¿´·À»ğÇ½¹æÔò
+	firewall-cmd --list-all æŸ¥çœ‹é˜²ç«å¢™è§„åˆ™
 	
-	firewall-cmd --get-zones                       ##ÁĞ³öÖ§³ÖµÄzone
-	firewall-cmd --get-services                    ##ÁĞ³öÖ§³ÖµÄ·şÎñ£¬ÔÚÁĞ±íÖĞµÄ·şÎñÊÇ·ÅĞĞµÄ
-	firewall-cmd --query-service ftp               ##²é¿´ftp·şÎñÊÇ·ñÖ§³Ö£¬·µ»Øyes»òÕßno
-	firewall-cmd --add-service=ftp                 ##ÁÙÊ±¿ª·Åftp·şÎñ
-	firewall-cmd --add-service=ftp --permanent     ##ÓÀ¾Ã¿ª·Åftp·şÎñ
-	firewall-cmd --remove-service=ftp --permanent  ##ÓÀ¾ÃÒÆ³ıftp·şÎñ
-	firewall-cmd --add-port=80/tcp --permanent     ##ÓÀ¾ÃÌí¼Ó80¶Ë¿Ú 
-	iptables -L -n                                 ##²é¿´¹æÔò£¬Õâ¸öÃüÁîÊÇºÍiptablesµÄÏàÍ¬µÄ
-	man firewall-cmd                               ##²é¿´°ïÖú
+	firewall-cmd --get-zones                       ##åˆ—å‡ºæ”¯æŒçš„zone
+	firewall-cmd --get-services                    ##åˆ—å‡ºæ”¯æŒçš„æœåŠ¡ï¼Œåœ¨åˆ—è¡¨ä¸­çš„æœåŠ¡æ˜¯æ”¾è¡Œçš„
+	firewall-cmd --query-service ftp               ##æŸ¥çœ‹ftpæœåŠ¡æ˜¯å¦æ”¯æŒï¼Œè¿”å›yesæˆ–è€…no
+	firewall-cmd --add-service=ftp                 ##ä¸´æ—¶å¼€æ”¾ftpæœåŠ¡
+	firewall-cmd --add-service=ftp --permanent     ##æ°¸ä¹…å¼€æ”¾ftpæœåŠ¡
+	firewall-cmd --remove-service=ftp --permanent  ##æ°¸ä¹…ç§»é™¤ftpæœåŠ¡
+	firewall-cmd --add-port=80/tcp --permanent     ##æ°¸ä¹…æ·»åŠ 80ç«¯å£ 
+	iptables -L -n                                 ##æŸ¥çœ‹è§„åˆ™ï¼Œè¿™ä¸ªå‘½ä»¤æ˜¯å’Œiptablesçš„ç›¸åŒçš„
+	man firewall-cmd                               ##æŸ¥çœ‹å¸®åŠ©
 	
 
-###¶ş£ºiptables Ïà¹Ø²Ù×÷
-	°²×°iptables·À»ğÇ½
+###äºŒï¼šiptables ç›¸å…³æ“ä½œ
+	å®‰è£…iptablesé˜²ç«å¢™
 		systemctl start iptalbes.service
-	ÖØÆôiptalbes·À»ğÇ½
+	é‡å¯iptalbesé˜²ç«å¢™
 		systemctl restart iptalbes.service
-	¹Ø±Õiptables·À»ğÇ½
+	å…³é—­iptablesé˜²ç«å¢™
 		systemctl stop iptables.service
-	²é¿´iptables·À»ğÇ½×´Ì¬µÄÃüÁîÊÇ£º
+	æŸ¥çœ‹iptablesé˜²ç«å¢™çŠ¶æ€çš„å‘½ä»¤æ˜¯ï¼š
 		systemctl status iptables.service

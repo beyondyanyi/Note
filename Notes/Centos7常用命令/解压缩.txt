@@ -1,79 +1,79 @@
-###һ��gzip
+﻿###一：gzip
 
-gzip �ļ���   ѹ���ļ�
+gzip 文件名   压缩文件
 
-gzip -d �ļ���   ��ѹ�ļ�
+gzip -d 文件名   解压文件
 
-gunzip �ļ���    ��ѹ�ļ�
+gunzip 文件名    解压文件
 
-gzip -1 ѹ������  ��ߵ�9   Ĭ����6����
+gzip -1 压缩级别  最高到9   默认是6级别
 
-gzip -f ǿ�Ƹ���ͬ��ѹ����
+gzip -f 强制覆盖同名压缩包
 
-gzip Ĭ�ϲ�����ԭ�ļ�
+gzip 默认不保存原文件
 
-gzip ѹ���ļ���.gz��β
+gzip 压缩文件以.gz结尾
 
-gzip -c 2.txt > 2.txt.gz  �������ض�����ԭ�ļ�
-
- 
-
-###����bzip2
-
-bzip2 �ļ���  ѹ���ļ�
-
-bzip2 -d �ļ���   ��ѹ�ļ�
-
-bzip2 ѹ���ļ���.bz2��β
-
-bzip2 ѹ������Ҳ�Ǵ�1��9  Ĭ����9����
-
-bzip2 -k ����ԭ�ļ�
-
-bzip2 -f  ǿ��ѹ������ͬ��ѹ����
+gzip -c 2.txt > 2.txt.gz  可以用重定向保留原文件
 
  
 
-###����xz
+###二：bzip2
 
-ͬbzip2 �� gzip
+bzip2 文件名  压缩文件
 
- 
+bzip2 -d 文件名   解压文件
 
-###�ģ�zip
+bzip2 压缩文件以.bz2结尾
 
-zip ѹ�����ļ���  Դ�ļ�
+bzip2 压缩级别也是从1到9  默认是9级别
 
-zip -r ѹ����Ŀ¼��  ԭĿ¼
+bzip2 -k 保留原文件
 
-unzip  ��ѹ
-
-
-
-###�壺tar
-
-tar -cvf �����  ���Դ�ļ������Զ���ļ��ո������   c���� v���� f �ļ���
-
-tar -xvf ���
-
-tar -tf �鿴�����ļ�
+bzip2 -f  强制压缩覆盖同名压缩包
 
  
 
-tar -czvf .gz��ʽ�� gzip���ѹ����
+###三：xz
 
-tar -cjvf  .bz2��ʽ��bzip2���ѹ����
-
-tar -cJvf .xz��ʽ��xz���ѹ����
+同bzip2 和 gzip
 
  
 
-��ѹ tar -xzf  ��ѹgzip��ʽ��ѹ����
+###四：zip
 
-         tar -xjf  ��ѹbzip2��ʽ��ѹ����
+zip 压缩后文件名  源文件
 
-         tar -xJf ��ѹxz ��ʽ��ѹ����
+zip -r 压缩后目录名  原目录
 
-�������
+unzip  解压
 
-tar --exclude ��Ҫ�������ݡ� -czvf 123.tar.gz  Դ�ļ�
+
+
+###五：tar
+
+tar -cvf 打包名  打包源文件（可以多个文件空格隔开）   c创建 v可视 f 文件名
+
+tar -xvf 解包
+
+tar -tf 查看包内文件
+
+ 
+
+tar -czvf .gz格式的 gzip打包压缩包
+
+tar -cjvf  .bz2格式的bzip2打包压缩包
+
+tar -cJvf .xz格式的xz打包压缩包
+
+ 
+
+解压 tar -xzf  解压gzip格式的压缩包
+
+         tar -xjf  解压bzip2格式的压缩包
+
+         tar -xJf 解压xz 格式的压缩包
+
+打包过滤
+
+tar --exclude “要过滤内容” -czvf 123.tar.gz  源文件

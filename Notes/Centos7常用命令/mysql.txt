@@ -1,25 +1,25 @@
-1.ÏÂÔØ°²×°MYSQL¹Ù·½Yum Repository
-  ÏÂÔØRepository£º	 wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
-  °²×°Repository£º         yum -y install mysql57-community-release-el7-10.noarch.rpm
-  °²×°MYSQL·şÎñÆ÷£º	yum -y install mysql-community-server
+ï»¿1.ä¸‹è½½å®‰è£…MYSQLå®˜æ–¹Yum Repository
+  ä¸‹è½½Repositoryï¼š	 wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+  å®‰è£…Repositoryï¼š         yum -y install mysql57-community-release-el7-10.noarch.rpm
+  å®‰è£…MYSQLæœåŠ¡å™¨ï¼š	yum -y install mysql-community-server
 
-2.mysqlÊı¾İ¿âÉèÖÃ
-	Æô¶¯mysql:
+2.mysqlæ•°æ®åº“è®¾ç½®
+	å¯åŠ¨mysql:
 		systemctl start  mysqld.service
-	²é¿´mysqlÔËĞĞ×´Ì¬:
+	æŸ¥çœ‹mysqlè¿è¡ŒçŠ¶æ€:
 		systemctl status mysqld.service
-	²é¿´mysql rootÃÜÂë£º
+	æŸ¥çœ‹mysql rootå¯†ç ï¼š
 		grep "password" /var/log/mysqld.log
-	µÇÂ½mysql£¬ĞŞ¸ÄÃÜÂë£¨²»ĞŞ¸ÄÃÜÂë²»ÄÜ×öÈÎºÎÊÂ£©
+	ç™»é™†mysqlï¼Œä¿®æ”¹å¯†ç ï¼ˆä¸ä¿®æ”¹å¯†ç ä¸èƒ½åšä»»ä½•äº‹ï¼‰
 		
-		µÇÂ½£º
+		ç™»é™†ï¼š
 			mysql -uroot -p
 		
-		ĞŞ¸ÄÃÜÂë³¤¶ÈÏŞÖÆ£º	
+		ä¿®æ”¹å¯†ç é•¿åº¦é™åˆ¶ï¼š	
 			set global validate_password_policy=0;
 			set global validate_password_length=1;
-		ĞŞ¸ÄÃÜÂë£º
+		ä¿®æ”¹å¯†ç ï¼š
 			ALTER USER 'root'@'localhost' IDENTIFIED BY 'newPassword'
 
-3.Ğ¶ÔØyum Repository (²»Ğ¶ÔØÕâ¸öÒÔºóÃ¿´Îyum²Ù×÷¶¼»á×Ô¶¯¸üĞÂ)
+3.å¸è½½yum Repository (ä¸å¸è½½è¿™ä¸ªä»¥åæ¯æ¬¡yumæ“ä½œéƒ½ä¼šè‡ªåŠ¨æ›´æ–°)
 		yum -y remove mysql57-community-release-el7-10.noarch

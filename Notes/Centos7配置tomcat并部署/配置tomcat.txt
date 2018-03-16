@@ -1,44 +1,44 @@
-Ò».°²×°ÅäÖÃJDK
-      1.°²×°jdk	yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
-      2.ÅäÖÃ»·¾³±äÁ¿   ±à¼­ /etc/profile ÎÄ¼ş
-	Ìí¼ÓÒÔÏÂ»·¾³±äÁ¿£º
+ï»¿ä¸€.å®‰è£…é…ç½®JDK
+      1.å®‰è£…jdk	yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+      2.é…ç½®ç¯å¢ƒå˜é‡   ç¼–è¾‘ /etc/profile æ–‡ä»¶
+	æ·»åŠ ä»¥ä¸‹ç¯å¢ƒå˜é‡ï¼š
 		export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.121-0.b13.el7_3.x86_64
 
 		export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 
 		export PATH=$PATH:$JAVA_HOME/bin
 	
-	±£´æ¹Ø±Õºó£¨:wq£©
+	ä¿å­˜å…³é—­åï¼ˆ:wqï¼‰
 
-      3.Ö´ĞĞÃüÁîÈÃÉèÖÃÉúĞ§
+      3.æ‰§è¡Œå‘½ä»¤è®©è®¾ç½®ç”Ÿæ•ˆ
 		source profile 
 
-     Ö®ºó¿ÉÒÔÊ¹ÓÃjava -version ÑéÖ¤ÊÇ·ñ°²×°ÅäÖÃ³É¹¦
+     ä¹‹åå¯ä»¥ä½¿ç”¨java -version éªŒè¯æ˜¯å¦å®‰è£…é…ç½®æˆåŠŸ
 
 
-¶ş£º°²×°ÅäÖÃTomcat»·¾³
-	1.ÏÂÔØ
-		wget Â·¾¶
-		ÀıÈç£ºwget http://mirrors.shu.edu.cn/apache/tomcat/tomcat-7/v7.0.85/bin/apache-tomcat-7.0.85.tar.gz
-	2.½âÑ¹
+äºŒï¼šå®‰è£…é…ç½®Tomcatç¯å¢ƒ
+	1.ä¸‹è½½
+		wget è·¯å¾„
+		ä¾‹å¦‚ï¼šwget http://mirrors.shu.edu.cn/apache/tomcat/tomcat-7/v7.0.85/bin/apache-tomcat-7.0.85.tar.gz
+	2.è§£å‹
 		 tar -zxv -f   apachexxxx.tar.gz
-	3.ÉèÖÃ»·¾³±äÁ¿
-		vi /etc/profileÎÄ¼ş£º
-		Ìí¼Ó£º
+	3.è®¾ç½®ç¯å¢ƒå˜é‡
+		vi /etc/profileæ–‡ä»¶ï¼š
+		æ·»åŠ ï¼š
 		export CATALINA_HOME=/usr/local/tomcatxxx
 		export CATALINA_BASE=/usr/local/tomcatxx
 		export PATH=$PATH:${CATALINA_HOME}/bin
-	4.ÉèÖÃTomcat±àÂë£º
-		vi tomcatÄ¿Â¼/conf/server.xml
-		  Ìí¼ÓURIEncoding="UTF-8"¡£
+	4.è®¾ç½®Tomcatç¼–ç ï¼š
+		vi tomcatç›®å½•/conf/server.xml
+		  æ·»åŠ URIEncoding="UTF-8"ã€‚
 		 <Connector port="8080" protocol="HTTP/1.1" 
                connectionTimeout="20000" 
                redirectPort="8443" URIEncoding="UTF-8" />
-	5.Æô¶¯Tomcat
+	5.å¯åŠ¨Tomcat
 		startup.sh
 
-	  Í£Ö¹Tomcat 
+	  åœæ­¢Tomcat 
 		shutdown.sh
-	  ²é¿´tomcatµÄÔËĞĞ×´Ì¬
+	  æŸ¥çœ‹tomcatçš„è¿è¡ŒçŠ¶æ€
 		ps -ef |grep tomcat
 	

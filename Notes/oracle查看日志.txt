@@ -1,11 +1,7 @@
-select * from flashback_transaction_query;//²é¿´²Ù×÷ÈÕÖ¾
-alter table ehl_park.t_sys_user enable row movement;//ÔÊĞíÉ¶É¶É¶
-flashback table ehl_park.t_sys_user to timestamp to_timestamp('2018-2-2 16:42:39','yyyy-mm-dd hh24:mi:ss');//°´Ê±¼ä»Ö¸´
+ï»¿select * from flashback_transaction_query;//æŸ¥çœ‹æ“ä½œæ—¥å¿—
+alter tablename enable row movement;//å…è®¸å•¥å•¥å•¥
+flashback table tablename to timestamp to_timestamp('2018-2-2 16:42:39','yyyy-mm-dd hh24:mi:ss');//æŒ‰æ—¶é—´æ¢å¤
 
 
-select * from v$sql;//²é¿´ËùÓĞ²Ù×÷sql
+select * from v$sql;//æŸ¥çœ‹æ‰€æœ‰æ“ä½œsql
 
-
-priv 11
-privdata  21
-privfunc  21

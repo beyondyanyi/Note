@@ -1,7 +1,7 @@
-1.°²×°lrzsz
+ï»¿1.å®‰è£…lrzsz
 	yum install lrzsz
 
 	
-	ÔÚliunx Í¬windows½øĞĞZModemÎÄ¼ş´«ÊäÃüÁîĞĞ¹¤¾ß
-	rz  ÉÏ´«
-	sz ÏÂÔØ
+	åœ¨liunx åŒwindowsè¿›è¡ŒZModemæ–‡ä»¶ä¼ è¾“å‘½ä»¤è¡Œå·¥å…·
+	rz  ä¸Šä¼ 
+	sz ä¸‹è½½

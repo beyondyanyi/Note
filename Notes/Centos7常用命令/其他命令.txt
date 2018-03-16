@@ -1,43 +1,43 @@
- 
-   1.1 ¿ªÆô¶Ë¿Ú
+ï»¿ 
+   1.1 å¼€å¯ç«¯å£
  
      # firewall-cmd --zone=public --add-port=80/tcp --permanent 
  
  
-    1.2 É¾³ı¿ªÆô¶Ë¿Ú
+    1.2 åˆ é™¤å¼€å¯ç«¯å£
  
      # firewall-cmd --zone=public --remove-port=80/tcp 
  
  
-    1.3 ÃüÁîº¬Òå£º
+    1.3 å‘½ä»¤å«ä¹‰ï¼š
  
-     --zone #×÷ÓÃÓò ;   
+     --zone #ä½œç”¨åŸŸ ;   
  
-     --add-port=80/tcp  #Ìí¼Ó¶Ë¿Ú£¬¸ñÊ½Îª£º¶Ë¿Ú/Í¨Ñ¶Ğ­Òé;    
+     --add-port=80/tcp  #æ·»åŠ ç«¯å£ï¼Œæ ¼å¼ä¸ºï¼šç«¯å£/é€šè®¯åè®®;    
            
-     --permanent   #ÓÀ¾ÃÉúĞ§£¬Ã»ÓĞ´Ë²ÎÊıÖØÆôºóÊ§Ğ§
+     --permanent   #æ°¸ä¹…ç”Ÿæ•ˆï¼Œæ²¡æœ‰æ­¤å‚æ•°é‡å¯åå¤±æ•ˆ
  
  
-    1.4 Æô¶¯ºÍÍ£Ö¹
+    1.4 å¯åŠ¨å’Œåœæ­¢
      # systemctl start firewalld 
 
      # systemctl stop firewalld
 
  
 
-    1.5 ÔÊĞíÖ¸¶¨µÄIP·ÃÎÊSNMP·şÎñ
+    1.5 å…è®¸æŒ‡å®šçš„IPè®¿é—®SNMPæœåŠ¡
 
      # firewall-cmd --add-rich-rule="rule family='ipv4' source address='10.0.0.2' port port='8080' protocol='tcp' accept" --permanent 
 
  
 
-    1.6 É¾³ı¹æÔò
+    1.6 åˆ é™¤è§„åˆ™
 
      # firewall-cmd --remove-rich-rule="rule family='ipv4' source address='10.0.0.2' port port='8080' protocol='tcp' accept" --permanent 
 
  
 
-    1.7 ¿ª»úÆô¶¯ºÍ½ûÓÃ·À»ğÇ½
+    1.7 å¼€æœºå¯åŠ¨å’Œç¦ç”¨é˜²ç«å¢™
 
      # systemctl enable firewalld.service
 
@@ -45,18 +45,18 @@
 
  
 
-    1.8 ÖØÆô·À»ğÇ½
+    1.8 é‡å¯é˜²ç«å¢™
  
       # firewall-cmd --reload
  
  
-    1.9 ²é¿´·À»ğÇ½¹æÔò
+    1.9 æŸ¥çœ‹é˜²ç«å¢™è§„åˆ™
  
       # iptables -S
  
-  2.²é¿´·şÎñÆ÷CPU
+  2.æŸ¥çœ‹æœåŠ¡å™¨CPU
 
- ³£ÓÃµÄ¼àÊÓ¹¤¾ßÓĞ£ºvmstat, top,dstatºÍmpstat 
+ å¸¸ç”¨çš„ç›‘è§†å·¥å…·æœ‰ï¼švmstat, top,dstatå’Œmpstat 
 
  # vmstat
 
@@ -64,48 +64,48 @@
 
     ...
 
- ÎÄÕÂ£ºhttp://www.cnblogs.com/Wen-Man/archive/2011/04/04/2373771.html
+ æ–‡ç« ï¼šhttp://www.cnblogs.com/Wen-Man/archive/2011/04/04/2373771.html
 
-  3.²é¿´ÄÚ´æÊ¹ÓÃÇé¿ö
+  3.æŸ¥çœ‹å†…å­˜ä½¿ç”¨æƒ…å†µ
 
    # top
 
    # free
 
-  4.²é¿´·şÎñÆ÷µÄCPUÊÇ32Î»»¹ÊÇ64Î»
+  4.æŸ¥çœ‹æœåŠ¡å™¨çš„CPUæ˜¯32ä½è¿˜æ˜¯64ä½
 
    # getconf LONG_BIT
 
-  5.²é¿´LinuxÄÚºË¼°·¢²¼°æ±¾
+  5.æŸ¥çœ‹Linuxå†…æ ¸åŠå‘å¸ƒç‰ˆæœ¬
 # uname -a
 
    # uname -a
 
   # cat /etc/redhat-release 
 
-  # lsb_release -a ²é¿´ÏµÁĞ
+  # lsb_release -a æŸ¥çœ‹ç³»åˆ—
 
-  6.²é¿´·şÎñÆ÷µ±Ç°Ê±¼ä
+  6.æŸ¥çœ‹æœåŠ¡å™¨å½“å‰æ—¶é—´
 
    # date
 
-  7.²é¿´·şÎñÆ÷Ó²ÅÌºÍ·ÖÇø
+  7.æŸ¥çœ‹æœåŠ¡å™¨ç¡¬ç›˜å’Œåˆ†åŒº
 
    #df -h
 
    # fdisk -l
 
-  8.²é¿´jexusÄ¿Â¼´óĞ¡
+  8.æŸ¥çœ‹jexusç›®å½•å¤§å°
 
    #du /usr/local/jexus
 
-  9.²é¿´·şÎñÆ÷³õÊ¼°²×°µÄÈí¼ş°ü
+  9.æŸ¥çœ‹æœåŠ¡å™¨åˆå§‹å®‰è£…çš„è½¯ä»¶åŒ…
 
    # cat -n /root/install.log
 
    # more /root/install.log | wc -l
 
-  10. ²é¿´ÒÑ¾­°²×°µÄÈí¼ş°ü
+  10. æŸ¥çœ‹å·²ç»å®‰è£…çš„è½¯ä»¶åŒ…
 
    # yum list installed | wc -l
 
@@ -113,11 +113,11 @@
 
    # rpm -qa | wc -l
 
-   11.ÍøÂçÅäÖÃ
+   11.ç½‘ç»œé…ç½®
 
    # sudo vi /etc/sysconfig/network-scripts/ifcfg-eth0 
 
-  12.Æô¶¯Íø¿¨
+  12.å¯åŠ¨ç½‘å¡
 
    # /etc/init.d/network stop 
 
@@ -127,91 +127,91 @@
 
    # sudo vi/etc/resolv.conf
 
-  14.Ñ¹ËõÎÄ¼ş¼ĞÎªtar.gz
+  14.å‹ç¼©æ–‡ä»¶å¤¹ä¸ºtar.gz
 
    # sudo tar -zcvf *.tar.gz  oldpath 
 
-  15.½âÑ¹tar.gzÎÄ¼ş
+  15.è§£å‹tar.gzæ–‡ä»¶
 
    # sudo tar zxf *.tar.gz 
 
-  16.½âÑ¹ .bz2ÎÄ¼ş
+  16.è§£å‹ .bz2æ–‡ä»¶
 
    # sudo tar jxf *.bz2
 
-  17.×Ô¶¨Òåservice
+  17.è‡ªå®šä¹‰service
 
     http://www.centoscn.com/CentOS/config/2015/0507/5374.html
 
-  18.´ÅÅÌ·ÖÇø
+  18.ç£ç›˜åˆ†åŒº
 
    # fdisk -l
 
    # fdisk /dev/xx
 
-   ²Î¿¼×ÊÁÏ:http://www.centoscn.com/CentOS/config/2014/1016/3955.html
+   å‚è€ƒèµ„æ–™:http://www.centoscn.com/CentOS/config/2014/1016/3955.html
 
-  19.¹ÒÔØ·ÖÇø
+  19.æŒ‚è½½åˆ†åŒº
 
    # mount /dev/xx1 /var/www
 
-  20.²é¿´´ÅÅÌ+·ÖÇøĞÅÏ¢
+  20.æŸ¥çœ‹ç£ç›˜+åˆ†åŒºä¿¡æ¯
 
    # df -TH
 
-  21.²éÕÒPID¡¢²é¿´·şÎñÆ÷µ±Ç°Á¬½ÓÊıµÈĞÅÏ¢
+  21.æŸ¥æ‰¾PIDã€æŸ¥çœ‹æœåŠ¡å™¨å½“å‰è¿æ¥æ•°ç­‰ä¿¡æ¯
 
-   # sudo netstat -lntp  --²é¿´¿ªÆôµÄ¶Ë¿Ú
+   # sudo netstat -lntp  --æŸ¥çœ‹å¼€å¯çš„ç«¯å£
 
-   #sudo netstat -anp|grep 8080    --²éÕÒ¼àÌı8080¶Ë¿ÚµÄPid
+   #sudo netstat -anp|grep 8080    --æŸ¥æ‰¾ç›‘å¬8080ç«¯å£çš„Pid
 
-   #netstat -ant|grep -i "80"|wc -l     --²é¿´80¶Ë¿ÚÁ¬½ÓÊı
+   #netstat -ant|grep -i "80"|wc -l     --æŸ¥çœ‹80ç«¯å£è¿æ¥æ•°
 
-   #netstat -ant | grep 80 | grep ESTABLISHED | wc -l     --²é¿´80¶Ë¿ÚEST×´Ì¬µÄµ±Ç°Á¬½ÓÊı
+   #netstat -ant | grep 80 | grep ESTABLISHED | wc -l     --æŸ¥çœ‹80ç«¯å£ESTçŠ¶æ€çš„å½“å‰è¿æ¥æ•°
 
-   #netstat -nat|grep ":80"|awk '{print $5}' |awk -F: '{print $1}' | sort| uniq -c|sort -n       --ÉıĞòÍ³¼ÆIP·ÃÎÊ´ÎÊı
+   #netstat -nat|grep ":80"|awk '{print $5}' |awk -F: '{print $1}' | sort| uniq -c|sort -n       --å‡åºç»Ÿè®¡IPè®¿é—®æ¬¡æ•°
 
-   #netstat -nat|grep ":80"|awk '{print $5}' |awk -F: '{print $1}' | sort| uniq -c|sort -rn|head -n 20     --½µĞòÍ³¼ÆIP·ÃÎÊ´ÎÊı£¬20Ìõ
+   #netstat -nat|grep ":80"|awk '{print $5}' |awk -F: '{print $1}' | sort| uniq -c|sort -rn|head -n 20     --é™åºç»Ÿè®¡IPè®¿é—®æ¬¡æ•°ï¼Œ20æ¡
    
 
-  22..NETÓ¦ÓÃ³ÌĞòºóÌ¨ÔËĞĞ
+  22..NETåº”ç”¨ç¨‹åºåå°è¿è¡Œ
 
-  # mono xxx.exe  >/dev/null 2>&1 &  -- xxx.exeºóÌ¨ÔËĞĞ
+  # mono xxx.exe  >/dev/null 2>&1 &  -- xxx.exeåå°è¿è¡Œ
 
-  23.ÎÄ¼ş¹ÜÀí
+  23.æ–‡ä»¶ç®¡ç†
 
-  1.µİ¹éÇ¿ÖÆ¸´ÖÆÎÄ¼ş¼Ğ
+  1.é€’å½’å¼ºåˆ¶å¤åˆ¶æ–‡ä»¶å¤¹
 
-  #cp -rf /var/www/default   temp  --×Ô¶¯´´½¨tempÄ¿Â¼
+  #cp -rf /var/www/default   temp  --è‡ªåŠ¨åˆ›å»ºtempç›®å½•
 
-  #cp -rf /var/www/default/* temp  --ĞèÒªÊÖ¶¯´´½¨tempÄ¿Â¼
+  #cp -rf /var/www/default/* temp  --éœ€è¦æ‰‹åŠ¨åˆ›å»ºtempç›®å½•
 
- 2.ÒÆ¶¯ÎÄ¼ş¼Ğ»òÎÄ¼ş
+ 2.ç§»åŠ¨æ–‡ä»¶å¤¹æˆ–æ–‡ä»¶
 
-  #mv /var/www/default/a.cs  /var/www/temp/  --ÒÆ¶¯ÎÄ¼ş
+  #mv /var/www/default/a.cs  /var/www/temp/  --ç§»åŠ¨æ–‡ä»¶
 
-  #mv /var/www/default/test /var/www/temp  --ÒÆ¶¯ÎÄ¼ş¼Ğ
+  #mv /var/www/default/test /var/www/temp  --ç§»åŠ¨æ–‡ä»¶å¤¹
 
- 3.µİ¹éÇ¿ÖÆÉ¾³ıÎÄ¼ş»òÎÄ¼ş¼Ğ
+ 3.é€’å½’å¼ºåˆ¶åˆ é™¤æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹
 
   #rm -rf a.sh
 
 
 
-sourceÃüÁî£º
+sourceå‘½ä»¤ï¼š
 source FileName
-×÷ÓÃ:ÔÚµ±Ç°bash»·¾³ÏÂ¶ÁÈ¡²¢Ö´ĞĞFileNameÖĞµÄÃüÁî¡£
-×¢£º¸ÃÃüÁîÍ¨³£ÓÃÃüÁî¡°.¡±À´Ìæ´ú¡£
-Èç£ºsource .bash_rc Óë . .bash_rc ÊÇµÈĞ§µÄ¡£
+ä½œç”¨:åœ¨å½“å‰bashç¯å¢ƒä¸‹è¯»å–å¹¶æ‰§è¡ŒFileNameä¸­çš„å‘½ä»¤ã€‚
+æ³¨ï¼šè¯¥å‘½ä»¤é€šå¸¸ç”¨å‘½ä»¤â€œ.â€æ¥æ›¿ä»£ã€‚
+å¦‚ï¼šsource .bash_rc ä¸ . .bash_rc æ˜¯ç­‰æ•ˆçš„ã€‚
 
 
 
-sytemctlÃüÁî£º
+sytemctlå‘½ä»¤ï¼š
 
-Ê¹Ä³·şÎñ×Ô¶¯Æô¶¯	systemctl enable httpd.service
-Ê¹Ä³·şÎñ²»×Ô¶¯Æô¶¯	systemctl disable httpd.service
-¼ì²é·şÎñ×´Ì¬		systemctl status httpd.service £¨·şÎñÏêÏ¸ĞÅÏ¢£© systemctl is-active httpd.service £¨½öÏÔÊ¾ÊÇ·ñ Active)
-ÏÔÊ¾ËùÓĞÒÑÆô¶¯µÄ·şÎñ	systemctl list-units --type=service
-Æô¶¯Ä³·şÎñ		systemctl start httpd.service
-Í£Ö¹Ä³·şÎñ		systemctl stop httpd.service
-ÖØÆôÄ³·şÎñ		systemctl restart httpd.service
+ä½¿æŸæœåŠ¡è‡ªåŠ¨å¯åŠ¨	systemctl enable httpd.service
+ä½¿æŸæœåŠ¡ä¸è‡ªåŠ¨å¯åŠ¨	systemctl disable httpd.service
+æ£€æŸ¥æœåŠ¡çŠ¶æ€		systemctl status httpd.service ï¼ˆæœåŠ¡è¯¦ç»†ä¿¡æ¯ï¼‰ systemctl is-active httpd.service ï¼ˆä»…æ˜¾ç¤ºæ˜¯å¦ Active)
+æ˜¾ç¤ºæ‰€æœ‰å·²å¯åŠ¨çš„æœåŠ¡	systemctl list-units --type=service
+å¯åŠ¨æŸæœåŠ¡		systemctl start httpd.service
+åœæ­¢æŸæœåŠ¡		systemctl stop httpd.service
+é‡å¯æŸæœåŠ¡		systemctl restart httpd.service

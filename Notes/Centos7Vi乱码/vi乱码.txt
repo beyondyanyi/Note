@@ -1,0 +1,8 @@
+﻿在 /etc/vimrc(有的是/etc/virc) 文件中加入：
+     set fileencodings=ucs-bom,utf-8,gbk,gb2312,cp936,gb18030,big5,latin-1
+
+     set encoding=utf-8
+
+     set termencoding=utf-8
+
+     set fileencoding=utf-8
