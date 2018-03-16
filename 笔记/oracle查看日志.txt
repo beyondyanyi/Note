@@ -1,0 +1,11 @@
+select * from flashback_transaction_query;//查看操作日志
+alter table ehl_park.t_sys_user enable row movement;//允许啥啥啥
+flashback table ehl_park.t_sys_user to timestamp to_timestamp('2018-2-2 16:42:39','yyyy-mm-dd hh24:mi:ss');//按时间恢复
+
+
+select * from v$sql;//查看所有操作sql
+
+
+priv 11
+privdata  21
+privfunc  21

@@ -1,0 +1,79 @@
+###一：gzip
+
+gzip 文件名   压缩文件
+
+gzip -d 文件名   解压文件
+
+gunzip 文件名    解压文件
+
+gzip -1 压缩级别  最高到9   默认是6级别
+
+gzip -f 强制覆盖同名压缩包
+
+gzip 默认不保存原文件
+
+gzip 压缩文件以.gz结尾
+
+gzip -c 2.txt > 2.txt.gz  可以用重定向保留原文件
+
+ 
+
+###二：bzip2
+
+bzip2 文件名  压缩文件
+
+bzip2 -d 文件名   解压文件
+
+bzip2 压缩文件以.bz2结尾
+
+bzip2 压缩级别也是从1到9  默认是9级别
+
+bzip2 -k 保留原文件
+
+bzip2 -f  强制压缩覆盖同名压缩包
+
+ 
+
+###三：xz
+
+同bzip2 和 gzip
+
+ 
+
+###四：zip
+
+zip 压缩后文件名  源文件
+
+zip -r 压缩后目录名  原目录
+
+unzip  解压
+
+
+
+###五：tar
+
+tar -cvf 打包名  打包源文件（可以多个文件空格隔开）   c创建 v可视 f 文件名
+
+tar -xvf 解包
+
+tar -tf 查看包内文件
+
+ 
+
+tar -czvf .gz格式的 gzip打包压缩包
+
+tar -cjvf  .bz2格式的bzip2打包压缩包
+
+tar -cJvf .xz格式的xz打包压缩包
+
+ 
+
+解压 tar -xzf  解压gzip格式的压缩包
+
+         tar -xjf  解压bzip2格式的压缩包
+
+         tar -xJf 解压xz 格式的压缩包
+
+打包过滤
+
+tar --exclude “要过滤内容” -czvf 123.tar.gz  源文件

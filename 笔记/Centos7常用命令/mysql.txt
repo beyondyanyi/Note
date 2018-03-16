@@ -1,0 +1,25 @@
+1.下载安装MYSQL官方Yum Repository
+  下载Repository：	 wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+  安装Repository：         yum -y install mysql57-community-release-el7-10.noarch.rpm
+  安装MYSQL服务器：	yum -y install mysql-community-server
+
+2.mysql数据库设置
+	启动mysql:
+		systemctl start  mysqld.service
+	查看mysql运行状态:
+		systemctl status mysqld.service
+	查看mysql root密码：
+		grep "password" /var/log/mysqld.log
+	登陆mysql，修改密码（不修改密码不能做任何事）
+		
+		登陆：
+			mysql -uroot -p
+		
+		修改密码长度限制：	
+			set global validate_password_policy=0;
+			set global validate_password_length=1;
+		修改密码：
+			ALTER USER 'root'@'localhost' IDENTIFIED BY 'newPassword'
+
+3.卸载yum Repository (不卸载这个以后每次yum操作都会自动更新)
+		yum -y remove mysql57-community-release-el7-10.noarch

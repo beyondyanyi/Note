@@ -1,0 +1,7 @@
+1.安装lrzsz
+	yum install lrzsz
+
+	
+	在liunx 同windows进行ZModem文件传输命令行工具
+	rz  上传
+	sz 下载
