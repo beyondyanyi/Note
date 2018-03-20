@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>这是主页</title>
+<link rel="stylesheet" type="text/css" href="./plugins/flipCountDown/jquery.flipcountdown.css" />
+<script type="text/javascript" src="./plugins/flipCountDown/jquery.min.js"></script>
+<script type="text/javascript" src="./plugins/flipCountDown/jquery.flipcountdown.js"></script>
+</head>
+<body>
+
+<div id="retroclockbox1"></div>
+
+<script type="text/javascript">
+var  intialNumber=0;//初始值
+	$(function(){
+		initial();
+	
+	
+	});
+	
+	function initial(){
+		//测试数据
+		var a=23503989;//基数
+		var num=Math.floor(Math.random()*98+1);//累加/累减 数
+		var cal=Math.floor(Math.random()*98+1)%2==0;
+		$('#retroclockbox1').flipcountdown({
+			size:'lg',//尺寸
+			speedFlip:100,//动画速度
+			period:3000,//自动更新间隔 s (更新时间不宜过快)
+			tick:function(){
+				if(cal){
+					return a=a-num;					
+				}
+				return a=a+num;
+			}
+		});
+	}
+	
+</script>
+</body>
+</html>
