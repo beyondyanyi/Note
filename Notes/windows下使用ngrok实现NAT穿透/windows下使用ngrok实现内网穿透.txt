@@ -1,0 +1,21 @@
+﻿教程1（亲测）：http://blog.csdn.net/zhangguo5/article/details/77848658?utm_source=5ibc.net&utm_medium=referral
+
+
+1.准备工作：
+
+	一：下载ngrok
+	ngrok(https://ngrok.com/)
+
+	二：注册ngrok账号（获取token）
+	
+
+2.cmd下切换到 ngrok 目录下（shift+rightButton 在此处打开命令行）
+	执行命令：
+	
+	ngrok authtoken 你的token
+
+
+	ngrok http <port>
+
+
+3.网址 httt://xxxx.ngrok.io  对应本地 localhost:<port>
