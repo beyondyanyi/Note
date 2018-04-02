@@ -49,6 +49,4 @@
 	shutdown.sh 关闭
 	ps-ef|grep java 查看tomcat运行状态
 
-	kill -9 <pid>  杀进程(9代表强制立即停止)
-
-	tail -f /usr/local/tomcat_web/logs/catalina.out   查看控制台进程
+	kill -9 <pid>  杀进程

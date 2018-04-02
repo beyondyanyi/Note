@@ -1,0 +1,21 @@
+﻿1.负向条件查询不能使用索引
+	select  *  from table where status!0 adn status!=1
+				not int	
+				not exists
+				等
+
+	可优化为：
+		select * from table where status in(2,3)
+
+2.前导模糊查询不能使用索引
+	select * from  table where xxx like '%xxx'
+
+	后导可以：
+		select * from talbe where xxx like 'xxx%'
+	
+3.数据区分度不大的字段不宜使用索引
+	select * from table where sex=1
+
+	(性别只有1、0,每次过滤掉的数据很少，不宜使用索引)
+
+4.
