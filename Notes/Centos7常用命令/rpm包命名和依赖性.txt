@@ -1,0 +1,59 @@
+1.rpm包的命名规则
+	httpd-2.4.6-67.el7.centos.x86_64.rpm
+		httpd		软件包名
+		2.4.6		软件版本
+		67			软件发行的次数
+		el7.centos 	适合的liunx平台
+		x86_64		适合的硬件平台
+		rpm			rpm包扩展名
+		
+2、RPM包的依赖性
+
+树形依赖性：a -> b -> c,即a依赖b，b依赖c
+环形依赖：a -> b -> c -> a
+模块依赖：模块依赖查询网站：www.rpmfind.com
+
+	
+	
+##rpm包的安装、升级、卸载和查询
+	1.rpm 安装
+		rpm -ivh 煲全名
+		可选项：
+			-i(install) 安装
+			-v(verbose) 显示详细信息
+			-h(hash)	显示进度
+			--nodeps	不检测依赖性
+			
+	2.rpm包升级
+		rpm -Uvh 包全名
+		 可选项：	
+			-U(upgrade)  升级
+			
+	3.rpm包的卸载
+		rpm -e 包名
+		  可选项：
+			-e(erase) 卸载
+			--nodeps  不检测依赖性
+			
+		注：卸载要按照安装依赖性的反向卸载	
+	
+	4.rpm包的查询
+		查询是否安装：
+			rpm -q 包名
+				-q (query)
+		
+		查询所有已经安装的rpm包：
+			rpm -a
+		
+		查询软件包的详细信息：
+			rpm -qi 包名
+				-i(information)
+		查询包中文件安装位置：
+			rpm -ql 包名
+				-l(list)
+		查询系统文件属于哪个rpm包：
+			rpm -qf 系统文件名
+				-f(file)
+		查询软件包的依赖性：
+			rpm -qR 包名
+				-R(requires)

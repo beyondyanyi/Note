@@ -1,0 +1,63 @@
+﻿1.下载安装
+	yum install subversion
+	
+	安装完后可使用 which svnserve查看安装位置
+			可使用 svnserve --version 查看svn是否安装成功
+			
+	svn默认以/var/svn作为数据根目录，可通过配置文件 /etc/sysconfig/svnserve 修改至 /opt/svn
+		vi /etc/sysconfig/svnserve 
+		
+		
+2.建立版本库
+    建文件夹
+		sudo mkdir -p /opt/svn
+	建版本库
+		sudo svnadmin create /opt/svn/MySvn
+		
+3.配置用户和权限
+	配置用户
+		vi /opt/svn/MySvn/conf/passwd
+		
+		[users]
+		admin=admin
+		guest=guest
+		
+	配置权限
+		vi /opt/svn/MySvn/conf/authz
+		
+		[/]
+		admin=rw
+		guest=rw
+	
+	配置其他
+		vi /opt/svn/MySvn/conf/svnserve.conf
+		
+		[general]
+		anon-access=none		 #控制非鉴权用户访问版本库的权限
+		auth-access=write		 #控制鉴权用户访问版本库的权限
+		password-db=passwd		 #指定用户名口令文件名
+		authz-db=authz			 #指定权限配置文件名
+		realm=MySvn				 #指定版本库的认证域，即在登录时提示的认证域名称
+		
+		
+4.启动svn服务
+	sudo systemctl start  svnserve.service
+	
+	检车服务是否启动
+		ps aux | grep svn
+		
+	通过netstat可以看到SVN打开了3690端口
+		sudo netstat -tnlp
+	
+	设置开机启动
+		sudo systemctl enable svnserve.service
+	开放端口
+		firewall-cmd --zone=public --add-port=3690/tcp --permanent
+	重启防火墙
+		firewall-cmd --reload
+
+
+
+
+【参考https://www.linuxidc.com/Linux/2017-05/144254.htm】
+	

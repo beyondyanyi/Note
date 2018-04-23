@@ -1,0 +1,37 @@
+﻿http://blog.csdn.net/jike080401/article/details/52964877
+
+1.安装vsftpd
+#yum -y install ftp vsftpd*
+
+2.查看配置文件所在的路劲
+#rpm -qc vsftpd
+
+3.备份vsftpd原有的配置文件
+#cd /etc/vsftpd/
+#cp vsftpd.conf vsftpd.conf.origin
+
+4.编辑vsftpd的配置文件
+#vim /etc/vsftpd/vsftpd.conf
+1)anonymous_enable=NO
+2)local_enable=YES
+3)pam_service_name=vsftpd
+4)userlist_enable=YES
+
+5.设置vsftpd开机自启动
+#systemctl enable vsftpd
+
+6.重启vsftpd服务
+#systemctl restart vsftpd
+
+7. 配置防火墙和SELinux
+#firewall-cmd --permanent --zone=public --add-service=ftp
+#firewall-cmd --reload
+
+#getsebool -a | grep ftp
+#setsebool -P ftpd_full_access on
+
+8.查看vsftpd服务的状态
+#systemctl status vsftpd
+
+9.至此，可以使用系统用户账号登录ftp服务器了，至于如何使用虚拟的FTP账号的方法暂时没有研究过。
+
