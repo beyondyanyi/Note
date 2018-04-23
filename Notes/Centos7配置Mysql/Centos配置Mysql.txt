@@ -1,0 +1,9 @@
+1.配置mysql  user 表中  host
+		修改host字段，由localhost 改为%：
+			update user set host='%' where user='root' and host='localhost';
+		重启mysql服务：
+		service mysqld restart;
+
+2.防火墙开启3306端口
+	firewall-cmd --zone=public --add-port=80/tcp --permanent
+	firewall-cmd --reload
