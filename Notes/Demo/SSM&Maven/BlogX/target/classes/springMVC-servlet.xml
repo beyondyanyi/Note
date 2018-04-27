@@ -1,0 +1,102 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.1.4.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.4.xsd 
+	http://www.springframework.org/schema/mvc
+	http://www.springframew3ork.org/schema/mvc/spring-mvc-4.1.4.xsd ">
+
+	<!-- 引入静态资源 -->
+
+	<!--图渲染 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<mvc:resources location="/statics/" mapping="/statics/**" />
+
+	<!-- <bean id="conversionServiceFactoryBean"
+		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.zz.tools.StringToDateConvert">
+					<constructor-arg type="java.lang.String">
+						<value>yyyy-MM-dd</value>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean> -->
+
+	<!--第一种： 采用bean的名字和地址url进行匹配 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean> 
+		<bean id="/hello.do" class="Controller.HelloController"></bean> -->
+	<!-- 第二种：注解方式 -->
+
+	<!-- 扫描SpringMVC注解 -->
+	<context:component-scan base-package="com.yi.controller"></context:component-scan>
+	<!-- 使MVC注解生效 -->
+	<mvc:annotation-driven>
+
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes" value="application/json" />
+				<property name="features">
+					<array>
+						<value>WriteMapNullValue</value>
+						<value>QuoteFieldNames</value>
+					</array>
+				</property>
+			</bean>
+
+
+		</mvc:message-converters>
+
+	</mvc:annotation-driven>
+
+
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="error/error"></property><!-- 默认错误页面 -->
+		<!--定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+		<property name="exceptionAttribute" value="exception"></property>
+		<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
+		<property name="exceptionMappings">
+			<props>
+				<prop key="IOException">error/error1</prop>
+				<prop key="java.lang.NullPointerException">error/error2</prop>
+				<prop key="Exception">error/error</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- id一定要是multipartResolver -->
+	<!-- 上传文件解析器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5000000000"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
+	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 
+		<property name="favorParameter" value="true"></property> <property name="mediaTypes"> 
+		<map> <entry key="html" value="text/html;charset=UTF-8"></entry> <entry key="json" 
+		value="application/json;charset=UTF-8"></entry> <entry key="xml" value="application/xml;charset=UTF-8"></entry> 
+		</map> </property> <property name="viewResolvers"> <list> <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/WEB-INF/jsp/"></property> <property name="suffix" 
+		value=".jsp"></property> </bean> </list> </property> </bean> -->
+</beans>
