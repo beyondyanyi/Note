@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	
+	
+	
+	
+	
+	<!-- <settings>
+	  <setting name="cacheEnabled" value="true"/> 二级缓存
+	  <setting name="lazyLoadingEnabled" value="true"/> 延迟加载
+	  <setting name="multipleResultSetsEnabled" value="true"/>
+	  <setting name="useColumnLabel" value="true"/>
+	  <setting name="useGeneratedKeys" value="false"/>
+	  <setting name="autoMappingBehavior" value="PARTIAL"/>
+	  <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+	  <setting name="defaultExecutorType" value="SIMPLE"/>
+	  <setting name="defaultStatementTimeout" value="25"/>
+	  <setting name="defaultFetchSize" value="100"/>
+	  <setting name="safeRowBoundsEnabled" value="false"/>
+	  <setting name="mapUnderscoreToCamelCase" value="false"/>
+	  <setting name="localCacheScope" value="SESSION"/>
+	  <setting name="jdbcTypeForNull" value="OTHER"/>
+	  <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+	</settings> -->
+	
+	<!-- 改变mybatis的运行环境 -->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false"/>
+	</settings>
+	
+	<!-- 别名 -->
+	<!-- <typeAliases>
+		<typeAlias type="entity.User" alias="user"/>
+		<package name="entity"></package>
+		使自动用 Bean 的首字母小写的非限定类名来作为它的别名
+		
+	</typeAliases> -->
+	
+ 	<!-- <environments default="development">
+ 		事务管理器有两种： JDBC、MANAGED
+ 		数据源有三种：UNPOOLED、POOLED、JNDI
+ 			UNPOOLED:这个数据源的实现只是每次被请求时打开和关闭连接
+ 			POOLED:这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间
+ 			JNDI– 这个数据源的实现是为了能在如 EJB 或应用服务器这类容器中使用，容器可以集中或在外部配置数据源，然后放置一个 JNDI 上下文的引用
+ 			
+ 		环境1
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
+				<property name="username" value="system" />
+				<property name="password" value="orcl" />
+			</dataSource>
+		</environment>
+		环境2
+		<environment id="publish">
+			<transactionManager type="MANAGED">
+				<property name="closeConnection" value="false"/>阻止它默认的关闭连接行为
+			</transactionManager>
+			<dataSource type="MANAGED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl" />
+				<property name="username" value="system" />
+				<property name="password" value="orcl" />
+			</dataSource>
+			
+		</environment>
+	</environments>
+	 -->
+
+<!-- 	<mappers>
+		<mapper resource="com/test/entity/HeadMapper.xml" />
+	</mappers>
+	 -->
+	
+</configuration>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.1.4.xsd
+	 http://www.springframework.org/schema/aop
+	 http://www.springframework.org/schema/aop/spring-aop-4.1.4.xsd
+     http://www.springframework.org/schema/tx
+	 http://www.springframework.org/schema/tx/spring-tx-4.1.4.xsd
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context-4.1.4.xsd
+	  ">
+	  
+	<!-- 引入外部数据配置文件 -->  
+	<context:property-placeholder location="classpath:DBCP_mysql.properties"/> 
+	  
+	<!-- 配置DBCP数据杨 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="${driver}"  ></property>
+			<property name="url" value="${url}"></property>
+			<property name="username" value="${usernames}"></property>
+			<property name="password" value="${passwords}"></property>		
+	</bean>
+	  
+	  
+	  <!-- 配置mybatisSqlSessionFactoryBeaan -->
+	  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	  		<!-- 数据源 -->
+	  		<property name="dataSource" ref="dataSource"></property>
+	  		<!-- 引入mybatis配置文件 -->	
+	  		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	  		<!-- 引入实体映射文件 -->
+	  		<!-- <property name="mapperLocations" value="classpath:/com/zz/dao/*.xml"></property> -->
+	  		<!-- 实体类完全限定名 -->
+	  		<property name="typeAliasesPackage" value="com.yi.entity"></property>
+	  		
+	  </bean>
+	  
+	  
+	 <!-- 配置SqlSessionTemplate -->
+	 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<!-- 通过构造函数注入sqlSessionFactory -->
+	 	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	 	<!-- 或<constructor-arg index="0" taype="org.apache.ibatis.session.SqlSessionFactory">
+	 		<ref bean="sessionFaaactory"/>
+	 	</constructor-arg> -->
+	 </bean>
+	 
+	<!-- 如果不要实现类，可创建dao接口之类bean -->
+		<!-- 以下两个如果自动创建用代理sqlSessionFactory,则sqlSessionFactory创建时不能用占位符 -->
+	<!-- 单个 -->
+	<!-- <bean id="headdao" class="org.mybais.spring.mapper.MapperFacotryBean">
+		<property name="mapperInterface" value="com.test.dao.HeadDao"></property>
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>也可以
+	</bean>
+	 -->
+	 
+	 <!-- 或 -->
+	 <!-- 创建指定包下所有接口的代理对象 -->
+	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 	<property name="basePackage" value="com.yi.dao"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	<!-- 		或  <property name="sqlSessionFactory" ref="sqlSessionFactory"></property> -->
+	 </bean>
+	 
+	 
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource"  ref="dataSource" ></property>
+	</bean>
+	<!-- 使事务注解生效 -->
+	<tx:annotation-driven/>
+	
+	 <!-- 扫描spring注解类所在包  尽量只扫描Spring负责的包 -->
+	 <context:component-scan base-package="com.yi.biz,com.yi.dao,com.yi.biz.impl"/>  	
+	
+	<!-- 配置jdk代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="false"></aop:aspectj-autoproxy>
+	
+	
+</beans>

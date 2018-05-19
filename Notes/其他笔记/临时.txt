@@ -1,0 +1,30 @@
+select * from t_sys_func where  dspflg='1' and id in(select distinct funccode from t_sys_privfunc  where  PrivCode in (select PrivID  from t_sys_userpriv  where USERID ='00000000000000000000000000000019'))
+
+
+
+select * from t_sys_func where functype='04' and parentcode='001101'
+
+select * from  t_sys_user
+select * from  t_sys_func where functype='04' and parentcode='001101'
+select * from  t_sys_func where functype='04' and parentcode='001102'
+select * from  t_sys_func where functype='04' and parentcode='001201'
+select * from  t_sys_func where functype='04' and parentcode='001202'
+select * from  t_sys_func where functype='04' and parentcode='001302'
+
+
+
+select distinct datacode, PerMtype, DataTYPE, CONTAINFLG from t_sys_userdatapriv t1, t_sys_privdata t2 where t1.PrivCode = t2.privcode and t1.userid = '420100000000' and t1.PrivType = '01'
+
+select jgid, jgmc, jgccbm from t_sys_department where to_number(jglx) <= 10 order by jgid
+select deptcode, userid, username from t_sys_user order by deptcode, username
+
+select * from t_sys_user where userid=''
+
+select distinct datacode, PerMtype, DataTYPE, CONTAINFLG from t_sys_userdatapriv t1, t_sys_privdata t2
+ where t1.PrivCode = t2.privcode and ((t1.userid = '00000000000000000000000000010019' and t1.PrivType = '04')  )
+ 
+ 
+select distinct datacode, PerMtype, DataTYPE, CONTAINFLG from t_sys_userdatapriv t1, t_sys_privdata t2 where t1.PrivCode = t2.privcode and t1.userid = '420100000000' and t1.PrivType = '01'
+
+ select distinct t1.PrivCode, t1.PrivName, t1.Remark from t_sys_priv t1 left join t_sys_userpriv t2 on t1.PrivCode = t2.PrivID 
+   and ((t2.UserID = 'whjg' and t2.PrivType = '04') or (t2.UserID = '420100000000' and t2.PrivType = '01') or (t2.UserID = '' and t2.PrivType = '02') or (t2.UserID = '' and t2.PrivType = '03'))  left join t_sys_privdata t7 on t1.PrivCode = t7.DataCode where (t2.userid is not null or t7.UserId = 'whjg' and PerMtype = '03') order by t1.PrivName
