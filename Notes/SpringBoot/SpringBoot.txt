@@ -1,1 +1,5 @@
-﻿
+﻿1.@SpringBootApplication 
+	声明当前类为SpringBoot入口类
+2.spring配置文件格式后缀：
+	可以是properties、yml
+

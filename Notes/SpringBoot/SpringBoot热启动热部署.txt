@@ -1,0 +1,8 @@
+﻿1.添加maven依赖
+	<!-- 热启动，热部署依赖包 -->  
+    <dependency>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-devtools</artifactId>  
+        <optional>true</optional>  
+    </dependency>  
+	

@@ -1,0 +1,12 @@
+﻿1.配置文件格式：
+	可以是properties、yml格式
+2.加载自定义配置文件（除了application.properties以外的配置文件）
+      使用注解加载自定义配置文件：
+	@PropertySource("classpath:xxx.properties")
+
+
+
+3.application.properties属性绑定JavaBean
+
+	
+4.自定义配置文件绑定JavaBean
