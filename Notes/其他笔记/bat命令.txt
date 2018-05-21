@@ -1,0 +1,4 @@
+﻿1.wmi:
+	Windows Management Instrumentation windows管理工具
+2.netsh
+	网络配置
