@@ -1,0 +1,7 @@
+﻿ Open	 端口开启，数据有到达主机，有程序在端口上监控
+ Closed	 端口关闭，数据有到达主机，没有程序在端口上监控
+ Filtered	 数据没有到达主机，返回的结果为空，数据被防火墙或者是IDS过滤
+ UnFiltered	 数据有到达主机，但是不能识别端口的当前状态
+ Open|Filtered	 端口没有返回值，主要发生在UDP、IP、FIN、NULL和Xmas扫描中
+ Closed|Filtered 只发生在IP ID idle扫描
+
