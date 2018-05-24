@@ -1,0 +1,15 @@
+﻿代码层：
+1.工程启动类 build
+2.实体类    domain
+3.数据访问层(dao) repository
+4.数据服务层（server） service
+5.控制类     controller
+6.工具类    utils
+7.常量类    constant
+8.配置信息类 config
+9.数据传输类  vo
+
+资源文件层：
+1.Application.properties
+2.static文件夹
+3.templates文件夹
