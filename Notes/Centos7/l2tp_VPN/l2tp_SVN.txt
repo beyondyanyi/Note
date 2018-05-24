@@ -6,7 +6,7 @@
 	安装完后/etc 下会有 ipsec.conf文件 、ipsec.secrets文件、xl2tpd文件夹、xl2tpd.conf文件、l2tp-sercrets文件
 
 
-2.安装完重启服务，开放端口（1701）
+2.安装完重启服务，开放端口（500udp&tcp、4500udp&tcp、1701udp&tcp）
 	service ipsec restart  
 	service xl2tpd restart  
 	ipsec verify 
