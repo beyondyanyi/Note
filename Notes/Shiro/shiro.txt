@@ -1,0 +1,7 @@
+1.Shiro三大概念：
+	Subject、SecurityManager、Realms
+	
+	Subject:主角，当前参与应用安全部分的主角。可以是任何东西。所有Subject都需要SecurityManager
+	SecurityManager:安全管理员，核心架构。当我们与Subject进行交互的时候，实际上是SecurityManager在背后帮你举起
+					Subject来做一些安全操作
+	Realms:连接桥，

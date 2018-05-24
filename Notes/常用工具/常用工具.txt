@@ -1,0 +1,2 @@
+1.bt5 、Kali   微缩版liunx
+2.mimikatz   windows密码抓取工具
