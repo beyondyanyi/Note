@@ -1,0 +1,18 @@
+﻿1.修改sshd_config文件
+	vi /etc/ssh/sshd_config
+		
+		启用PasswordAuthentication 
+			PasswordAuthentication  yes
+		启用PermitRootLogin
+			PermitRootLogin yes
+2.启动ssh服务
+	/etc/init.d/ssh start 或 service ssh start
+
+	验证ssh服务状态
+		/etc/init.d/ssh status
+
+3.添加开机自启动(需重启生效)
+	update-rc.d ssh enable
+
+4.关闭开机自启动
+	update-rc.d ssh disabled

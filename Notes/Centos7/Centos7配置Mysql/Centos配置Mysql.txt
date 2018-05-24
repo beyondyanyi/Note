@@ -1,9 +1,9 @@
-1.ÅäÖÃmysql  user ±íÖĞ  host
-		ĞŞ¸Ähost×Ö¶Î£¬ÓÉlocalhost ¸ÄÎª%£º
+ï»¿1.é…ç½®mysql  user è¡¨ä¸­  host
+		ä¿®æ”¹hostå­—æ®µï¼Œç”±localhost æ”¹ä¸º%ï¼š
 			update user set host='%' where user='root' and host='localhost';
-		ÖØÆômysql·şÎñ£º
+		é‡å¯mysqlæœåŠ¡ï¼š
 		service mysqld restart;
 
-2.·À»ğÇ½¿ªÆô3306¶Ë¿Ú
+2.é˜²ç«å¢™å¼€å¯3306ç«¯å£
 	firewall-cmd --zone=public --add-port=80/tcp --permanent
 	firewall-cmd --reload

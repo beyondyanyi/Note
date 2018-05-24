@@ -1,0 +1,21 @@
+﻿1.下载锐速破解版
+	wget -N --no-check-certificate https://raw.githubusercontent.com/wn789/serverspeeder/master/serverspeeder.sh
+
+2.运行脚本
+	bash serverspeeder.sh
+
+3.内核不支持时
+	手动更换内核
+	（1）CentO S7.3的内核3.10.0-514.16.1.el7.x86_64暂不支持安装锐速，故更换为3.10.0-229.1.2.el7.x86_64
+
+		rpm -ivh http://soft.91yun.org/ISO/Linux/CentOS/kernel/kernel-3.10.0-229.1.2.el7.x86_64.rpm --force      
+
+		rpm -qa | grep kernel
+
+	（2）重启查看内核版本
+		reboot
+	
+		uname -r
+
+	（3）重新安装锐速
+【https://blog.csdn.net/bittersweet0324/article/details/78963460】

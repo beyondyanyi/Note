@@ -1,0 +1,5 @@
+﻿1.查看当前防火墙配置
+	iptables -L
+
+2.安装iptables
+	sudo apt-get install iptables

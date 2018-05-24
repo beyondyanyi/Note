@@ -1,0 +1,17 @@
+﻿1.一键安装脚本：
+	wget --no-check-certificate https://raw.githubusercontent.com/teddysun/across/master/l2tp.sh  
+	chmod +x l2tp.sh  
+	./l2tp.sh  
+
+	安装完后/etc 下会有 ipsec.conf文件 、ipsec.secrets文件、xl2tpd文件夹、xl2tpd.conf文件、l2tp-sercrets文件
+
+
+2.安装完重启服务，开放端口（1701）
+	service ipsec restart  
+	service xl2tpd restart  
+	ipsec verify 
+
+
+3.配置用户名密码，默认路径在 /etc/ppp/chap-secrets文件里面，可在etc/xl2tpd/l2tpd.conf中修改配置文件路径
+	
+【原文：https://blog.csdn.net/rentian1/article/details/78864523】

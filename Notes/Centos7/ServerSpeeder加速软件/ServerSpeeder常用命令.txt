@@ -1,0 +1,27 @@
+﻿使用serverSpeeder 服务进行锐速的启动，停止，以及重新加载配置等操作；各参数说明如下：
+
+service serverSpeeder start
+：启动锐速，加载加速模块；使用/serverspeeder/etc/config 文件中的配置作为模块加载时的初始化参数；
+
+service serverSpeeder stop
+：停止锐速，卸载加速模块；停止锐速前请确认没有其它进程在访问/proc/net/appex/目录，例如确认控制台当前目录是否是/proc/net/appex/；
+
+service serverSpeeder reload
+： 在 不 停 止 锐 速 运 行 的 情 况 下 实 时 修 改 锐 速 参 数 配 置 ， 修 改/serverspeeder/etc/config 文件的配置后运行此命令，此时加速模块不退出，参数被实时修改；
+
+service serverSpeeder restart
+：重启锐速；
+
+service serverSpeeder status
+：查看当前锐速的实时运行状态；授权状态到期时间，版本号，系统序列号，加速连接数，加速速率，配置信息等；
+
+service serverSpeeder stats
+：实时显示每个加速引擎的连接数、流量，以及所有引擎的总的连接数和流量；其中连接数统计包括网络连接数(sessions)，tcp 连接数(tcp sessions)，已加速的 tcp 连接数(accelerated sessions)以及活动的 tcp 连接数(active tcp sessions)；流量统计包括流入(in)流量统计和流出(out)流量统计，单位均为 kbit/s；一般情况下，所有引擎的总连接数及流量即为服务器的互联网连接数及流量；
+
+service serverSpeeder renewLic
+：当有新的 License 文件可用时，联网更新 License 文件并重启锐速；
+
+service serverSpeeder update
+：当有新的锐速版本可用时，联网更新锐速并重启锐速；
+
+【原文：https://www.do1999.com/104.html】
