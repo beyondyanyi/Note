@@ -52,3 +52,4 @@
 	kill -9 <pid>  杀进程(9代表强制立即停止)
 
 	tail -f /usr/local/tomcat_web/logs/catalina.out   查看控制台进程
+tail -f /usr/local/apache-tomcat-7.0.85/logs/catalina.out 

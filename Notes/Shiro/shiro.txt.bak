@@ -368,6 +368,6 @@
 
 
 			<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-				<property name="securityManager" ref="securityManager"/>
+			<property name="securityManager" ref="securityManager"/>
 			<!—忽略其他，详见与Spring集成部分 -->
 			</bean>
