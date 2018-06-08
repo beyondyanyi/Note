@@ -371,3 +371,201 @@
 				<property name="securityManager" ref="securityManager"/>
 			<!—忽略其他，详见与Spring集成部分 -->
 			</bean>
+
+
+		5.web ini配置
+			
+			[urls]
+			/login=anon        anon拦截器表示匿名访问
+			/unauthorized=anon 
+			/static/**-anon    
+			/authenticated=authc  authc拦截器表示需要身份认证通过后才能访问
+			/role=authc,roles[admin]  roles[admin]拦截器表示需要有admin角色授权才能访问
+			/permission=authc,perms["user:create"]   perms["user:create"]拦截器表示需要有"user:create"权限才能访问
+
+			格式："url=拦截器[参数],拦截器[参数]"
+
+
+
+			url模式使用Ant风格模式：
+				通配符     
+				?         匹配任何单字符    如：/admin?   能匹配/admin1  但不匹配/admin或/ admin1
+				*	  匹配0或者任意数量的字符
+				**	  匹配0或者更多的目录  如：/admin/**将匹配/admin/a或/admin/a/b
+			
+			url模式匹配顺序：
+				url模式匹配是按照在配置中的声明顺序匹配，即从头开始使用第一个匹配的url模式对应的拦截器链
+		6.基于Basic的拦截器身份验证：
+			
+		7.基于表单的拦截器身份验证：
+			shiro-formfilterlogin.ini
+		
+			[main]
+			authc.loginUrl=/formfilterlogin
+			authc.usernameParam=username
+			authc.passwordParam=password
+			authc.successUrl=/
+			authc.failureKeyAttribute=shiroLoginFailure
+			[urls]
+			/role=authc,roles[admin]
+
+
+
+
+8.Shiro拦截器机制
+	Shiro使用了与Servlet一样的Filter接口进行扩展；
+
+	1.NameableFilter
+		NameableFilter给Filter起个名字，如果没有设置默认就是FilterName
+	2.OncePerRequestFilter
+		OncePerRequestFilter用于防止多次执行Filter的;也就是说一次请求只会走一次拦截器链
+	3.ShiroFilter
+		ShiroFilter是整个Shiro的入口点，用于拦截需要安全控制的请求进行处理
+	4.AdviceFilter
+		AdviceFilter提供了AOP风格的支持
+			preHandler 类似AOP中的前置增强
+			postHandle 类似AOP中的后置返回增强
+			afterCompletion 类似AOP中的后置最终增强
+	5.PathMatchingFilter
+		PathMatchingFilter提供了基于Ant风格的请求路径匹配功能及拦截器参数解析的功能
+
+
+	6.AccessControlFilter
+		AccessControlFilter提供了访问控制的基本功能；
+
+			isAccessAllowed:表示是否允许访问；
+			onAccessDenied:表示当访问拒绝时是否已经处理了；（如果返回true表示需要继续处理；如果返回false表示该拦截器实例已经处理了，将直接返回即可）
+			onPreHandle:会自动调用这两个方法决定是否继续处理
+
+
+
+
+9.Shiro JSP标签
+	Shiro提供了JSTL标签用于再Jsp/Gsp页面进行权限控制，如根据登陆用户显示相应的页面按钮
+
+     导入标签库：
+	<%taglib prefix="shiro" uri="http:shiro.apache.org/tags" %>
+
+	标签库定义在 shiro-web.jar 包下的 META-INF/shiro.tld 中定义。
+
+
+	1.guest标签
+		<shiro:guest>
+			欢迎游客访问，<a href="${pageContext.request.contextPath}/login.jsp">登录</a>
+		</shiro:guest>
+
+		用户没有身份验证时显示相应信息，即游客访问信息。
+
+	2.user标签
+		<shiro:guest>
+			欢迎游客访问，<a href="${pageContext.request.contextPath}/login.jsp">登录</a>
+		</shiro:guest>
+
+		用户已经身份验证 / 记住我登录后显示相应的信息。
+
+	3.authenticated标签
+		<shiro:authenticated>
+			用户[<shiro:principal>]已身份验证通过
+		</shiro:authenticated>
+
+		用户已经身份验证通过，即 Subject.login 登录成功，不是记住我登录的。
+
+	4.notAuthenticated标签
+		<shiro:notAuthenticated>
+			未身份验证（包括记住我）
+		</shiro:notAuthenticated>
+
+
+		用户已经身份验证通过，即没有调用 Subject.login 进行登录，包括记住我自动登录的也属于未进行身份验证。
+
+
+	5.principal标签
+		<shiro:principal/>
+		显示用户身份信息，默认调用 Subject.getPrincipal() 获取，即 Primary Principal。
+		<shiro:principal type="java.lang.String"/>
+		相当于 Subject.getPrincipals().oneByType(String.class)。
+		<shiro:principal property="username"/>
+		相当于 ((User)Subject.getPrincipals()).getUsername()。
+
+	6.hasRole标签
+		<shiro:hasRole name="admin">
+			用户[<shiro:principal/>]拥有角色admin
+		</shiro:hasRole>
+
+		如果当前 Subject 有角色将显示 body 体内容。
+
+	7.hasAnyRoles标签
+		<shiro:hasAnyRoles name="admin,user">
+		    用户[<shiro:principal/>]拥有角色admin或user<br/>
+		</shiro:hasAnyRoles>&nbsp;
+
+		如果当前 Subject 有任意一个角色（或的关系）将显示 body 体内容。
+	
+	8.lacksRole标签
+		<shiro:lacksRole name="abc">
+		    用户[<shiro:principal/>]没有角色abc<br/>
+		</shiro:lacksRole>
+
+		如果当前 Subject 没有角色将显示 body 体内容。
+
+	9.hasPermission标签
+		<shiro:hasPermission name="user:create">
+		    用户[<shiro:principal/>]拥有权限user:create<br/>
+		</shiro:hasPermission>
+
+
+		如果当前 Subject 有权限将显示 body 体内容。
+
+	10.lacksPermission标签
+		<shiro:lacksPermission name="org:create">
+		    用户[<shiro:principal/>]没有权限org:create<br/>
+		</shiro:lacksPermission>
+
+		如果当前 Subject 没有权限将显示 body 体内容。
+
+
+     导入自定义标签库：
+	<%taglib prefix="zhang" tagdir="/WEB-INF/tags" %>
+		
+		<zhang:hasAllRoles name="admin,user">
+		    用户[<shiro:principal/>]拥有角色admin和user<br/>
+		</zhang:hasAllRoles>
+
+
+10.Shiro会话管理
+	会话：
+		获取会话
+		subject.getSession();
+		subject.getSession(true);
+		subject.getSession(false);		
+	
+		获取当前会话的唯一标识：
+		session.getId();
+
+		获取当前Subject的主机地址
+		session.getTimeout();
+
+		获取/设置当前Session的过期时间；如果不设置默认是会话管理器的全局过期时间
+		session.getTimeout();
+		session.setTimeout(毫秒);
+
+		获取会话的启动时间及最后访问时间（如果是 JavaSE 应用需要自己定期调用 session.touch() 去更新最后访问时间；如果是 Web 应用，每次进入 ShiroFilter 都会自动调用 session.touch() 来更新最后访问时间。）
+		session.getStartTimestamp();
+		session.getLastAccessTime();
+
+		更新会话最后访问时间及销毁会话；当 Subject.logout() 时会自动调用 stop 方法来销毁会话。如果在 web 中，调用 javax.servlet.http.HttpSession. invalidate() 也会自动调用 Shiro Session.stop 方法进行销毁 Shiro 的会话。
+
+
+	会话管理器：
+		
+
+
+11.Shiro单点登录
+	
+	Jasig CAS单点登录分为服务器端和客户端，服务器端提供单点登录，多个客户端（子系统）将跳转到改服务器进行登录验证，大致流程如何：
+		1.访问客户端需要登录的页面 http://loalhost:9080/client/ ,此时会跳到登录服务器https://localhost:8443/server/login?service=https://localhost:9443/client/cas;
+		2.如果此时单点登录服务器也没有登录的话，会显示登录表单页面，输入用户名/密码进行登录;
+		3. 登录成功后服务器端会回调客户端传入的地址:
+			https://localhost:9443/client/cas?ticket=ST-1-eh2cIo92F9syvoMs5DOg-cas01.example.org ,且带着一个 ticket；
+		4.客户端会把ticket提交给服务器来验证ticket是否有效；如果有效服务器端将返回用户身份
+		5.客户端可以再根据这个用户身份获取如当前系统用户/角色/权限信息
