@@ -1,1 +1,11 @@
 ##nginx 会忽略带下划线的地址
+
+
+linux:
+nginx安装目录/sbin/nginx -s reload            # 重新载入配置文件
+nginx安装目录/sbin/nginx -s reopen            # 重启 Nginx
+nginx安装目录/sbin/nginx -s stop              # 停止 Nginx
+nginx安装目录/sbin/nginx					#启动Nginx
+
+windows:
+	start nginx （start nginx -p nginx安装目录）  启动Nginx
