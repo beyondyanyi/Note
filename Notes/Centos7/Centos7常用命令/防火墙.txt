@@ -18,7 +18,7 @@
 		--add-port=80/tcp #添加端口，格式为：端口/通讯协议
 		--permanent #永久生效，没有此参数重启后失效
 
-	firewall-cmd --list-all 查看防火墙规则
+	 查看防火墙规则
 	
 	firewall-cmd --get-zones                       ##列出支持的zone
 	firewall-cmd --get-services                    ##列出支持的服务，在列表中的服务是放行的

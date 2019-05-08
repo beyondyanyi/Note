@@ -1,0 +1,25 @@
+###全局安装
+	npm install -g pm2
+	
+	安装完会自动创建一下目录
+		$HOME/.pm2 will contain all PM2 related files
+		$HOME/.pm2/logs will contain all applications logs
+		$HOME/.pm2/pids will contain all applications pids
+		$HOME/.pm2/pm2.log PM2 logs
+		$HOME/.pm2/pm2.pid PM2 pid
+		$HOME/.pm2/rpc.sock Socket file for remote commands
+		$HOME/.pm2/pub.sock Socket file for publishable events
+		$HOME/.pm2/conf.js PM2 Configuration
+		
+		
+##启动服务
+	pm2 start app.js 启动服务
+	pm2 start app.js --watch  启动服务，热更新
+
+
+##停止服务
+	pm2 stop app.js 停止服务
+	
+	
+##列出所有服务
+	pm2 list 查看当前所有服务

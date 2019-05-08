@@ -1,0 +1,34 @@
+ char.setoption().......
+ //设置饼图默认高亮显示一块
+        let currentIndex = 0;
+        setTimeout(function() {
+            currentIndex--;
+            var dataLen = optionHeadOne.series[0].data.length;
+            // 取消之前高亮的图形
+            headCharOne.dispatchAction({
+                type: 'downplay',
+                seriesIndex: 0,
+                dataIndex: currentIndex
+            });
+            currentIndex = (currentIndex + 1) % dataLen;
+            // 高亮当前图形
+            headCharOne.dispatchAction({
+                type: 'highlight',
+                seriesIndex: 0,
+                dataIndex: currentIndex
+            });
+        }, 100);
+        $("body").bind("mouseenter",headCharOne,function(){
+            headCharOne.dispatchAction({
+                type: 'downplay',
+                seriesIndex: 0,
+                dataIndex: currentIndex
+            });
+        })
+        $("body").bind("mouseleave",headCharOne,function(){
+            headCharOne.dispatchAction({
+                type: 'highlight',
+                seriesIndex: 0,
+                dataIndex: currentIndex
+            });
+        })
