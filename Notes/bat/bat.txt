@@ -1,0 +1,9 @@
+##调用外部程序等待问题
+test.exe 等待test.exe程序执行完后才会运行下面的语句
+start test.exe 不会等待，直接执行下一条
+
+
+
+###以管理员权限运行bat
+	开头加上：
+		%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit

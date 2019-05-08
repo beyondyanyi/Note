@@ -142,3 +142,14 @@ docker image ls
 				
 				
 ##私有仓库
+
+
+#安装docker compose
+	
+	1.执行脚本安装
+		 curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	2.修改docker-compose命令的权限
+		chmod +x /usr/local/bin/docker-compose
+
+	3.验证是否安装成功
+		docker-compose --version
