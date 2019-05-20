@@ -122,6 +122,11 @@ docker image ls
 	##推送镜像到docker hub仓库
 		1.docker login 登录
 		
+		docker login [option] [server]
+		不指定地址则登录官方Registry
+		例如：登录阿里云Registry	
+			docker login --username=cheergoivan registry.cn-hangzhou.aliyuncs.com
+		
 		2.docker  tag [imageId] [userId]/[name]:[version]
 				例如：	docker tag 9f38484d220f nonameforyi/centos:v1
 		

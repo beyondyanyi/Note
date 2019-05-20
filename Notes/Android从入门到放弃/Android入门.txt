@@ -1,0 +1,24 @@
+## 1.Android平台具有如下特性：
+```
+允许重用和替换组件的应用程序框架
+专门为移动设备优化的Dalvik虚拟机
+基于开源引擎WebKit的内置浏览器
+自定义的2D图形库提供了最佳的图形效果，此外还支持基于OpenGL ES1.0规范的3D效果（需要硬件支持）
+支持数据结构化存储的SQLite
+支持常见的音频、视频和图片格式
+GSM电话（需要硬件支持）
+蓝牙、EDGE、3G和WiFi(需要硬件支持)
+摄像头、GPS、指南针和加速计（需要硬件支持）
+包括设备模拟器、调试工具、优化工具和Eclipse开发插件等丰富的开发环境
+```
+
+
+## 2.平台架构：
+	android主要包括：
+		Applications（应用程序）：包括Email客户端、SMS程序、日历、地图、浏览器、通讯录等、Application Framework（应用程序框架）、Libraries（库）、Android Runtime（Android运行时）、Linux Kernel(Linux内核)
+
+
+​		
+​		
+​		
+​		

@@ -1,0 +1,11 @@
+1.github创建private respositories
+	添加相应的dockerfile文件
+
+2.阿里云容器镜像服务绑定github
+
+3.配置阿里容器镜像服务
+		勾选自动构建等
+
+4.提交代码至github，添加tag,此时容器镜像服务会自动构建镜像
+
+5.在阿里云容器镜像服务中拉取自动构建的镜像
