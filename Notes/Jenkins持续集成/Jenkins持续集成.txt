@@ -1,0 +1,148 @@
+/var/jenkins_home/
+lsof -i tcp:80
+systemd-cgls
+
+1.git pull问题
+使用docker pull jenkins 时，run的容器进入到jenkins容器里，默认是jenkins用户的。
+
+我们使用git拉取代码时，需要私钥验证。这时候就需要上传到.ssh文件夹里（使用本身有的key，也可以ssh-keygen创建新的）
+
+jenkins容器里存放密钥的目录是在 /var/jenkins_home/.ssh/ （所以传key的位置也要在这个）
+
+（不像/root/.ssh)
+--------------------- 
+
+
+2.docker jenkins容器找不到git等命令
+	jenkins shell 命令前要加上
+	
+	原因：在jenkins shell中执行没有加载/etc/profile .bash_profile中的环境变量
+	需要在shell 命令前面加一条申明：
+	#!/bin/bash -il
+
+
+
+git@github.com:nonameforhe/Jenkins.git
+
+
+
+3.docker jenkins容器权限问题
+     1)jenkins容器没有挂载目录的权限:将挂载目录的权限授予jenkins 
+	 #sudo chown -R 1000:1000 /挂载目录
+	 #docker start jenkins
+	 
+	 2)
+	 
+
+
+
+4.使用rpm安装
+/usr/lib/jenkins/jenkins.war    WAR包 
+
+/etc/sysconfig/jenkins       配置文件
+
+/var/lib/jenkins/        默认的JENKINS_HOME目录
+
+/var/log/jenkins/jenkins.log    Jenkins日志文件
+
+
+
+5.Jenkins+gitee
+
+
+	配置gitee地址和用户名密码
+	
+	
+	
+	
+	
+
+
+# 部署完server的任务，server这个进程不会被Jenkins杀掉
+BUILD_ID=DONTKILLME
+
+# 加载配置参数 
+. /etc/profile
+
+# 配置运行参数
+export PROJ_PATH=`pwd`
+export TOMCAT_APP_PATH=/var/jenkins_home/apache-tomcat-jenkins
+
+# base函数
+killTomcat()
+{
+    pid=`ps -ef|grep apache-tomcat-jenkins|grep java|awk '{print $2}'`
+    echo "apache-tomcat-jenkins Id list :$pid"
+    if [ "$pid" = "" ]
+    then
+      echo "no apache-tomcat-jenkins pid alive"
+    else
+      kill -9 $pid
+    fi
+}
+
+# 切换到任务下的指定目录
+cd $PROJ_PATH/overtime-0.0.4-SNAPSHOT
+
+# 将从GitHub拉取的项目进行清理并安装在本地
+mvn clean install
+
+# 杀死原有的tomcat进程
+killTomcat
+
+# 删除原有工程
+rm -rf $TOMCAT_APP_PATH/webapps/ROOT
+rm -f $TOMCAT_APP_PATH/webapps/ROOT.war
+rm -f $TOMCAT_APP_PATH/webapps/overtime-0.0.4-SNAPSHOT.war
+
+# 复制新的工程
+cp $PROJ_PATH/overtime-0.0.4-SNAPSHOT/target/overtime-0.0.4-SNAPSHOT.war $TOMCAT_APP_PATH/webapps/
+
+# 切换到指定目录
+cd $TOMCAT_APP_PATH/webapps/
+
+# 为war包重命名
+mv overtime-0.0.4-SNAPSHOT.war ROOT.war
+
+# 启动tomcat服务器
+cd $TOMCAT_APP_PATH/bin
+sh startup.sh
+
+
+
+
+
+
+
+/usr/lib/jenkins/jenkins.war    WAR包 
+
+/etc/sysconfig/jenkins       配置文件
+
+/var/lib/jenkins/        默认的JENKINS_HOME目录
+
+/var/log/jenkins/jenkins.log    Jenkins日志文件
+
+
+
+普通方式安装：
+
+1.安装
+	1） wget http://pkg.jenkins-ci.org/redhat-stable/jenkins-2.7.3-1.1.noarch.rpm
+	2） rpm -ivh jenkins-2.7.3-1.1.noarch.rpm
+
+2.配置
+	配置jenkins的端口
+
+	1）vi /etc/sysconfig/jenkins
+		JENKINS_PORT="8080"  此端口不冲突可以不修改 
+
+3.启动jenkins
+	service jenkins start/stop/restart
+	
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+安装webmin
+准备centos7系统
+1、下载
+http://download.webmin.com/download/yum/
+选择：webmin-1.700-1.noarch.rpm 安装包
+
+1
+wget http://download.webmin.com/download/yum/webmin-1.700-1.noarch.rpm
+　　
+
+ 
+
+2、安装
+rpm -ivh webmin-1.700-1.noarch.rpm
+
+
+
+ 
+
+
+3、重置密码
+/usr/libexec/webmin/changepass.pl /etc/webmin root redhat 
+说明：
+root是webmin的用户名，不是OS的
+redhat为密码
+/etc/webmin是webmin的配置目录
+
+
+ 
+
+4、修改webmin服务的端口号（修改是出于安全目的）
+
+修改方式：
+
+vim /etc/webmin/miniserv.conf    # 修改端口
+
+将port=10000修改为其他端口号，如port=18888
+
+ 
+
+5、重启webmin
+
+/etc/webmin/restart # 重启
+
+/etc/webmin/start # 启动
+/etc/webmin/stop # 停止
+
+ 
+
+5、防火墙放开10000端口（或修改后的端口号18888）
+
+firewall-cmd --zone=public --add-port=10000/tcp --permanent # 配置防火墙开放10000端口
+firewall-cmd --reload # 更新防火墙配置
+firewall-cmd --zone=public --list-ports # 查看已经开放的端口号
+
+
+
+ 
+
+7、登录webmin
+http://ip:10000 可以访问了
+用root账号和重置的新密码redhat
+
+8、显示中文
+
+
+
+
+
+ 
+
+ 
+
+安全建议：
+
+为了安全起见，请做好以下2点：
+
+1、保管好webmin的root账号的密码
+
+2、修改webmin的10000端口号为其他端口号，并重新添加防火墙开发端口
+
+修改方式：
+
+vim /etc/webmin/miniserv.conf    # 修改端口
+
+将port=10000修改为其他端口号，如port=18888
+
+/etc/webmin/restart   # 重启webmin
+
+防火墙重新放行新端口号
+
+firewall-cmd --zone=public --remove-port=10000/tcp --permanent  # 配置防火墙关闭10000端口
+
+firewall-cmd --zone=public --add-port=18888/tcp --permanent # 配置防火墙开放18888端口
+firewall-cmd --reload # 更新防火墙配置
+firewall-cmd --zone=public --list-ports # 查看已经开放的端口号
