@@ -1,0 +1,42 @@
+https://www.cnblogs.com/Dicky-Zhang/p/7189714.html
+
+
+docker run --name  some-zabbix-mysql-server --hostname zabbix-mysql-server \
+-e MYSQL_ROOT_PASSWORD="123456" \
+-e MYSQL_USER="zabbix" \
+-e MYSQL_PASSWORD="123456" \
+-e MYSQL_DATABASE="zabbix" \
+-p 3308:3306 \
+-d mysql:5.7 \
+--character-set-server=utf8 --collation-server=utf8_bin
+
+
+
+docker run  --name some-zabbix-server-mysql --hostname zabbix-server-mysql \
+--link some-zabbix-mysql-server:mysql \
+-e DB_SERVER_HOST="mysql" \
+-e MYSQL_USER="zabbix" \
+-e MYSQL_DATABASE="zabbix" \
+-e MYSQL_PASSWORD="123456" \
+-v /etc/localtime:/etc/localtime:ro \
+-v /data/docker/zabbix/alertscripts:/usr/lib/zabbix/alertscripts \
+-v /data/docker/zabbix/externalscripts:/usr/lib/zabbix/externalscripts \
+-p 10051:10051 \
+-d \
+zabbix/zabbix-server-mysql
+
+
+
+docker run --name zabbix-web-nginx-mysql --hostname zabbix-web-nginx-mysql \
+--link some-zabbix-mysql-server:mysql \
+--link some-zabbix-server-mysql:zabbix-server \
+-e DB_SERVER_HOST="mysql" \
+-e MYSQL_USER="zabbix" \
+-e MYSQL_PASSWORD="123456" \
+-e MYSQL_DATABASE="zabbix" \
+-e ZBX_SERVER_HOST="zabbix-server" \
+-e PHP_TZ="Asia/Shanghai" \
+-p 8000:80 \
+-p 8443:443 \
+-d \
+zabbix/zabbix-web-nginx-mysql

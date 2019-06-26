@@ -1,0 +1,126 @@
+### 数据类型
+
+```
+string、hash、list、set、zset	
+```
+
+
+
+#### 通用命令
+
+```
+del key
+multi   exec  事务块
+
+```
+
+
+
+##### String
+
+```
+一个key对应一个value；
+set key value
+get key
+
+一个键最大能存储512MB
+```
+
+##### Hash
+
+```
+键值对集合。一个string类型的field和value的映射表，hash适合存储对象
+
+1.hset：
+单个field-value对插入；
+如果field已存在，则会被覆盖；
+如果key不存在，则会创建新的哈希表；
+
+返回值：如果field是新的，并且值设置成功，则返回1
+	   如果field是旧的且已被新值覆盖，则返回0
+	   
+	  
+例如：hset demo 323
+	 hget demo
+
+2.hmset：
+多个field-value对插入；
+如果key不存在，则会创建新的哈希表；
+
+返回值：如果命令执行成功，返回ok
+	   如果key不是hash类型，返回一个错误
+	   
+例如：hmset ggggg skt 333 ig 232 rng 323
+	 hmget ggggg skt ig rng
+
+3.hmget：
+返回值：返回哈希表key中，一个或多个给定field的值。
+	  如果给定的field不存在哈希表中，则返回nil
+	
+例如：hmget ggggg skt ig rng
+
+hgetall:
+返回值：返回哈希表key中，所有field和value。
+	  如果key不存在，则返回空列表
+
+例如：hgetall ggggg
+```
+
+
+
+##### List
+
+```
+字符串列表
+
+
+1.lpush 
+将元素放入list头部
+
+2.lpushx
+将元素放入list头部，如果key存在，则不进行操作
+3.rpush
+将元素放在list尾部
+4.lrange
+列出list指定范围的值
+例如：lrange keyss 0 10
+5.llen
+返回值：返回列表key的长度
+如果key不存在，则key被解释为一个空列表，返回0
+如果key不是列表类型，则返回一个错误
+
+例如：
+	llen keys
+	
+6.
+```
+
+
+
+##### set
+
+```
+string类型的无序集合，不允许重复成员
+
+1.sadd
+添加一个string元素到key对应的set集合中（元素唯一性，重复的元素将被忽略）
+
+返回值：成功返回1
+	   如果元素已经在集合中返回0
+	   如果key对应的set不存在则返回错误
+	   
+2.smembers
+返回集合中的所有成员
+```
+
+
+
+##### zset
+
+```
+string类型有序集合，不允许重复成员，但是分数(score)可以重复
+每个元素都会关联一个double类型的分数。（redis是通过分数为集合中的成员进行从大到小排序）
+
+1.zadd key score member
+```
+

@@ -1,0 +1,10 @@
+﻿CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+
+##授权
+grant all privileges on testDB.* to test@localhost identified by '1234';
+##撤销授权
+revoke all  privileges   on cmms.* from mysql@'%'; 
+
+flush privileges; 
+
+874612

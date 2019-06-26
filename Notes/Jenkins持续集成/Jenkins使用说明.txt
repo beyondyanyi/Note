@@ -1,0 +1,93 @@
+#### 1.登录
+
+#### 2.新建任务
+
+```
+选择构建一个自由风格的软件项目
+```
+
+#### 3.填写描述(Description)
+
+```
+描述这个任务是干什么的
+```
+
+#### 4.填写git地址（Source Code Management）
+
+```
+1）填写git地址（https方式和ssh方式）
+	https方式:
+		填写git地址，添加用户名和密码
+		例如：
+			地址：https://github.com/nonameforhe/Jenkins.git
+			用户：xxxx
+            密码：xxxx
+	ssh方式：
+		填写git地址，添加ssh私钥（公钥需提前到git服务器上）
+		例如：
+			地址：git@github.com:nonameforhe/Jenkins.git
+			秘钥：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+​			
+
+#### 5.填写构建脚本(Build--execute shell)
+
+```
+# 部署完server的任务，server这个进程不会被Jenkins杀掉
+BUILD_ID=DONTKILLME
+
+# 加载配置参数
+. /etc/profile
+
+# 配置运行参数#(tomcat路径)
+export PROJ_PATH=`pwd`
+export TOMCAT_APP_PATH=/tomcat/apache-tomcat-jenkins
+export CATALINA_HOME=/tomcat/apache-tomcat-jenkins
+export CATALINA_BASE=/tomcat/apache-tomcat-jenkins
+export TOMCAT_HOME=/tomcat/apache-tomcat-jenkins
+
+
+# base函数
+killTomcat()
+{
+    pid=`ps -ef|grep apache-tomcat-jenkins|grep java|awk '{print $2}'`
+    echo "apache-tomcat-jenkins Id list :$pid"
+    if [ "$pid" = "" ]
+    then
+      echo "no apache-tomcat-jenkins pid alive"
+    else
+      kill -9 $pid
+    fi
+}
+
+# 切换到任务下的指定目录
+cd $PROJ_PATH/overtime-0.0.4-SNAPSHOT
+
+# 将从GitHub拉取的项目进行清理并安装在本地
+mvn clean install
+
+# 杀死原有的tomcat进程
+killTomcat
+
+# 删除原有工程
+rm -rf $TOMCAT_APP_PATH/webapps/ROOT
+rm -f $TOMCAT_APP_PATH/webapps/ROOT.war
+rm -f $TOMCAT_APP_PATH/webapps/test-test.war
+
+# 复制新的工程
+cp $PROJ_PATH/overtime-0.0.4-SNAPSHOT/target/test-test.war $TOMCAT_APP_PATH/webapps/
+
+# 切换到指定目录
+cd $TOMCAT_APP_PATH/webapps/
+
+# 为war包重命名
+mv test-test.war ROOT.war
+
+# 启动tomcat服务器
+cd $TOMCAT_APP_PATH/bin
+sh ./startup.sh
+
+```
+
+#### 6.保存，立即构建

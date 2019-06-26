@@ -1,0 +1,12 @@
+1.相关资料
+https://www.linkingvision.com/product-h5stream
+
+
+
+
+2.解决方案
+
+	rtsp  通过ffmpeg转成rtmp
+
+	rtmp+flash
+	h5stream+h5播放器

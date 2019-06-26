@@ -1,5 +1,6 @@
 /var/jenkins_home/
 lsof -i tcp:80
+netstat -lnp|grep 88 
 systemd-cgls
 
 1.git pull问题

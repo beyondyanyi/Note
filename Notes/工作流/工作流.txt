@@ -1,0 +1,109 @@
+#### 1.java工作流引擎：jBPM、Activiti以及SWF
+
+```
+
+工作流(Workflow)，就是“业务过程的部分或整体在计算机应用环境下的自动化”，它主要解决的是“使在多个参与者之间按照某种预定义的规则传递文档、信息或任务的过程自动进行，从而实现某个预期的业务目标，或者促使此目标的实现”
+
+	工作流的优点：
+		提高系统的柔性，适应业务流程的变化
+
+        实现更好的业务过程控制，提高顾客服务质量
+
+        降低系统开发和维护成本
+```
+
+
+
+#### 2.Activiti
+
+```
+1)Kickstart App:主要用于流程模型管理、表单管理及应用管理，一个应用可以包含多个流程模型，应用可发布给其他用户使用
+2)Task APP:用于管理整个activiti-app的任务，在该功能里面也可以启动流程
+3）Idenity management:身份信息管理，可以管理用户、用户组等数据
+```
+
+#### 3.Activiti 23张表详解
+
+```
+act_re_*:repository,这个前缀的表包含了流程定义和流程静态资源(图片、规则等)
+act_ru_*:runtime,这个前缀的表，包含流程实例，任务，变量，异步任务等运行中的数据。（只在运行流程实例执行				过程中保存这些数据，在流程结束时就会删除这些记录。）
+act_id_*:identity,这些表包含身份信息，如用户、组等
+act_hi_*:history:这些表包含历史数据（历史流程实例、变量、任务等等）
+act_ge_*:通用数据
+
+
+```
+
+```
+act_re_deployment(流程部署表)、act_re_model(流程模型表)、act_re_procdef(流程定义表)中的数插入后一般不会变
+```
+
+```
+act_ru_execution、act_ru_task、act_ru_variable表中的数据一般会动态改变
+```
+
+```
+act_id_group、act_id_info、act_id_membership、act_id_user
+```
+
+```
+1)流程部署（将流程定义的规则保存到数据库）
+act_re_deployment(部署表)、act_re_procdef(流程定义表)、act_ge_baytearray(二进制文件表)
+多次部署不会覆盖前一次部署的数据（会新增一条）
+```
+
+#### 4.activiti网关
+
+```
+1）排他网关（Exclusive Gateway）：
+	排他网关又称互斥网关，条件计算为ture的顺讯流会被选择继续流程，有且只有一条出口，如果出现多个条件为true,则会默认选择第一条true来执行，如果没有条件输出true,流程走到这一步则会报错
+	
+2）并行网关（Parallel Gateway）:
+	它可以将执行分支（fork）为多条路径,也可以合并（join）执行的多条入口路径。简单点说就是，并行网关它可以有多条入口和出口，并且在合并入口处会等待其他分支执行完，然后再执行后面的流程。另外，并行网关没有条件的概念，即便设置了条件，它会自动忽略
+3）包容网关（Inclusive Gateway）:
+	这个网关集合了前面两个网关的特点，一句话来说就是，它既可以像排他网关那样设置条件，也能像并行网关这样设置多条分支并行执行。
+4）事件网关（Event-based Gateway）:
+	该网关在执行出口处，要连接一个捕获中间事件。当流程执行到该网关时，流程类似处于等待的状态，此时执行被暂停，并创建一个事件订阅
+	需要订阅什么事件，基于下列约束：
+		一个基于事件的网关，必须有两条或更多的出口顺序流;
+		基于事件的网关，只能连接至intermediateCatchEvent(捕获中间事件)类型的元素（Activiti不支持基			于事件的网关后，连接接收任务，Receive Task）;
+		连接至基于事件的网关的intermediateCatchEvent，必须只有一个入口顺序流；
+```
+
+
+
+#### 4.其他工具
+
+```
+activiti6删除所有表：
+drop table act_evt_log;
+drop table act_ge_property;
+drop table act_hi_actinst;
+drop table act_hi_attachment;
+drop table act_hi_comment;
+drop table act_hi_detail;
+drop table act_hi_identitylink;
+drop table act_hi_procinst;
+drop table act_hi_taskinst;
+drop table act_hi_varinst;
+drop table act_id_info;
+drop table act_id_membership;
+drop table act_id_user;
+drop table act_procdef_info;
+drop table act_re_model;
+drop table act_ru_deadletter_job;
+drop table act_ru_event_subscr;
+drop table act_ru_identitylink;
+drop table act_ru_job;
+drop table act_ru_suspended_job;
+drop table act_ru_task;
+drop table act_ru_timer_job;
+drop table act_ru_variable;
+drop table act_ge_bytearray;
+drop table act_id_group;
+drop table act_re_deployment;
+drop table act_ru_execution;
+drop table act_re_procdef;
+
+```
+

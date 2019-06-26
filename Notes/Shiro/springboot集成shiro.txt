@@ -1,0 +1,14 @@
+https://blog.csdn.net/qwqw3333333/article/details/82956447
+
+
+
+
+docker run -d \
+    --hostname gitlab \
+    --publish 2222:80 \
+    --name gitlab \
+    --restart always \
+    --volume $GITLAB_HOME/config:/etc/gitlab \
+    --volume $GITLAB_HOME/logs:/var/log/gitlab \
+    --volume $GITLAB_HOME/data:/var/opt/gitlab \
+    gitlab/gitlab-ce
