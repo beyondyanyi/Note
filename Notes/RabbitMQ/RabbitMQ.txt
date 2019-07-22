@@ -1,0 +1,94 @@
+#### 一.概念
+
+```
+Message Queue 消息队列
+AMQP:高级消息队列协议
+Server:又称Broker（实体服务）接收客户端的连接，实现AMQP实体服务
+Connection:连接，应用程序与Broker的网络连接
+Channel:网络通道，几乎所有的操作都在通道中进行，Channel是进行消息读写的通道。客户端可建立多个			Channel,每个Channel代表一个会话任务
+Message:消息，服务器和应用程序之间传送的数据，由Properties和Body组成。
+Virtual hose:虚拟地址，用于进行逻辑隔离,最上层的消息路由。一个Virtual host里面可以有若干个			Exchange和Queue,同一个Virtual host里面不能有相同名称的Exchange或Queue
+Exchange:交换机，接收消息，根据路由键转发消息到绑定的队列
+Binding:Exchange和Queue之间的虚拟连接，binding中可以包含routing key
+Routing key：一个路由规则，虚拟机可用它来确定如何路由一个特定消息
+Queue:也称为Message Queue，消息队列，保存消息并将他们转发给消费者，消费者直接监听队列就能收				到消息了
+```
+
+#### 二. 6种队列模式
+
+```
+1.Hello World   简单队列
+2.Work queues   Work模式
+3.Publish/Subscribe  订阅模式
+4.Routing       路由模式
+5.Topics        通配符模式
+6.RPC
+```
+
+1.简单队列
+
+```
+P:生产者（producer）
+	队列
+C:消费者（consumer）
+
+
+生产者将消息发送到队列，消费者从队列中获取消息
+```
+
+2.WORK模式
+
+```
+一个生产者，2个消费者
+一个消息只能被一个消费者获取
+能者多劳
+```
+
+3.订阅模式
+
+```
+一个生产者，多个消费者
+每个消费者都有自己的一个队列
+生产者没有将消息直接发送到队列，而是发送到了交换机
+每个队列都要绑定到交换机器
+生产者发送的消息，经过交换机，到达队列，实现一个消息被多个消费者获取的目的
+```
+
+4.路由模式
+
+```
+需要将一个队列绑定到交换机上，要求该消息与一个特定的路由键完全匹配。这是一个完整的匹配。如果一个队列绑定到该交换机上要求路由键 “dog”，则只有被标记为“dog”的消息才被转发，不会转发dog.puppy，也不会转发dog.guard，只会转发dog
+```
+
+5.通配符模式
+
+```
+此时队列需要绑定要一个模式上。符号“#”匹配一个或多个词，符号“*”匹配不多不少一个词。因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.*” 只会匹配到“audit.irs”
+```
+
+6.RPC模式
+
+#### 三.开始使用
+
+```
+1.windows下安装RabbitMQ 
+	1)先安装Erlang 64位
+		Erlang官网下载，安装。
+		配置环境变量，在path中加入“Erlang安装目录\bin”
+		cmd运行erl,如出现Eshell，则Erlang安装成功
+		
+	2)安装RabbitMQ
+		RabbitMQ官网下载，安装
+		RabbitMQ服务默认自启动，端口5672
+	
+安装OVER
+
+2.RabbitMQ默认有个guest用户，密码guest
+
+3.管理：
+  使用rabbitmq-plugins.bat list查看已安装的插件列表
+  使用rabbitmq-plugins.bat enable rabbitmq_management开启网页管理界面
+
+  在浏览器上输入http://127.0.0.1:15672/ 就可以看到管理页面
+```
+
