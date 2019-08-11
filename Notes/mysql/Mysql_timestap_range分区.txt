@@ -1,0 +1,90 @@
+【原文：https://blog.csdn.net/aofavx/article/details/50393281】
+
+###1.创建表（带表分区）
+DROP TABLE IF EXISTS `test1`;
+CREATE TABLE `test1` (
+  `id` varchar(32) NOT NULL COMMENT 'uuid',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`,`create_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+ PARTITION BY RANGE (UNIX_TIMESTAMP(create_time))
+(
+	partition p01 values less than (UNIX_TIMESTAMP('2018-07-01 00:00:00')) engine=INNODB,
+	partition p02 values less than (UNIX_TIMESTAMP('2018-08-01 00:00:00')) engine=INNODB,
+	partition p03 values less than (UNIX_TIMESTAMP('2018-09-01 00:00:00')) engine=INNODB,
+	partition p04 values less than (UNIX_TIMESTAMP('2018-10-01 00:00:00')) engine=INNODB
+);
+
+
+##2.创建存储过程(用于表分区)
+DROP PROCEDURE IF EXISTS `pro_his_data_ByMonth`;
+create PROCEDURE pro_his_data_ByMonth(IN tableName VARCHAR(20),IN timeColName VARCHAR(20))
+COMMENT '每月按时添加表分区的存储过程，由定时任务调用'
+BEGIN
+    #现有分区数量
+    DECLARE p_id int;
+		#下个月第一天
+    DECLARE nextDate timestamp;
+		#表中最大分区日期
+    DECLARE lastDate LONG;
+    #--获取表中的现有的分区数量数量
+    SELECT COUNT(partition_name) into p_id FROM INFORMATION_SCHEMA.partitions 
+                                        WHERE TABLE_SCHEMA = SCHEMA() AND TABLE_NAME=tableName;
+    if p_id=0 then
+        #--获取下个月第一天的时间值，根据此值设置时间分区
+        SELECT DATE_ADD(CURDATE()-DAY(CURDATE())+1,INTERVAL 1 MONTH) INTO nextDate  from DUAL;
+        set @v_add=CONCAT('ALTER table ',tableName,' PARTITION by range(UNIX_TIMESTAMP(',timeColName,'))
+                                    (partition ',CONCAT('par',p_id),' values less than (UNIX_TIMESTAMP(\'',nextDate,'\')))');
+    ELSE
+        #--获取表中现有的最大的分区日期
+        SELECT max(partition_description) des into lastDate from INFORMATION_SCHEMA.partitions 
+                                        WHERE TABLE_SCHEMA = SCHEMA() AND TABLE_NAME=tableName;
+				#--将先有最大表分区日期加上一个月
+        SELECT DATE_ADD(str_to_date(from_unixtime(lastDate,'%Y-%m-%d %H:%i:%s'),'%Y-%m-%d %H:%i:%s'),INTERVAL 1 MONTH) INTO nextDate from DUAL;
+				#--拼装sql
+        set @v_add=CONCAT('alter table ',tableName,' add partition (partition ',CONCAT('par',p_id),
+                                                    ' values less than (UNIX_TIMESTAMP(\'',nextDate,'\')))');
+    END IF;
+		#预处理三件套
+    PREPARE stmt from @v_add;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END;
+
+
+##3.创建定时任务
+##每月定时执行的定时任务
+DROP EVENT IF EXISTS event_month_do;
+create event event_month_do on SCHEDULE EVERY 1 MONTH STARTS CURRENT_TIMESTAMP
+on COMPLETION PRESERVE
+DISABLE
+do call pro_his_data_ByMonth('test1','create_time');
+
+
+
+##4.开启定时器
+##查看mysql事件是否开启(event_scheduler)
+show global variables like '%event%';
+##设置事件开启
+set global event_scheduler=ON;
+##查看进程（会看到一个event_scheduler）
+show PROCESSLIST;
+##查看创建的定时器
+SELECT * FROM  mysql.event;
+##删除事件
+drop event  event_month_do;
+##查看表的分区情况（table_schema库名，table_name表名）
+SELECT PARTITION_NAME,TABLE_ROWS,PARTITION_EXPRESSION,from_unixtime(PARTITION_DESCRIPTION,'%Y-%m-%d %H:%i:%s') FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_SCHEMA='test' AND TABLE_NAME = 'test1'; 
+##查看所有事件
+SELECT * FROM information_schema.EVENTS;
+
+##开启事件
+ALTER EVENT event_month_do ON 
+COMPLETION PRESERVE ENABLE; 
+##关闭事件
+ALTER EVENT event_month_do ON 
+COMPLETION PRESERVE DISABLE;
+
+
+
+

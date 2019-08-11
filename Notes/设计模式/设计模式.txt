@@ -1,0 +1,117 @@
+1.模式
+	模式是一条由三部分组成的规则：
+			一个特定环境+一个问题+一个解决方案
+	核心思想：
+			进行设计的复用
+			
+2.设计模式
+		描述了定制化的相互通信的对象和类，以解决特定环境中的通用设计问题
+3.体系结构模式
+		对系统的高层设计，是从一个较高的层次来考虑组成系统的构建。又被称为架构模式、体系结构风格
+		
+		
+		
+体系结构模式是高层模式
+设计模式是中层模式
+实现架构模式时可能采用多种设计模式
+
+
+
+一：单例模式
+	定义：确保一个类仅拥有一个唯一的实例，并且提供一个全局的访问点
+	
+	
+	1.将构造方法私有化
+	2.在类中声明类的实例，并将实例声明为静态
+	3.对外公布一个获取该实例的方法
+	##懒汉式
+	public class Singleton {  
+		private Singleton() {}  
+		private static Singleton single=null;  
+    //静态工厂方法（线程不安全）  
+		public static Singleton getInstance() {  
+			 if (single == null) {    
+				 single = new Singleton();  
+			 }    
+			return single;  
+		}  
+	}
+	
+	
+	#同步
+	 public static synchronized Singleton getInstance() {  
+             if (single == null) {    
+                 single = new Singleton();  
+             }    
+            return single;  
+    }
+	
+	#双重检查锁定
+	public static Singleton getInstance() {  
+        if (singleton == null) {    
+            synchronized (Singleton.class) {    
+               if (singleton == null) {    
+                  singleton = new Singleton();   
+               }    
+            }    
+        }    
+        return singleton;   
+    } 
+	
+	##静态内部类
+	public class Singleton {    
+		private static class LazyHolder {    
+		   private static final Singleton INSTANCE = new Singleton();    
+		}    
+		private Singleton (){}    
+		public static final Singleton getInstance() {    
+		   return LazyHolder.INSTANCE;    
+		}    
+	} 
+	
+	
+	//饿汉式（天生线程安全）
+	public class Singleton1 {  
+		private Singleton1() {}  
+		private static final Singleton1 single = new Singleton1();  
+		//静态工厂方法   
+		public static Singleton1 getInstance() {  
+			return single;  
+		}  
+	}
+	
+} 
+
+
+二：好的设计原则：
+	单一职责原则：
+		高内聚性原则
+		避免相同的职责分散到不同的类中实现
+		避免一个类承担过多的职责
+	开闭原则：
+		Open:模块的行为必须是开放的、支持扩展的，而不是僵化的
+		Closed:在对模块的功能进行扩展使，不应该影响或大规模地影响已有的程序模块
+		抽象化是开闭原则的关键
+		对扩展开放，对修改关闭
+	里氏代换原则：所有引用基类的地方必须能透明地使用其子类的对象，通俗点讲，只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常
+			里氏替换原则为继承定义的规范：
+					1.子类必须完全实现父类的方法
+					2.子类可以有自己的个性
+					3.覆盖或实现父类的方法时输出参数可以被放大
+					4.覆盖或实现父类的方法时输出结果可以被缩小
+					
+					1.子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法
+					2.子类中可以增加自己特有的方法
+					3.当子类的方法重载父类的方法时，方法的前置条件（方法的形参）要比父类方法的输入参数更宽松
+					4.当子类的方法实现父类的抽象方法时，方法的后置条件（方法的返回值）要比父类更严格
+					
+					
+			里氏替换原则是对开闭原则的补充
+	依赖倒转原则：
+		高层模块不应该依赖低层模块，两者都应该依赖抽象
+		抽象不应该依赖细节
+		细节应该依赖抽象
+		也可以说高层模块，低层模块，细节都应该依赖抽象
+	接口隔离原则：
+	合成复用原则：
+	迪米特原则：

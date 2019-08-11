@@ -1,1 +1,1 @@
- docker exec -it mysql01 mysqldump -uroot -proot demo > /home/bak/demo.sql
+docker exec -it 0f7 mysqldump -uroot -pwst666 zentao > /wst/zentao_2019_7_29.sql
