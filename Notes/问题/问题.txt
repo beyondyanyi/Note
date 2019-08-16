@@ -1,0 +1,23 @@
+1.websocket和定时任务同时存在时会抛出异常
+	在启动类中添加如下类：
+		
+		/**
+	 * 使用 websockt注解的时候，使用@EnableScheduling注解
+	 * 启动的时候一直报错，增加这个bean 则报错解决。
+	 * 报错信息：  Unexpected use of scheduler.
+	 *https://stackoverflow.com/questions/49343692/websocketconfigurer-and-scheduled-are-not-work-well-in-an-application
+	 *
+	 * @return
+	 */
+	@Bean
+	public TaskScheduler taskScheduler(){
+
+		ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+		taskScheduler.setPoolSize(10);
+		taskScheduler.initialize();
+		return taskScheduler;
+		}
+	}
+	--------------------- 
+	版权声明：本文为CSDN博主「我爱看明朝」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
+	原文链接：https://blog.csdn.net/u013565163/article/details/80659828

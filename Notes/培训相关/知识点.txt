@@ -1,0 +1,14 @@
+Linux版本【https://www.linuxprobe.com/linux-versions-introduced.html】：
+	1.Redhat系列  （RPM包的YUM包管理方式）
+			RHEL(Redhat Enterprise Linux) 收费版本
+			FedoraCore 免费版本
+			Centos(RHEL的社区克隆版本) 免费版本
+			
+	2.Debian系列(apt-get/dpkg包管理方式)
+		Debian 
+		Ubuntu
+	
+	
+	3.OpenSUSE
+	
+	4.其他发行版

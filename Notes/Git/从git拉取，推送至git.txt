@@ -1,0 +1,19 @@
+第一次从码云拉取：
+	1.git init
+
+	2.git remote add origin "你的码云或coding项目地址（ssh或https）"
+
+	3.git pull origin master
+	
+	
+	
+第一次将代码推送到码云：
+	1.使用 git remote add origin https://  ，添加远程仓库到本地
+
+	2.使用 git pull origin master 命令，将码云上的仓库pull到本地文件夹
+
+	3.使用 git add .  （. 表示所有的）或者 git add + 文件名 ，将文件保存到缓存区
+
+	4.使用 git commit -m “新添加的文件内容描述”  ，添加文件描述
+	
+	5. git push origin master

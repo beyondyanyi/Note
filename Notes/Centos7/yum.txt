@@ -1,0 +1,14 @@
+将系统的yum源更换为国内的源，比如阿里云Linux安装镜像源地址：http://mirrors.aliyun.com/
+操作步骤：（以centos为例）
+
+第一步：备份你的原镜像文件。
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+第二步：下载新的CentOS-Base.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+第三步：运行yum makecache生成缓存
+yum clean allyum makecache
+
+作者：robot_zhu
+链接：https://www.jianshu.com/p/73ff45e2b89f
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。

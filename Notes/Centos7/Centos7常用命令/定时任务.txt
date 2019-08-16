@@ -1,0 +1,35 @@
+1.crontab 安装：
+	
+	yum install vixie-cron
+	yum install crontabs
+	
+	
+	
+2.相关命令
+	service crond start //启动服务
+	service crond stop //关闭服务
+	service crond restart //重启服务
+	service crond reload //重新载入配置
+	service crond status //查看crontab状态
+	
+	
+	
+	crontab -u //设定某个用户的cron服务，一般root用户在执行这个命令的时候需要此参数
+	crontab -l //列出某个用户cron服务的详细内容 　　 
+	crontab -r //删除没个用户的cron服务 　　 
+	crontab -e //编辑某个用户的cron服务
+	
+	
+	
+3.语法
+	
+	0    2    *    *    6
+	*    *    *    *    *    *
+	-    -    -    -    -    -
+	|    |    |    |    |    |
+	|    |    |    |    |    + year [optional]
+	|    |    |    |    +----- day of week (0 - 7) (Sunday=0 or 7)
+	|    |    |    +---------- month (1 - 12)
+	|    |    +--------------- day of month (1 - 31)
+	|    +-------------------- hour (0 - 23)
+	+------------------------- min (0 - 59)
