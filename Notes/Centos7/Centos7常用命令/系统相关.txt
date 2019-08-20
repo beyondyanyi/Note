@@ -1,2 +1,8 @@
 1.查看系统版本
 cat  /etc/redhat-release
+
+
+
+2.查看系统CPU
+
+ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c  

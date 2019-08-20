@@ -1,4 +1,4 @@
-Linux版本【https://www.linuxprobe.com/linux-versions-introduced.html】：
+1.Linux版本【https://www.linuxprobe.com/linux-versions-introduced.html】：
 	1.Redhat系列  （RPM包的YUM包管理方式）
 			RHEL(Redhat Enterprise Linux) 收费版本
 			FedoraCore 免费版本
@@ -6,9 +6,59 @@ Linux版本【https://www.linuxprobe.com/linux-versions-introduced.html】：
 			
 	2.Debian系列(apt-get/dpkg包管理方式)
 		Debian 
-		Ubuntu
+		Ubuntu  
 	
 	
 	3.OpenSUSE
 	
 	4.其他发行版
+	
+	
+	
+	
+2.常用命令
+		1）文件夹查看、切换操作
+			
+			ls、ll 		   查看当前目录下所有文件夹和文件
+			cp 			   复制文件或文件夹
+			mv			   移动文件或文件夹
+			pwd 		   显示当前所在目录绝对路径(print working directory)
+			cd     		   跳转到指定文件夹
+			mkdir 		   创建文件夹
+			touch          创建文件
+			rm -rf		   删除文件、文件夹
+			chmod -r 777   文件夹权限
+			netstat -lnp | grep 8031    查看端口占用情况
+			ps -ef | grep tomcat    查看指定进程pid
+			kill -9 		杀进程
+			nohup           后台运行
+			ps -aux         查看后台运行程序
+			
+		2)解压缩
+			
+			tar 	解压缩
+				-v  显示运作过程信息
+				-f  指定文件名称
+				-z  调用gzip 压缩命令执行解压缩
+				-j  调用bzip2压缩命令执行解压缩
+				-x  解开tar文件
+				
+		3)定时任务
+			crontab -u //设定某个用户的cron服务，一般root用户在执行这个命令的时候需要此参数
+			crontab -l //列出某个用户cron服务的详细内容 　　 
+			crontab -r //删除没个用户的cron服务 　　 
+			crontab -e //编辑某个用户的cron服务
+			
+		1）vim编辑器：
+			insert 开始操作
+			u  撤销上一个编辑操作
+			U  撤销所有在前一个编辑行上的操作
+			
+		  退出：
+			 保存并退出	:wq +回车
+			 不保存退出	:q!
+		
+		
+3.防火墙
+		1）firewall
+		2）iptables

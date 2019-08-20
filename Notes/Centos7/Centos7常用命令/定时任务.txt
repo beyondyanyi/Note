@@ -33,3 +33,15 @@
 	|    |    +--------------- day of month (1 - 31)
 	|    +-------------------- hour (0 - 23)
 	+------------------------- min (0 - 59)
+	
+	
+	
+	
+	
+	
+	
+	
+	##每天凌晨2点自动执行数据库备份脚本
+	0 2 * * * bash /wst/script/dockerMysqlAutoBackup_cmms.sh
+	0 2 * * * bash /wst/script/dockerMysqlAutoBackup_road.sh
+	0 2 * * * bash /wst/script/dockerMysqlAutoBackup_weather.sh
