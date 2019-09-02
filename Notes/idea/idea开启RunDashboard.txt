@@ -1,0 +1,42 @@
+1.找到.idea文件下的workspace.xml，并找到RunDashboard
+<component name="RunDashboard">
+  <option name="ruleStates">
+    <list>
+      <RuleState>
+        <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+      </RuleState>
+      <RuleState>
+        <option name="name" value="StatusDashboardGroupingRule" />
+      </RuleState>
+    </list>
+  </option>
+</component>
+
+
+2.在该配置中加入
+
+<option name="configurationTypes">
+  <set>
+    <option value="SpringBootApplicationConfigurationType" />
+  </set>
+</option>
+
+
+3.最终配置
+<component name="RunDashboard">
+  <option name="configurationTypes">
+    <set>
+      <option value="SpringBootApplicationConfigurationType" />
+    </set>
+  </option>
+  <option name="ruleStates">
+    <list>
+      <RuleState>
+        <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+      </RuleState>
+      <RuleState>
+        <option name="name" value="StatusDashboardGroupingRule" />
+      </RuleState>
+    </list>
+  </option>
+</component>
