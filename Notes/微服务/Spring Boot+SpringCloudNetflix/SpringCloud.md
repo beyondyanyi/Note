@@ -26,9 +26,11 @@ Springcloud netflix
 
 #### 5.熔断器
 
+​	Hystrix
+
 #### 6.熔断器仪表盘
 
-​	Hystrix
+​	Hystrix Dashboard
 
 #### 7.API网关--Zuul
 
