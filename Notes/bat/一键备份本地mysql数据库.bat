@@ -1,4 +1,4 @@
-
+@echo off
 @rem author by yanyi beyondyanyi@gmail.com
 color 0f
 
@@ -18,11 +18,11 @@ set "filename=%filename: =0%"
 
 
 rem 判断文件夹是否存在
-if exist %dist% {
-	echo 备份路径为+%dist%
-} else {
+if exist %dist% (
+	echo 备份路径为%dist%
+) else (
 	md %dist%
-}
+)
 
 
 rem 调用mysqldump执行备份操作
