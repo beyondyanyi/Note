@@ -1,7 +1,7 @@
 #### 1.拉取jenkins镜像
 
 ```
-docker pull jenkins
+docker pull jenkins/jenkins
 ```
 
 #### 2.创建jenkins映射文件夹
@@ -13,7 +13,7 @@ mkdir /yanyi/jenkins
 #### 3.运行容器
 
 ```
-sudo docker run -itd -u root -p 8080:8080 -p 50000:50000 --name jenkins --privileged=true  -v /yanyi/jenkins:/var/jenkins_home jenkins
+sudo docker run -itd -u root -p 8000:8080 -p 50000:50000 --name jenkins --privileged=true  -v /yanyi/jenkins:/var/jenkins_home jenkins/jenkins
 
 参数详解：
 	-itd
@@ -28,7 +28,7 @@ sudo docker run -itd -u root -p 8080:8080 -p 50000:50000 --name jenkins --privil
 
 ```
 #开放端口
-firewall-cmd --zone=public --add-port=8080/tcp --permanent
+firewall-cmd --zone=public --add-port=8000/tcp --permanent
 firewall-cmd --zone=public --add-port=50000/tcp --permanent
 #重载生效
 firewall-cmd --reload
