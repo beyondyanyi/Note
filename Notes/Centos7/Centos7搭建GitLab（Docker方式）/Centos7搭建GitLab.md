@@ -27,7 +27,7 @@ mkdir -p /yanyi/gitlab/data
 sudo docker run \
 --detach \
 --publish 2222:22 \
---publish 8090:80 \
+--publish 8099:80 \
 --publish 8443:443 \
 --hostname 192.168.124.30 \
 -v /yanyi/gitlab/etc:/etc/gitlab \
