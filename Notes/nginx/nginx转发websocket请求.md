@@ -1,4 +1,4 @@
-#### 1.在http模块中添加如何模块
+#### 1.在http模块中添加如下模块
 
 ```
 map $http_upgrade $connection_upgrade {
