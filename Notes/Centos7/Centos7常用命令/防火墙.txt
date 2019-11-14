@@ -11,7 +11,7 @@
 		 firewall-cmd --reload
 	禁止开机启动防火墙
 		 systemctl disable firewalld.service
-
+    firewall-cmd --zone=public --list-service
 	开启端口
 	firewall-cmd --zone=public --add-port=80/tcp --permanent
 		--zone #作用域
@@ -32,6 +32,10 @@
 	
 
 ###二：iptables 相关操作
+    停止iptables服务
+        systemctl stop iptables
+    禁用iptables服务
+        systemctl mask iptables
 	安装iptables防火墙
 		systemctl start iptalbes.service
 	重启iptalbes防火墙

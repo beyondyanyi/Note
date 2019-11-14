@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+</head>
+<body>
+<h1>这是一个测试的页面</h1>
+
+<script>
+    if(typeof(WebSocket) == "undefined") {
+        alert("您的浏览器不支持WebSocket");
+    }else {
+        connectWebSocket();
+    }
+    //强制关闭浏览器  调用websocket.close（）,进行正常关闭
+    window.onunload = function () {
+        //关闭连接
+        closeWebSocket();
+    }
+    //建立WebSocket连接
+    function connectWebSocket() {
+        // alert(userID);
+        console.log("开始...");
+        //建立webSocket连接
+        websocket = new WebSocket("ws://192.168.1.105:8090/websocket/ID="+uuid());
+        //打开webSokcet连接时，回调该函数
+         websocket.onopen = function () {
+            console.log("onpen");
+        }
+        //关闭webSocket连接时，回调该函数
+        websocket.onclose = function () {
+            //关闭连接
+            console.log("onclose");
+        }
+        //接收信息
+        websocket.onmessage = function (msg) {
+            console.log("receive msg");
+			console.log(msg.data);
+            alert(msg.data)
+        }
+    }
+    //发送消息
+    function send() {
+        var user = document.getElementById('ipts');//找到id是ipt的input节点;
+        var userID = user.value;
+        // alert(userID);
+        var postValue = {};
+        postValue.id = userID;
+        postValue.message = $("#text").val();
+        websocket.send(JSON.stringify(postValue));
+    }
+    //关闭连接
+    function closeWebSocket() {
+        if (websocket != null) {
+            websocket.close();
+        }
+    }
+
+    function uuid() {
+        var s = [];
+        var hexDigits = "0123456789abcdef";
+        for (var i = 0; i < 36; i++) {
+            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+        }
+        s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+        s[8] = s[13] = s[18] = s[23] = "-";
+
+        var uuid = s.join("");
+        return uuid;
+    }
+</script>
+</body>
+</html>
