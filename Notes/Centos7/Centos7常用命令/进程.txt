@@ -2,7 +2,7 @@ ps -ef  查看系统中的进程
 ps -ef|more 查看系统当中的进程
 ps -ef|grep firewalld 查看firewall 进程
 
-
+ps -aux |grep -v grep|grep pid  通过pid查看进程位置
 
 1.查进程
     ps命令查找与进程相关的PID号：
