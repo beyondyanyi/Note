@@ -8,7 +8,7 @@ vi /etc/ntp.conf
 ##允许192.168.0.0网段所有机器访问
 restrict 192.168.0.0 mask 255.255.0.0 nomodify
 ##允许156.14.15.145访问
-restrict 156.14.15.145
+restrict - 156.14.15.145
 
 systemctl start ntpd
 ```
@@ -43,6 +43,7 @@ restrict参数：
 ```
 vi /etc/ntp.conf
 
+systemctl enable ntpd
 ##国家授时中心
 server 210.72.145.44
 
