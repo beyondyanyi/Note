@@ -1,37 +1,101 @@
-﻿来源：http://jingyan.baidu.com/article/295430f1ce2e880c7e0050ff.html
+�벻��Ǯ����win10���ǾͿ������������������Ѽ�����ɡ�
 
-1.首先，我们先查看一下Win10正式专业版系统的激活状态：
+Win10��key��
 
-点击桌面左下角的“Windows”按钮，从打开的扩展面板中依次点击“设置”-“更新和安全”，并切换到“激活”选项卡，在此就可以查看到当前系统的激活状态。如图，Win10正式专业版当前未激活
+Win10��key��W269N-WFGWX-YVC9B-4J6C9-T83GX
 
-2.接下来在桌面左下角的“cortana”搜索框中输入“CMD”，待出现“命令提示符”工具时，右击选择“以管理员身份”运行。
+Win10��key��P7N43-7CKCH-8DJ7T-3Y6RV-G6PJR
 
-3.此时将“以管理员身份”打开“MSDOS”窗口，在此界面中，依次输出以下命令：
+Win10��key��P9C2R-NM3BW-JR7DG-2R38J-D9MPF
 
-slmgr.vbs /upk
+Win10��key��KH2J9-PC326-T44D4-39H6V-TVPBY
 
-复制以上命令，并在MSDOW窗口中右击以粘贴此命令，按回车进行确定。
+Win10��key��TFP9Y-VCY3P-VVpT-8XXCC-MF4YK
 
-此时弹出窗口显未“已成功卸载了产品密钥”。
+Win10��key��236TW-X778T-8MV9F-937GT-QVKBB
 
-4.接着输入以下命令：
+Win10��key��87VT2-FY2XW-F7K39-W3T8R-XMFGF
+
+Win10��key��6K2KY-BFH24-PJW6W-9GK29-TMPWP
+
+Win10��key��RHTBY-VWY6D-QJRJ9-JGQ3X-Q2289
+
+win10��������Key:
+
+��Key֮����C4M9W-WPRDG-QBB3F-VM9K8-KDQ9Y
+
+��Key֮�ߣ�2VCGQ-pVJ4-2HGJ2-K36X9-J66JG
+
+��Key֮�ˣ�MGX79-TPQB9-KQ248-KXR2V-DHRTD
+
+��Key֮�ţ�FJHWT-KDGHY-K2384-93CT7-323RC
+
+��Key֮ʮ��6K2KY-BFH24-PJW6W-9GK29-TMPWP
+
+��Key֮һ��KH2J9-PC326-T44D4-39H6V-TVPBY
+
+��Key֮����TFP9Y-VCY3P-VVH3T-8XXCC-MF4YK
+
+��Key֮����236TW-X778T-8MV9F-937GT-QVKBB
+
+��Key֮�ģ�87VT2-FY2XW-F7K39-W3T8R-XMFGF
+
+��Key֮�壺J783Y-JKQWR-677Q8-KCXTF-BHWGC
+
+win10 19H2 key��Կ��
+
+win10רҵ����Կ��NPPR9-FWDCX-D2C8J-H872K-2YT43
+
+win10רҵ����Կ��NPPR9-FWDCX-D2C8J-H872K-2YT43
+
+win10רҵ����Կ��WGGHN-J84D6-QYCPR-T7PJ7-X766F
+
+win10רҵ����Կ��W269N-WFGWX-YVC9B-4J6C9-T83GX
+
+win10רҵ����Կ��2F77B-TNFGY-69QQF-B8YKP-D69TJ
+
+win10רҵ����Կ��NYW94-47Q7H-7X9TT-W7TXD-JTYPM
+
+win10רҵ����Կ��2B87N-8KFHP-DKV6R-Y2C8J-PKCKT
+
+win10רҵ����Կ��NJ4MX-VQQ7Q-FP3DB-VDGHX-7XM87
+
+win10רҵ����Կ��MH37W-N47XK-V7XM9-C7227-GCQG9
+
+win10רҵ����Կ��WNMTR-4C88C-JK8YV-HQ7T2-76DF9
+
+win10רҵ����Կ��VK7JG-NPHTM-C97JM-9MPGT-3V66T
+
+win10רҵ����Կ��DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
+
+win10�������
+
+ϵͳ��װ��Ϻ������Թ���Ա���ݴ�CMD�����д��ڣ�����Win+X��ѡ��������ʾ��(����Ա)��
+
+˵����kms.xspace.in��kms��������ַ�����ܻ�ʧЧ���������ʧ�ܣ�������������kms��������ַ����kms.xspace.in�滻���µĵ�ַ���ɣ����绻��kms.03k.org��
+
+win10רҵ���û����������룺
 
 slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 
-弹出窗口提示：“成功的安装了产品密钥”。
-
-5.继续输入以下命令：
-
-slmgr /skms zh.us.to
-
-弹出窗口提示：“密钥管理服务计算机名成功的设置为zh.us.to”。
-
-6.接下来输入以下命令：
+slmgr /skms kms.03k.org
 
 slmgr /ato
 
-此时将弹出窗口提示：“成功的激活了产品”。
+win10��ҵ���û����������룺
 
-7.最后就可以再次查看当前Win10正式专业版系统的激活状态啦。如图所示，表明已成功激活Win10正式专业版系统。
+slmgr /ipk NPPR9-FWDCX-D2C8J-H872K-2YT43
 
-；
+slmgr /skms kms.03k.org
+
+slmgr /ato
+
+win10��ͥ���û��������룺
+
+slmgr /ipk TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
+
+slmgr /skms kms.03k.org
+
+slmgr /ato
+
+win10���漤����͸���ҷ��������ˣ�ϣ�������˳������win10ϵͳ���Ͽ콫�������ݷ��������ߵĺ��Ѱ�
