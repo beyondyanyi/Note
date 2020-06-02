@@ -1,0 +1,1 @@
+docker run --name mysql57 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=5w5w.5w5w -d -i -p 3306:3306 mysql:5.7
