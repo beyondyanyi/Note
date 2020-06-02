@@ -1,0 +1,58 @@
+【https://blog.csdn.net/aoao012/article/details/100156184】
+1、安装Centos下的必要软件（逐个安装）
+yum install gcc-c++
+yum install cmake
+yum install openssl-devel
+
+2、安装MQTT所需的功能软件
+
+2.1、安装c-areas：
+
+wget http://c-ares.haxx.se/download/c-ares-1.10.0.tar.gz
+tar xvf c-ares-1.10.0.tar.gz
+cd c-ares-1.10.0
+./configure
+make
+sudo make install
+2.2、安装lib-uuid：
+
+yum install libuuid-devel
+
+2.3、安装libwebsockets：
+
+wget https://github.com/warmcat/libwebsockets/archive/v1.3-chrome37-firefox30.tar.gz
+tar zxvf v1.3-chrome37-firefox30.tar.gz
+cd libwebsockets-1.3-chrome37-firefox30
+mkdir build
+cd build
+cmake .. -DLIB_SUFFIX=64
+make install
+
+三个安装完毕后，接下来可以安装MQTT。
+
+3、下载mosquitto，并解压，最好是创建一个文件夹，以免混乱找不到
+mkdir mqtt
+cd mqtt
+wget http://mosquitto.org/files/source/mosquitto-1.4.10.tar.gz
+tar -xzvf mosquitto-1.4.10.tar.gz
+
+修改一下mosquitto的配置：
+cd mosquitto-1.4.10
+vim config.mk
+将里面的WITH_SRV:=yes和WITH_UUID:=yes 两个都打开
+
+接下来编译并安装mosquitto软件：
+make
+sudo make install
+
+4、启动测试程序
+创建MQTT用户：
+sudo groupadd mosquitto
+sudo useradd -g mosquitto mosquitto
+
+程序配置：
+mv /etc/mosquitto/mosquitto.conf.example /etc/mosquitto/mosquitto.conf
+默认端口为1883
+
+启动程序：（在/etc/mosquitto/ 路径下执行）
+mosquitto -c /etc/mosquitto/mosquitto.conf -d
