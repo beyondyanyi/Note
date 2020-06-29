@@ -1,0 +1,7 @@
+1.下载rxtx for java
+	拷贝 RXTXcomm.jar 到 JAVA_HOME\jre\lib\ext目录中；
+
+	拷贝 rxtxSerial.dll 到 JAVA_HOME\jre\bin目录中；
+
+	拷贝 rxtxParallel.dll 到 JAVA_HOME\jre\bin目录中；
+
