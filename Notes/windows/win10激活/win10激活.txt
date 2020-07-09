@@ -99,3 +99,39 @@ slmgr /skms kms.03k.org
 slmgr /ato
 
 win10正版激活码就给大家分享到里了，希望大家能顺利激活win10系统，赶快将本文内容分享给身边的好友吧
+
+
+
+
+
+
+
+
+
+
+错误:0xC0000022 在运行 Microsoft Windows 非核心版本的计算机上,运行”slui.exe 0x2a 0xC0000022″以显示错误文本
+
+
+
+win10 2016长期服务版激活错误解决方法：
+打开“注册表编辑器”；（Windows + R然后输入 Regedit）
+
+修改SkipRearm 的值为1：
+
+（在HKEY_LOCAL_MACHINE–》SOFTWARE–》Microsoft–》Windows NT–》CurrentVersion–》SoftwareProtectionPlatform里面，将SkipRearm的值修改为1）重启电脑
+
+以管理员身份启动cmd，输入SLMGR -REARM，根据提示，再次重启电脑！
+
+slmgr /ipk DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ
+
+弹出窗口提示：“成功的安装了产品密钥”。
+
+slmgr /skms xykz.f3322.org
+
+密钥管理服务计算机名称成功设置为xykz.f3322.org
+
+slmgr /ato
+
+按回车键后将弹出窗口提示：“成功的激活了产品”。
+
+至此，Win10正式企业版系统激活成功。
