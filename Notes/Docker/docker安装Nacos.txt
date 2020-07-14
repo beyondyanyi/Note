@@ -1,0 +1,15 @@
+1.下载
+	 docker pull nacos/nacos-server
+2.配置文件
+	创建配置文件custom.properties以及日志目录logs
+	
+    vi   custom.properties
+	management.endpoints.web.exposure.include=*
+	
+	mkdir logs
+	
+	
+3.启动
+$ docker run -d -p 8848:8848 -e MODE=standalone -v /5w/docker_nacos/custom.properties:/home/nacos/init.d/custom.properties -v /5w/docker_nacos/logs:/home/nacos/logs --restart always --name nacos nacos/nacos-server
+	
+	配置防火墙开启8848端口
