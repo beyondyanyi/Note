@@ -3,7 +3,7 @@
 
 #author by beyondyanyi@gmail.com
 
-#依赖  ：1.在本机上要装sshpass: yum install sshpass(用于远程备份不需要输入密码)  2.从window上传本脚本时，需要运行 sed -i 's/\r//'  xxx.sh 转换行符
+#依赖  ：1.在本机上要装sshpass: yum install sshpass(用于远程备份不需要输入密码)  2.从window上传本脚本时，需要运行 sed -i 's/\r//'  xxx.sh 转换行符  3.docker里面执行 要去掉 -it
 
 #当前时间
 sysdate=$(date +"%Y-%m-%d-%H%M%S")
