@@ -1,0 +1,8 @@
+官网镜像（可以用来clone push等,但是不能登录）
+
+https://github.com.cnpmjs.org/
+https://git.sdut.me/
+
+API镜像（用来api操作）
+
+https://api.git.sdut.me/
