@@ -264,3 +264,12 @@ $ git stash pop
 
 # 生成一个可供发布的压缩包
 $ git archive
+
+
+#修改本机git凭证
+git config --global user.name "username"
+git config --global user.email "email"
+
+
+#清理git本地账户信息
+git config --system --unset credential.helper
