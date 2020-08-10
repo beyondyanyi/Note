@@ -1,0 +1,14 @@
+
+./configure --prefix=/home/work/nginx1  ....//第一个nginx安装配置
+make && make install
+ 
+ 
+./configure --prefix=/home/work/nginx2  ....//第二个nginx安装配置
+make && make install
+ 
+ 
+vi /home/work/nginx1/conf/nginx.conf    //修改第一个nginx的监听端口
+./home/work/nginx1/sbin/nginx
+ 
+vi /home/work/nginx2/conf/nginx.conf    //修改第二个nginx的监听端口
+./home/work/nginx2/sbin/nginx
