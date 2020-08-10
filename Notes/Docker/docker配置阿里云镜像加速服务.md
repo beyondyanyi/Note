@@ -5,7 +5,7 @@
 #### 3.docker配置加速
 
 ```
-vi /etc/doker/daemon.json
+vi /etc/docker/daemon.json
 ```
 
 ```
