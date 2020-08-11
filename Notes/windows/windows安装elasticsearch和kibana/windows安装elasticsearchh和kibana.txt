@@ -1,0 +1,6 @@
+1.安装es
+   配置es跨域访问
+2.安装kibana
+  配置kibana跨域访问
+  配置kibana语言为中文
+3.
