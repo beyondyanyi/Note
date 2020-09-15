@@ -1,0 +1,12 @@
+##1.HashCode和equals
+	1.若重写了equals(Object obj)方法，则有必要重写hashCode()方法。
+
+	2.若两个对象equals(Object obj)返回true，则hashCode（）有必要也返回相同的int数。
+
+	3.若两个对象equals(Object obj)返回false，则hashCode（）不一定返回不同的int数。
+
+	4.若两个对象hashCode（）返回相同int数，则equals（Object obj）不一定返回true。
+
+	5.若两个对象hashCode（）返回不同int数，则equals（Object obj）一定返回false。
+
+	6.同一对象在执行期间若已经存储在集合中，则不能修改影响hashCode值的相关信息，否则会导致内存泄露问题。

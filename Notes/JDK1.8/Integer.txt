@@ -1,0 +1,6 @@
+1.String toHexString(int i)    转十六进制
+2.String toOctalString(int i)  转八进制
+3.String toBinaryString(int i) 转二进制
+4.String toString(int i,int radix) 转换成指定进制字符串
+5.int parseInt(String str,int radix) 将字符串转换为指定进制数字
+6.String toUnsignedString(int i,int radis) 将数字转换成指定进制的无符号字符串
