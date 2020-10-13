@@ -1,0 +1,26 @@
+范围： -32768~32767
+ShortCache 默认256长度
+
+1.##static String toString(short s) 转string,底层调用的是Integer.toString
+2.##static short parseShort(String s, int radix) 
+			转short,底层调用Integer.parseInt,然后强转short
+3.##static short parseShort(String s) 转short,默认10进制
+4.##static Short valueOf(String s, int radix) Short对象,底层调用parseShort
+5.##static Short valueOf(String s) Short对象，默认十进制
+6.##static Short valueOf(short s)  转Short对象，底层默认从ShortCache取，如取不到，则new Short()
+7.##static Short decode(String nm) 转Short对象，底层先调用Integer.decode,再调用Short.valueOf
+8.##byte byteValue() 获取byte值，底层强转byte
+9.##short shortValue() 获取short值，底层强转short
+10.##int intValue() 获取int值，底层强转int
+11.##long longValue() 获取long值，底层强转long
+12.##float floatValue() 获取float值，底层强转float值
+13.##double doubleValue() 获取double值，底层强转double值
+14.##String toString() 转string,底层调用Integer.toString
+15.##int hashCode() 获取hashcode值，底层调用Short.hashCode
+16.##static int hashCode(short value) 获取hashCode值，底层强转int
+17.##boolean equals(Object obj)判断对象是否相等，先判断类型，再判断值
+18.##int compareTo(Short anotherShort) 底层调用Short.compare
+19.##static int compare(short x, short y) 返回x-y的值
+20.##static short reverseBytes(short i) 反转指定short的二进制补码值（第1个字节（8位）和第2个字节交换位置）
+21.##static int toUnsignedInt(short x) 获取无符号int值
+22.##static long toUnsignedLong(short x) 获取无符号long值

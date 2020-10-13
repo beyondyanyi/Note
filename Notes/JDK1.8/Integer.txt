@@ -1,6 +1,85 @@
-1.String toHexString(int i)    转十六进制
+﻿1.String toHexString(int i)    转十六进制
 2.String toOctalString(int i)  转八进制
 3.String toBinaryString(int i) 转二进制
 4.String toString(int i,int radix) 转换成指定进制字符串
 5.int parseInt(String str,int radix) 将字符串转换为指定进制数字
 6.String toUnsignedString(int i,int radis) 将数字转换成指定进制的无符号字符串
+
+  
+  ##static Integer valueOf(int i);获取Integer对象  
+	
+  ##byte byteValue();获取转换成byte类型的数
+
+  ##short shortValue();获取转换成short类型的数
+
+  ##int intValue();获取转换成int类型的数
+
+  ##long longValue();获取转换成long类型的数
+  
+  ##float floatValue();获取转换成float类型的数
+  
+  ##double doubleValue();获取转换成double类型的数
+  
+  ##String toString()重写的toString
+  
+  ##static int hashCode(int value)重写的hashCode方法
+  
+  ##boolean equals(Object obj)  判断是否相等
+  
+  ##static Integer getInteger(String nm) 根据指定的名称得到系统属性的整数值
+  
+  ##static Integer decode(String nm) 将String解码成Integer
+  
+  ##int compareTo(Integer anotherInteger) 比较两个Integer对象
+  
+  ##static int compare(int x, int y);
+	返回两个数比较的结果，x>y返回1，x=y返回0，x<y返回-1
+  
+  ##static int compareUnsigned(int x, int y) 
+    将两个数视为无符号比较，此时如果x>0, y<0，返回-1，同号的结果与compare()相同
+  
+  ##static long toUnsignedLong(int x) 返回无符号long类型转换的数值
+  
+  ##static int divideUnsigned(int dividend,int divisor) 返回无符号整数整除的商
+  
+  ##static int remainderUnsigned(int dividend, int divisor)返回无符号整数整除的余数
+  
+  ##static int highestOneBit(int i) 返回i所代表的二进制数中最高位1的权值
+  00001001   最高位1代表的权值为8
+  
+  ##static int lowestOneBit(int i) 返回i所代表的二进制数中最低位1的权值
+  00001001   最低位1代表的权值1
+  
+  ##static int numberOfLeadingZeros(int i)  统计i所代表的二进制数中从右到左最后一个1前面0的数量
+ 
+  00000000 00000000 00000000 0000101      29个
+  
+  ##static int numberOfTrailingZeros(int i) 统计i所表示的二进制数中从左到右最后一个1后面0的数量
+  00000000 00000000 00000000 11000000      6个
+
+  ##static int bitCount(int i) 统计i所表示的二进制数中1的个数
+  
+  ##static int rotateLeft(int i,int distance) 向左循环移位
+   00000000 00000000 00000000 0000101
+   00000000 00000000 00000000 0101000
+  ##static int rotateRight(int i,int distance) 向右循环移位
+   00000000 00000000 00000000 0000101
+   10100000 00000000 00000000 0000000
+
+  ##static int reverse(int i)（二进制按位反转） 将i的二进制补码的第1位与32位交换位置，将第2位与31位交换位置，以此类推....
+  
+  11111111  11111111  11111111  11111011
+
+  11011111  11111111  11111111  11111111
+  
+  ##static int signum(int i)   数字i位正数则返回1，为0则返回0，为负数则返回-1
+  ##static int reverseBytes(int i) （二进制按byte反转）
+  将i的二进制补码的第1位与32位交换位置，将第2位与31位交换位置，以此类推....
+  
+  11111111  11111111  11111111  11111011
+
+  11111011  11111111  11111111  11111111
+  
+  ##static int sum(int a,int b) 返回两个数的和
+  ##static int max(int a,int b) 返回两个数中较大的一个
+  ##static int min(int a,int b) 返回两个数中较小的一个

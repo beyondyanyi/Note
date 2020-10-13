@@ -1,0 +1,26 @@
+范围：-128~127
+
+ByteCache  -128~127范围内的数直接从缓存里面取
+
+1.##static String toString(byte b) 转string，底层使用的是Integer.toString
+2.##static Byte valueOf(byte b) 将byte转换为Byte包装类对象，底层直接取ByteCache里面的元素
+3.##static byte parseByte(String s, int radix) 将字符串转化为byte,底层先转int,然后转byte
+4.##static byte parseByte(String s) 将字符串转为byte,默认10进制
+5.##static Byte valueOf(String s, int radix) 将字符串转换为Byte对象，底层调用parseByte
+6.##static Byte valueOf(String s) 将字符串转换为Byte对象,默认10进制
+7.##static Byte decode(String nm) 将字符串转换为Byte对象，底层调用valueOf
+	获取各种基本类型的数，底层都是强转
+8.##byte byteValue();
+9.##short shortValue();
+10.##int intValue();
+11.##long longValue();
+12.##float floatValue();
+13.##double doubleValue();
+14.##String toString(); 转String,底层用的Integer.toString
+15.##static int hashCode(byte value) 获取hashCode值，返回int强转值
+16.##boolean equals(Object obj) 判断两个Byte对象是否相等，判断类型，再判断值
+17.##int compareTo(Byte anotherByte) 返回本身减去参数值，底层调用compare
+18.##static int compare(byte x, byte y) 返回本身减去参数值
+19.##static int toUnsignedInt(byte x) 转换为无符号的int
+20.##static long toUnsignedLong(byte x) 转换为无符号的long
+21.##

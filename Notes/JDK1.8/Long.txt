@@ -1,0 +1,6 @@
+范围：0x8000000000000000L~0x7fffffffffffffffL
+
+1.##static String toString(long i, int radix) 转String
+2.##static String toUnsignedString(long i, int radix)  转无符号String，底层调用toString,toBinaryString,toUnsignedString等
+3.##static BigInteger toUnsignedBigInteger(long i) 转无符号BigInteger 
+4.
