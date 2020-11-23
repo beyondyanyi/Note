@@ -1,0 +1,7 @@
+包含几种数值类型基本抽象方法
+	int intValue();
+	long longValue();
+	floatValue();
+	double doubleValue();
+	byte byteValue();
+	short shortValue();

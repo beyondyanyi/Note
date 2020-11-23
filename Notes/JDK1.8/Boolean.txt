@@ -1,0 +1,12 @@
+##
+	1.##static boolean parseBoolean(String s) string转boolean
+	2.##boolean booleanValue() 获取Boolean对象的boolean值
+	3.##static Boolean valueOf(boolean b) 获取b的Boolean对象
+	4.##static Boolean valueOf(String s) 获取字符串s的Boolean对象
+	5.##static String toString(boolean b)  输出ture或false
+	6.##String toString() 输出true或false
+	7.##int hashCode() 底层调用Boolean.hashCode(value)
+	8.##static int hashCode(boolean value) 返回1231（true）或1237(false)
+	9.##boolean equals(Object obj) 先判断对象类型是否相等，再判断对象值是否相等
+	10.##static boolean getBoolean(String name)获取系统属性值然后转换成boolean
+	11.##int compareTo(Boolean b)

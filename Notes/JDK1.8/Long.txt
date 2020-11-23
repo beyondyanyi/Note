@@ -3,4 +3,53 @@
 1.##static String toString(long i, int radix) 转String
 2.##static String toUnsignedString(long i, int radix)  转无符号String，底层调用toString,toBinaryString,toUnsignedString等
 3.##static BigInteger toUnsignedBigInteger(long i) 转无符号BigInteger 
-4.
+4.##static String toUnsignedString(long i, int radix)转无符号String
+5.##static BigInteger toUnsignedBigInteger(long i) 转无符号BigInteger
+6.##static String toHexString(long i) 转十六进制字符串，底层调用toUnsignedString0
+7.##static String toOctalString(long i) 转十进制字符串，底层调用toUnsignedString0
+8.##static String toBinaryString(long i) 转二进制字符串，底层调用toUnsignedString0
+9.##static String toUnsignedString0(long val, int shift) 转换为指定进制无符号字符串 shift 4-十六进制 3-十进制 1-二进制
+10.##static int formatUnsignedLong(long val, int shift, char[] buf, int offset, int len) 将long值转换为对应进制并写入buf数组
+11.##static String toString(long i) 转String
+12.##static String toUnsignedString(long i) 转无符号String
+13.##static void getChars(long i, int index, char[] buf)  long类型数据转换成字符形式放入char数组中
+14.##static int stringSize(long x) 返回数字位数：最大为19位，每次循环*10,
+15.##static long parseLong(String s, int radix) 转换为指定进制的long值
+16.##static long parseLong(String s) 转换为long值，默认十进制
+17.##static long parseUnsignedLong(String s, int radix) 转换为指定进制无符号long值
+18.##static long parseUnsignedLong(String s) 转换为long,默认十进制
+19.##static Long valueOf(String s, int radix)  转换为Long对象
+20.##static Long valueOf(String s) 转换为Long对象，默认为十进制
+21.##static Long valueOf(long l) 转换为Long对象，-128~127直接取缓存，不在此范围直接new Long()
+22.##static Long decode(String nm) 转Long对象
+23.##byte byteValue()  获取byte值
+24.##short shortValue()  获取short值
+25.##int intValue()     获取int值
+26.##long longValue()   获取long值
+27.##float floatValue() 获取float值
+28.##double doubleValue() 获取double值
+29.##String toString()  获取String值
+30.##int hashCode()     获取hashCode值，底层调用 Long.hashCode(value)
+31.##static int hashCode(long value)  获取hashCode值
+32.##boolean equals(Object obj)  判断两个对象是否相等
+33.##static Long getLong(String nm) 获取系统属性的Long对象值
+34.##static Long getLong(String nm, long val)  获取系统属性的Long对象值，默认为val
+35.##static Long getLong(String nm, Long val)  获取系统属性的Long对象值，默认为val
+36.##int compareTo(Long anotherLong) 比较大小 自己<anotherLong -1 自己=anotherLong 0 自己>anotherLong 1
+37.##static int compare(long x, long y) 比较大小 x<y -1 x=y 0 x>y 1
+38.##static int compareUnsigned(long x, long y)  转换为无符号数后比较大小  x<y -1 x=y 0 x>y 1
+39.##static long divideUnsigned(long dividend, long divisor)  转换为无符号数后计算商
+40.##static long remainderUnsigned(long dividend, long divisor) 转换为无符号数后计算余数
+41.##static long highestOneBit(long i) 获取i的二进制最高位值  
+42.##static long lowestOneBit(long i) 获取i的二进制最高位值  
+43.##static int numberOfLeadingZeros(long i) 获取i的二进制最高位前0的数量
+44.##static int numberOfTrailingZeros(long i) 获取i的二进制最低位后0的数量
+45.##static int bitCount(long i) 获取i的二进制中1的数量
+46.##static long rotateLeft(long i, int distance) i的二进制向左旋转位移distance位
+47.##static long rotateRight(long i, int distance) i的二进制向右旋转位移distance位
+48.##static long reverse(long i) 反转i的二进制位，第1位和64位交换，第2位和第63位交换...以此类推
+49.##static int signum(long i)  判断正负，负数-1，0，正数1
+50.##static long reverseBytes(long i)  反转i的二进制位，第1个字节和第8个字节，第2个字节和第7个字节交换...以此类推
+51.##static long sum(long a, long b) 求和
+52.##static long max(long a, long b) 返回较大的
+53.##static long min(long a, long b) 返回较小的
