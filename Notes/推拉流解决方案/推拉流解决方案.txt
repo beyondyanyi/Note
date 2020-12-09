@@ -1,0 +1,56 @@
+1.基于nginx_rtmp模块实现推拉流 （推流支持rtmp、rtsp等，拉流都是rtmp）
+2.基于easydarwin实现rtsp推拉流
+
+
+121.37.158.74
+
+-rtsp_transport tcp 
+
+
+
+
+##强制使用tcp方式推送
+ffmpeg  -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -rtsp_transport tcp -f rtsp rtsp://121.37.158.74:10554/test3
+
+
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -rtsp_transport tcp -f rtsp rtsp://121.37.158.74:10554/test2
+
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -rtsp_transport tcp -f rtsp rtsp://121.37.158.74:10554/test3
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -rtsp_transport tcp -f rtsp rtsp://121.37.158.74:10554/test4
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -rtsp_transport tcp -f rtsp rtsp://121.37.158.74:10554/test5
+
+
+
+
+
+
+
+
+
+
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test2
+
+ffmpeg -rtsp_transport tcp -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://192.168.3.20/test3
+
+ffmpeg -re -i C:\Users\Administrator\Videos\test.mkv -rtsp_transport tcp -vcodec h264 -f rtsp rtsp://121.37.158.74/test
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test
+
+
+ffmpeg -rtsp_transport tcp -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test3
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test1
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test2
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test4
+
+ffmpeg -re -stream_loop -1 -i  "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov" -vcodec copy -acodec copy -f rtsp rtsp://121.37.158.74/test5
+
+
+ffmpeg -re -stream_loop -1 -i  "rtmp://202.69.69.180:443/webcast/bshdlive-pc" -vcodec copy -acodec copy -f  rtsp rtmp://121.37.158.74/test1

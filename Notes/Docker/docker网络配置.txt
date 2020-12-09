@@ -1,0 +1,12 @@
+dokcer网络分三种：
+	bridge 桥接（默认172.17.0.1/16）
+		
+	host模式    
+		--net=host    
+		容器和宿主机共享Network namespace。
+	container模式  
+		--net=container:nameOrId     
+		容器和另外一个容器共享Network namespace。 kubernetes中的pod就是多个容器共享一个Network namespace。
+ 	none模式
+		--net=none
+		容器有独立的Network namespace，但并没有对其进行任何网络设置，如分配veth pair 和网桥连接，配置IP等。
