@@ -1,0 +1,2 @@
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor
+下新建autorun字符串，值为@chcp 65001>nul
