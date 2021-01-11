@@ -1,0 +1,533 @@
+
+
+
+
+
+    private transient String scheme;            // null ==> relative URI
+    private transient String fragment;
+
+    private transient String authority;         // Registry or server
+
+    
+    private transient String userInfo;
+    private transient String host;              // null ==> registry-based
+    private transient int port = -1;            // -1 ==> undefined
+
+    private transient String path;              // null ==> opaque
+    private transient String query;
+
+    
+
+    private volatile transient String schemeSpecificPart;
+    private volatile transient int hash;        // Zero ==> undefined
+
+    private volatile transient String decodedUserInfo = null;
+    private volatile transient String decodedAuthority = null;
+    private volatile transient String decodedPath = null;
+    private volatile transient String decodedQuery = null;
+    private volatile transient String decodedFragment = null;
+    private volatile transient String decodedSchemeSpecificPart = null;
+
+
+    private volatile String string;             // The only serializable field
+
+
+
+
+    private URI() { }                           // Used internally
+
+    
+    public URI(String str) throws URISyntaxException {
+
+
+  
+    public URI(String scheme,
+               String userInfo, String host, int port,
+               String path, String query, String fragment)
+        throws URISyntaxException
+
+
+    
+    public URI(String scheme,
+               String authority,
+               String path, String query, String fragment)
+        throws URISyntaxException
+    {
+        String s = toString(scheme, null,
+                            authority, null, null, -1,
+                            path, query, fragment);
+        checkPath(s, scheme, path);
+        new Parser(s).parse(false);
+    }
+
+    
+    public URI(String scheme, String host, String path, String fragment)
+        throws URISyntaxException
+   
+
+    
+    public URI(String scheme, String ssp, String fragment)
+        throws URISyntaxException
+   
+
+    
+    public static URI create(String str) {  --创建URI
+   
+
+
+   
+    public URI parseServerAuthority()  --解析服务授权
+        throws URISyntaxException
+
+
+  
+    public URI normalize() { --正常化
+  
+
+    
+    public URI resolve(URI uri) { --处理URI 参数（URI）
+
+
+
+    public URI resolve(String str) {  --处理uRI(参数URI字符串)
+  
+
+    public URI relativize(URI uri) { -相对化
+ 
+
+    public URL toURL()  --转URL
+
+
+    public String getScheme() {  --获取scheme
+  
+    
+    public boolean isAbsolute() {  --是否是绝对的（判断scheme是否为空）
+
+
+
+    public boolean isOpaque() { --是否透明（定义，绝对URI中，schemeSpecificPart不是以/开头，这个URI就是不透明的，如：mailto:cay@horstmann.com）
+
+
+
+    public String getRawSchemeSpecificPart() { --返回此 uri 原始的、特定于方案的部分。特定于方案的部分永远不会是未定义的，但它可能为空。
+ 
+ 
+    public String getSchemeSpecificPart() {--方法即返回中间的 scheme-specific-part 必选部分。
+
+    public String getRawAuthority() { --返回授权 原始路径组成部分
+
+
+    public String getAuthority() { -返回授权
+
+    public String getRawUserInfo() { -返回userinfo 原始路径组成部分
+ 
+
+    public String getUserInfo() { -- -返回userinfo
+
+    public String getHost() {   -- -返回host
+
+
+    public int getPort() {  -返回port
+    
+
+ 
+    public String getRawPath() { -返回path原始路径组成部分。
+  
+  
+    public String getPath() {-- 返回path
+
+
+    public String getRawQuery() { -返回pquery原始路径组成部分。
+
+
+    public String getQuery() {- 返回query
+   
+
+ 
+    public String getRawFragment() {--返回fragment原始路径组成部分。
+
+ 
+    public String getFragment() { --返回fragment
+  
+    
+    public boolean equals(Object ob) { --引用equals
+ 
+   
+    public int hashCode() { --hashcode
+  
+
+   
+    public int compareTo(URI that) { --比较
+      
+    public String toASCIIString() { --转ASCII码字符串
+   
+
+   
+    private void writeObject(ObjectOutputStream os) --写入输出流
+    
+    private void readObject(ObjectInputStream is) --读进输入流
+        throws ClassNotFoundException, IOException
+    
+    private static int toLower(char c) { --转小写
+        if ((c >= 'A') && (c <= 'Z'))
+            return c + ('a' - 'A');
+        return c;
+    }
+
+    // US-ASCII only
+    private static int toUpper(char c) { --转大写
+   
+
+    private static boolean equal(String s, String t) { --字符出相等
+      
+
+    
+    private static boolean equalIgnoringCase(String s, String t) { --忽略大小写equals
+      
+        
+    private static int hash(int hash, String s) {   -hash值
+      
+
+
+    private static int normalizedHash(int hash, String s) { --正常hash
+     
+
+    
+    private static int hashIgnoringCase(int hash, String s) { --忽略大小写hash值
+      
+
+    private static int compare(String s, String t) { --比较
+       
+
+    
+    private static int compareIgnoringCase(String s, String t) { --忽略大小写比较
+        
+
+
+    
+    private static void checkPath(String s, String scheme, String path) --检查路径
+        throws URISyntaxException
+    
+
+    private void appendAuthority(StringBuffer sb,
+                                 String authority,
+                                 String userInfo,
+                                 String host,
+                                 int port)   --拼接授权
+    
+   
+
+    private void appendSchemeSpecificPart(StringBuffer sb, --拼接特殊部分
+                                          String opaquePart,
+                                          String authority,
+                                          String userInfo,
+                                          String host,
+                                          int port,
+                                          String path,
+                                          String query)
+    
+
+    private void appendFragment(StringBuffer sb, String fragment) {  --拼接fragment
+       
+    private String toString(String scheme,
+                            String opaquePart, 
+                            String authority,
+                            String userInfo,
+                            String host,
+                            int port,
+                            String path,
+                            String query,
+                            String fragment)  --toString
+    
+
+    private void defineSchemeSpecificPart() {  --定义特殊部分
+       
+
+    private void defineString() {  --定义string
+       
+
+
+   
+    private static String resolvePath(String base, String child,
+                                      boolean absolute)  --处理路径
+    
+    
+    private static URI resolve(URI base, URI child) {  --以base为基础，使relative绝对化（即解析相对URL）
+       
+
+    
+    private static URI normalize(URI u) {-- 正常化
+       
+
+    
+    private static URI relativize(URI base, URI child) { --base比较child
+       
+
+
+
+    
+    static private int needsNormalization(String path) {--
+       
+
+
+   
+    static private void split(char[] path, int[] segs) {  -拼接
+     
+
+    static private int join(char[] path, int[] segs) {    --拼接
+       
+
+
+    
+    private static void removeDots(char[] path, int[] segs) { --移除点
+        
+    
+    private static void maybeAddLeadingDot(char[] path, int[] segs) {
+
+
+    private static String normalize(String ps) {
+
+  
+    private static long lowMask(String chars) {
+      
+
+   
+    private static long highMask(String chars) {
+      
+
+    
+    private static long lowMask(char first, char last) {
+      
+      
+
+    private static long highMask(char first, char last) {
+       
+
+    
+    private static boolean match(char c, long lowMask, long highMask) {
+      
+
+    
+    private static final long L_DIGIT = lowMask('0', '9');
+    private static final long H_DIGIT = 0L;
+
+    // upalpha  = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" |
+    //            "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" |
+    //            "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z"
+    private static final long L_UPALPHA = 0L;
+    private static final long H_UPALPHA = highMask('A', 'Z');
+
+    // lowalpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" |
+    //            "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" |
+    //            "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+    private static final long L_LOWALPHA = 0L;
+    private static final long H_LOWALPHA = highMask('a', 'z');
+
+    // alpha         = lowalpha | upalpha
+    private static final long L_ALPHA = L_LOWALPHA | L_UPALPHA;
+    private static final long H_ALPHA = H_LOWALPHA | H_UPALPHA;
+
+    // alphanum      = alpha | digit
+    private static final long L_ALPHANUM = L_DIGIT | L_ALPHA;
+    private static final long H_ALPHANUM = H_DIGIT | H_ALPHA;
+
+    // hex           = digit | "A" | "B" | "C" | "D" | "E" | "F" |
+    //                         "a" | "b" | "c" | "d" | "e" | "f"
+    private static final long L_HEX = L_DIGIT;
+    private static final long H_HEX = highMask('A', 'F') | highMask('a', 'f');
+
+    // mark          = "-" | "_" | "." | "!" | "~" | "*" | "'" |
+    //                 "(" | ")"
+    private static final long L_MARK = lowMask("-_.!~*'()");
+    private static final long H_MARK = highMask("-_.!~*'()");
+
+    // unreserved    = alphanum | mark
+    private static final long L_UNRESERVED = L_ALPHANUM | L_MARK;
+    private static final long H_UNRESERVED = H_ALPHANUM | H_MARK;
+
+    // reserved      = ";" | "/" | "?" | ":" | "@" | "&" | "=" | "+" |
+    //                 "$" | "," | "[" | "]"
+    // Added per RFC2732: "[", "]"
+    private static final long L_RESERVED = lowMask(";/?:@&=+$,[]");
+    private static final long H_RESERVED = highMask(";/?:@&=+$,[]");
+
+    // The zero'th bit is used to indicate that escape pairs and non-US-ASCII
+    // characters are allowed; this is handled by the scanEscape method below.
+    private static final long L_ESCAPED = 1L;
+    private static final long H_ESCAPED = 0L;
+
+    // uric          = reserved | unreserved | escaped
+    private static final long L_URIC = L_RESERVED | L_UNRESERVED | L_ESCAPED;
+    private static final long H_URIC = H_RESERVED | H_UNRESERVED | H_ESCAPED;
+
+    // pchar         = unreserved | escaped |
+    //                 ":" | "@" | "&" | "=" | "+" | "$" | ","
+    private static final long L_PCHAR
+        = L_UNRESERVED | L_ESCAPED | lowMask(":@&=+$,");
+    private static final long H_PCHAR
+        = H_UNRESERVED | H_ESCAPED | highMask(":@&=+$,");
+
+    // All valid path characters
+    private static final long L_PATH = L_PCHAR | lowMask(";/");
+    private static final long H_PATH = H_PCHAR | highMask(";/");
+
+    // Dash, for use in domainlabel and toplabel
+    private static final long L_DASH = lowMask("-");
+    private static final long H_DASH = highMask("-");
+
+    // Dot, for use in hostnames
+    private static final long L_DOT = lowMask(".");
+    private static final long H_DOT = highMask(".");
+
+    // userinfo      = *( unreserved | escaped |
+    //                    ";" | ":" | "&" | "=" | "+" | "$" | "," )
+    private static final long L_USERINFO
+        = L_UNRESERVED | L_ESCAPED | lowMask(";:&=+$,");
+    private static final long H_USERINFO
+        = H_UNRESERVED | H_ESCAPED | highMask(";:&=+$,");
+
+    // reg_name      = 1*( unreserved | escaped | "$" | "," |
+    //                     ";" | ":" | "@" | "&" | "=" | "+" )
+    private static final long L_REG_NAME
+        = L_UNRESERVED | L_ESCAPED | lowMask("$,;:@&=+");
+    private static final long H_REG_NAME
+        = H_UNRESERVED | H_ESCAPED | highMask("$,;:@&=+");
+
+    // All valid characters for server-based authorities
+    private static final long L_SERVER
+        = L_USERINFO | L_ALPHANUM | L_DASH | lowMask(".:@[]");
+    private static final long H_SERVER
+        = H_USERINFO | H_ALPHANUM | H_DASH | highMask(".:@[]");
+
+    // Special case of server authority that represents an IPv6 address
+    // In this case, a % does not signify an escape sequence
+    private static final long L_SERVER_PERCENT
+        = L_SERVER | lowMask("%");
+    private static final long H_SERVER_PERCENT
+        = H_SERVER | highMask("%");
+    private static final long L_LEFT_BRACKET = lowMask("[");
+    private static final long H_LEFT_BRACKET = highMask("[");
+
+    // scheme        = alpha *( alpha | digit | "+" | "-" | "." )
+    private static final long L_SCHEME = L_ALPHA | L_DIGIT | lowMask("+-.");
+    private static final long H_SCHEME = H_ALPHA | H_DIGIT | highMask("+-.");
+
+    // uric_no_slash = unreserved | escaped | ";" | "?" | ":" | "@" |
+    //                 "&" | "=" | "+" | "$" | ","
+    private static final long L_URIC_NO_SLASH
+        = L_UNRESERVED | L_ESCAPED | lowMask(";?:@&=+$,");
+    private static final long H_URIC_NO_SLASH
+        = H_UNRESERVED | H_ESCAPED | highMask(";?:@&=+$,");
+
+
+    // -- Escaping and encoding --
+
+    private final static char[] hexDigits = {
+        '0', '1', '2', '3', '4', '5', '6', '7',
+        '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+    };
+
+    private static void appendEscape(StringBuffer sb, byte b) {
+        sb.append('%');
+        sb.append(hexDigits[(b >> 4) & 0x0f]);
+        sb.append(hexDigits[(b >> 0) & 0x0f]);
+    }
+
+    private static void appendEncoded(StringBuffer sb, char c) {
+
+    private static String quote(String s, long lowMask, long highMask) {
+
+
+  
+    private static String encode(String s) {  --编码
+      
+
+    private static int decode(char c) {  --解码
+       
+
+    private static byte decode(char c1, char c2) { --解码
+     
+
+    
+    private static String decode(String s) {  --解码
+       
+
+ 
+    private class Parser {
+
+      
+
+       
+        private int scan(int start, int end, char c) {
+         
+    
+        private int scan(int start, int end, String err, String stop) {
+      
+       
+        private int scanEscape(int start, int n, char first)
+            throws URISyntaxException
+      
+        private int scan(int start, int n, long lowMask, long highMask)
+            throws URISyntaxException
+      
+        private void checkChars(int start, int end,
+                                long lowMask, long highMask,
+                                String what)
+            throws URISyntaxException
+      
+        private void checkChar(int p,
+                               long lowMask, long highMask,
+                               String what)
+       
+        
+        void parse(boolean rsa) throws URISyntaxException {
+           
+        
+        private int parseHierarchical(int start, int n)
+            throws URISyntaxException
+        
+
+        private int parseAuthority(int start, int n)
+            throws URISyntaxException
+        
+
+
+        private int parseServer(int start, int n)
+            throws URISyntaxException
+      
+        
+        private int scanByte(int start, int n)
+            throws URISyntaxException
+        
+        private int scanIPv4Address(int start, int n, boolean strict)
+            throws URISyntaxException
+        
+        private int takeIPv4Address(int start, int n, String expected)
+            throws URISyntaxException
+        
+
+       
+        private int parseIPv4Address(int start, int n) {
+           
+
+        
+        
+        private int parseHostname(int start, int n)
+            throws URISyntaxException
+        
+
+
+        private int ipv6byteCount = 0;
+
+        private int parseIPv6Reference(int start, int n)
+            throws URISyntaxException
+      
+        private int scanHexPost(int start, int n)
+            throws URISyntaxException
+       
+        
+        private int scanHexSeq(int start, int n)
+            throws URISyntaxException
+        {
+
+    }

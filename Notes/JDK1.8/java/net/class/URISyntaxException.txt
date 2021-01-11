@@ -1,0 +1,23 @@
+   private static final long serialVersionUID = 2137979680897488891L;
+
+    private String input;
+    private int index;
+
+
+    public URISyntaxException(String input, String reason, int index) {  --构造 参数（输入字符串，原因，索引）
+
+
+    public URISyntaxException(String input, String reason) {    --构造 参数（输入字符串，原因）
+  
+   
+    public String getInput() {  --inpu get
+ 
+
+    public String getReason() {--原因 get
+
+  
+    public int getIndex() {  --索引 get
+   
+    
+
+    public String getMessage() {  --get消息
