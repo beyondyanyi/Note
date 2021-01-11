@@ -1,0 +1,3 @@
+	public UnknownHostException(String host)带主机构造
+
+    public UnknownHostException()无参构造

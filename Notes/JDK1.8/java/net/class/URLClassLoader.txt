@@ -1,0 +1,112 @@
+private final URLClassPath ucp;
+
+  
+    private final AccessControlContext acc; --接受控制内容
+
+    public URLClassLoader(URL[] urls, ClassLoader parent)  --构造（URL[] urls, ClassLoader parent）
+
+    URLClassLoader(URL[] urls, ClassLoader parent,
+                   AccessControlContext acc)  --构造（URL[] urls, ClassLoader parent,AccessControlContext acc）
+
+    public URLClassLoader(URL[] urls)  --构造（URL[] urls）
+
+    URLClassLoader(URL[] urls, AccessControlContext acc) --构造（URL[] urls, AccessControlContext acc）
+ 
+    public URLClassLoader(URL[] urls, ClassLoader parent,
+                          URLStreamHandlerFactory factory) {   --构造（URL[] urls, ClassLoader parent,URLStreamHandlerFactory factory）
+
+    private WeakHashMap<Closeable,Void>
+        closeables = new WeakHashMap<>();
+
+  
+    public InputStream getResourceAsStream(String name) { --获取资源输入流（name）
+ 
+    public void close() throws IOException {  --关闭
+  
+    protected void addURL(URL url) {  --新增URL
+ 
+    public URL[] getURLs() {   --获取URL
+
+
+    protected Class<?> findClass(final String name)  --获取Class （name）
+        throws ClassNotFoundException
+
+    private Package getAndVerifyPackage(String pkgname,
+                                        Manifest man, URL url) ---获取验证包（String pkgname,Manifest man, URL url）
+
+    private void definePackageInternal(String pkgname, Manifest man, URL url)  --定义包内部
+
+    private Class<?> defineClass(String name, Resource res) throws IOException {   --定义class
+    
+
+    protected Package definePackage(String name, Manifest man, URL url)
+        throws IllegalArgumentException     --定义包
+    
+
+  
+    private boolean isSealed(String name, Manifest man) { --判断是否私有
+      
+
+    public URL findResource(final String name) {  --获取URL
+   
+
+    public Enumeration<URL> findResources(final String name)  --获取Enumeration<URL>
+        throws IOException
+    
+
+    
+    protected PermissionCollection getPermissions(CodeSource codesource)  --获取Permissions
+    
+
+  
+    public static URLClassLoader newInstance(final URL[] urls,final ClassLoader parent) {   --新建URLClassLoader实例
+   
+
+    public static URLClassLoader newInstance(final URL[] urls) {  --新建URLClassLoader实例
+
+
+    static {
+        sun.misc.SharedSecrets.setJavaNetAccess (
+            new sun.misc.JavaNetAccess() {
+                public URLClassPath getURLClassPath (URLClassLoader u) {
+                    return u.ucp;
+                }
+
+                public String getOriginalHostName(InetAddress ia) {
+                    return ia.holder.getOriginalHostName();
+                }
+            }
+        );
+        ClassLoader.registerAsParallelCapable();
+    }
+}
+
+final class FactoryURLClassLoader extends URLClassLoader {
+
+    static {
+        ClassLoader.registerAsParallelCapable();
+    }
+
+    FactoryURLClassLoader(URL[] urls, ClassLoader parent,
+                          AccessControlContext acc) {
+        super(urls, parent, acc);
+    }
+
+    FactoryURLClassLoader(URL[] urls, AccessControlContext acc) {
+        super(urls, acc);
+    }
+
+    public final Class<?> loadClass(String name, boolean resolve)
+        throws ClassNotFoundException
+    {
+        // First check if we have permission to access the package. This
+        // should go away once we've added support for exported packages.
+        SecurityManager sm = System.getSecurityManager();
+        if (sm != null) {
+            int i = name.lastIndexOf('.');
+            if (i != -1) {
+                sm.checkPackageAccess(name.substring(0, i));
+            }
+        }
+        return super.loadClass(name, resolve);
+    }

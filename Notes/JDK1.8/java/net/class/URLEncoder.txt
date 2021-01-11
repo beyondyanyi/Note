@@ -1,0 +1,41 @@
+	static BitSet dontNeedEncoding;
+    static final int caseDiff = ('a' - 'A');
+    static String dfltEncName = null;
+
+    static {
+
+       
+
+        dontNeedEncoding = new BitSet(256);
+        int i;
+        for (i = 'a'; i <= 'z'; i++) {
+            dontNeedEncoding.set(i);
+        }
+        for (i = 'A'; i <= 'Z'; i++) {
+            dontNeedEncoding.set(i);
+        }
+        for (i = '0'; i <= '9'; i++) {
+            dontNeedEncoding.set(i);
+        }
+        dontNeedEncoding.set(' '); /* encoding a space to a + is done
+                                    * in the encode() method */
+        dontNeedEncoding.set('-');
+        dontNeedEncoding.set('_');
+        dontNeedEncoding.set('.');
+        dontNeedEncoding.set('*');
+
+        dfltEncName = AccessController.doPrivileged(
+            new GetPropertyAction("file.encoding")
+        );
+    }
+
+    
+    private URLEncoder() //无参构造
+
+    @Deprecated
+    public static String encode(String s)		//编码字符串
+
+
+
+    public static String encode(String s, String enc)		//编码字符串 参数（字符串，编码格式utf-8等。。）
+       

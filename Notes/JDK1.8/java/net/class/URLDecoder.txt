@@ -1,0 +1,8 @@
+
+    static String dfltEncName = URLEncoder.dfltEncName;  //平台默认编码（jvm启动从操作系统获取）
+
+    @Deprecated
+    public static String decode(String s)  //解码
+
+    public static String decode(String s, String enc)		//解码 参数（字符串，编码）
+        

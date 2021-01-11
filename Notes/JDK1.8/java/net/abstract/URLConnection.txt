@@ -1,0 +1,227 @@
+
+	protected URL url;
+
+	protected boolean doInput = true;
+
+	protected boolean doOutput = false;
+
+    private static boolean defaultAllowUserInteraction = false;
+
+    protected boolean allowUserInteraction = defaultAllowUserInteraction;
+
+    private static boolean defaultUseCaches = true;
+
+    protected boolean useCaches = defaultUseCaches;
+
+ 
+    protected long ifModifiedSince = 0;
+
+    protected boolean connected = false;
+  
+    private int connectTimeout;
+    private int readTimeout;
+
+  
+    private MessageHeader requests;
+
+    private static FileNameMap fileNameMap;
+ 
+    private static boolean fileNameMapLoaded = false;
+
+    public static synchronized FileNameMap getFileNameMap()		//get FileNameMap
+      
+    public static void setFileNameMap(FileNameMap map)		//set FileNameMap 参数（FileNameMap）
+     
+
+    abstract public void connect() throws IOException				//连接
+
+    public void setConnectTimeout(int timeout)				//设置连接超时时间 参数（毫秒时间）
+ 
+    public int getConnectTimeout()						//获取连接超时时间
+
+    public void setReadTimeout(int timeout)				//设置读取超时时间 参数（毫秒时间）
+   
+
+    public int getReadTimeout()				//获取读取超时时间
+  
+
+    protected URLConnection(URL url) {		//构造函数（URL）
+
+
+
+    public URL getURL()				//获取URL对象
+     
+
+  
+    public int getContentLength() {							//获取内容长度 int
+        long l = getContentLengthLong();
+        if (l > Integer.MAX_VALUE)
+            return -1;
+        return (int) l;
+    }
+
+    public long getContentLengthLong()    //获取内容长度  long
+      
+
+
+    public String getContentType()		//获取contenttype string
+     
+  
+    public String getContentEncoding()	//获取content-encoding string
+     
+  
+    public long getExpiration()				//获取 expires 头字段的值。
+  
+   
+    public long getDate()			//获取 date 头字段的值。
+
+  
+    public long getLastModified() {		//获取头字段last-modified 最后一次更新时间值
+  
+
+  
+    public String getHeaderField(String name) {		//获取头字段的值
+   
+
+   
+    public Map<String,List<String>> getHeaderFields() {			//获取所有头字段键值
+  
+  
+    public int getHeaderFieldInt(String name, int Default) {			//获取int类型头字段值
+
+
+    public long getHeaderFieldLong(String name, long Default)	//获取long类型头字段值
+    
+  
+    @SuppressWarnings("deprecation")
+    public long getHeaderFieldDate(String name, long Default) {   //获取long类型头字段值 日期
+   
+
+   
+    public String getHeaderFieldKey(int n)   //获取long类型头字段key  参数（index） 总是返回null
+   
+
+    public String getHeaderField(int n)  //获取头字段 参数（index） 总是返回null
+   
+
+ 
+    public Object getContent() throws IOException			获取内容Object
+  
+
+    public Object getContent(Class[] classes) throws IOException   --获取内容Object
+   
+
+    public Permission getPermission() throws IOException --获取Permission
+  
+
+    public InputStream getInputStream() throws IOException --获取输入流
+   
+    public OutputStream getOutputStream() throws IOException  --获取输出流
+    
+    public String toString() {	--toString  方法
+  
+    public void setDoInput(boolean doinput) -设置是否doinput
+
+    public boolean getDoInput()   --获取是否doinput
+  
+    public void setDoOutput(boolean dooutput) --设置是否DoOutput
+  
+    public boolean getDoOutput()   --获取是否doOutput
+  
+    public void setAllowUserInteraction(boolean allowuserinteraction)  --设置是否允许用户交互
+
+    public boolean getAllowUserInteraction() -- 获取是否允许用户交互
+ 
+
+
+    public static void setDefaultAllowUserInteraction(boolean defaultallowuserinteraction) --设置默认是否允许用户交互
+  
+
+    public static boolean getDefaultAllowUserInteraction() {  --获取默认是否允许用户交互
+  
+
+    public void setUseCaches(boolean usecaches) 	--设置是否使用缓存
+
+    public boolean getUseCaches()		--获取是否使用缓存
+    
+    public void setIfModifiedSince(long ifmodifiedsince)	--设置IfModifiedSince值（连接前）
+
+    public long getIfModifiedSince() {   --获取IfModifiedSince值
+  
+    public boolean getDefaultUseCaches() {	--获取默认是否使用缓存
+
+    public void setDefaultUseCaches(boolean defaultusecaches) { 设置默认是否使用缓存
+  
+    public void setRequestProperty(String key, String value) {	--设置请求属性  参数（ 键、值）
+  
+    public void addRequestProperty(String key, String value) {  --添加请求属性 参数（键、值）
+
+    public String getRequestProperty(String key) {		--获取请求属性
+  
+ 
+    public Map<String,List<String>> getRequestProperties() {  ---获取请求属性键值对
+
+    @Deprecated
+    public static void setDefaultRequestProperty(String key, String value) {   --设置默认请求属性参数（键、值）
+  
+
+    @Deprecated
+    public static String getDefaultRequestProperty(String key) {  --获取默认请求属性参数（键）
+   
+    static ContentHandlerFactory factory;
+
+ 
+    public static synchronized void setContentHandlerFactory(ContentHandlerFactory fac) {  --设置ContentHandlerFactory值
+    
+
+    private static Hashtable<String, ContentHandler> handlers = new Hashtable<>();
+
+    
+    synchronized ContentHandler getContentHandler()--获取ContentHandler
+        throws UnknownServiceException
+  
+
+    private String stripOffParameters(String contentType)  --分离参数
+
+    private static final String contentClassPrefix = "sun.net.www.content";
+    private static final String contentPathProp = "java.content.handler.pkgs";
+
+    private ContentHandler lookupContentHandlerClassFor(String contentType)   --查找ContentHandler类（contentType）
+   
+  
+    private String typeToPackageName(String contentType) {   --获取包名
+  
+
+
+    
+    private String getContentHandlerPkgPrefixes() {    --获取 ContentHandlerPkgPrefixes 值
+   
+   
+    public static String guessContentTypeFromName(String fname) {  --获取ContentTypeFromName(fname)
+  
+
+    static public String guessContentTypeFromStream(InputStream is)--获取 ContentTypeFromStream（InputStream）
+                        throws IOException {
+       
+
+ 
+    static private boolean checkfpx(InputStream is) throws IOException {  --检查fpx
+
+    }
+
+   
+    static private int readBytes(int c[], int len, InputStream is)  --读取字节（）
+ 
+
+    static private long skipForward(InputStream is, long toSkip)   --向前跳过（InputStream,toskip）
+
+}
+
+
+class UnknownContentHandler extends ContentHandler {
+    static final ContentHandler INSTANCE = new UnknownContentHandler();
+
+    public Object getContent(URLConnection uc) throws IOException {
+        return uc.getInputStream();
+    }
+}

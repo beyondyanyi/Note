@@ -1,0 +1,4 @@
+	
+构造工厂
+	
+	URLStreamHandler createURLStreamHandler(String protocol);  构建URLStreamHandler,参数协议

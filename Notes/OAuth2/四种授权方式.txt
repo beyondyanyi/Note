@@ -1,0 +1,21 @@
+1.授权码(authorization_code)
+
+	1)用户登录授权，先拿code
+	2)用code换token
+	
+	
+	授权码模式是功能最完整、流程最严密的授权模式，code保证了token的安全性，即使code被拦截，由于没有app_secret，也是无法通过code获得token的。
+
+	
+2.隐藏式(implicit)
+
+	1)用户登录授权，不拿code,直接拿token
+	
+3.密码式(password)
+
+	1)用户提前给客户端用户名和密码
+	2)验证客户端，直接用用户名和密码，拿token
+
+4.客户端凭证(client_credentials)
+
+	1)验证客户端，直接拿token

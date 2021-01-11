@@ -1,0 +1,4 @@
+#查看正在执行的进程
+select * from information_schema.innodb_trx  
+#杀进程
+kill 426

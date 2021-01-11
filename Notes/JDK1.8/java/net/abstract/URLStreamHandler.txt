@@ -1,0 +1,37 @@
+	abstract protected URLConnection openConnection(URL u) throws IOException 		//打开连接，返回URLConnection  参数（URL）
+
+    protected URLConnection openConnection(URL u, Proxy p) throws IOException       //打开连接，返回URLConnection  参数（URL,代理）
+  
+   
+    protected void parseURL(URL u, String spec, int start, int limit)           	//解析URL，参数（URL，url字符串,开始index，限制长度）
+   
+
+    protected int getDefaultPort()   												//返回默认的端口-1
+   
+
+    protected boolean equals(URL u1, URL u2)										//判断两个URL对象引用是否相等
+
+
+    protected int hashCode(URL u)                                                   //获取URL对象hashcode值（分解URL属性分别获取hashcode然后相加）
+      
+
+    protected boolean sameFile(URL u1, URL u2)								 		//判断两个URL对象是否拥有相同的文件名（判断协议、文件名、端口、主机是否相等）
+
+ 
+    protected synchronized InetAddress getHostAddress(URL u)						//获取主机的ip地址
+   
+ 
+    protected boolean hostsEqual(URL u1, URL u2) 									///判断两个URL对象主机是否相等（底层判断InetAddress）
+ 
+  
+    protected String toExternalForm(URL u)											//获取URL对象的字符串表现形式
+
+
+    protected void setURL(URL u, String protocol, String host, int port, 
+                             String authority, String userInfo, String path,
+                             String query, String ref) 								//设置URL属性  参数（URL对象，协议，主机，端口，身份,用户信息，路径，查询，引用）
+  
+
+    protected void setURL(URL u, String protocol, String host, int port,
+                          String file, String ref)                                 //设置URL属性  参数（URL对象，协议，主机，端口，文件名，引用）
+       

@@ -1,0 +1,3 @@
+	public UnknownServiceException()无参构造
+
+    public UnknownServiceException(String msg)带消息构造

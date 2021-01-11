@@ -1,0 +1,116 @@
+	
+	
+	
+	private transient String scheme;
+    private transient String ssp;                 // scheme specific part
+    private transient String path;
+    private transient List<String> methods;
+    private transient List<String> requestHeaders;
+    private transient Authority authority;
+
+    // serialized field
+    private String actions;
+	
+	
+	
+	public URLPermission(String url, String actions)    //构造（url字符串，行为字符串）
+    
+
+    private void init(String actions)					//初始化 参数(行为字符串)，给requestHeaders,methods,actions赋值
+
+
+
+    public URLPermission(String url)				//构造（url字符串）
+  
+
+    public String getActions()				//actions get方法
+   
+
+    public boolean implies(Permission p)				//FilePermission对象是否“隐含”指定的权限。
+        
+
+
+  
+    public boolean equals(Object p)				//判断是否相等
+      
+
+
+    public int hashCode() {						//获取hashcode值 actions、scheme、authority、path 的hashcode相加
+   
+
+
+    private List<String> normalizeMethods(String methods)					//将methods字符串转为List<String>
+   
+
+    private List<String> normalizeHeaders(String headers)				//将headers字符串转为List<String>
+   
+
+    private void parseURI(String url)					//解析URL 参数（url字符串），给ssp,authority赋值
+      
+
+    private String actions()						//获取actions
+  
+
+   
+    private void readObject(ObjectInputStream s)       //读取object
+     
+
+    static class Authority {
+        HostPortrange p;
+
+        Authority(String scheme, String authority) {
+            int at = authority.indexOf('@');
+            if (at == -1) {
+                    p = new HostPortrange(scheme, authority);
+            } else {
+                    p = new HostPortrange(scheme, authority.substring(at+1));
+            }
+        }
+
+        boolean implies(Authority other) {
+            return impliesHostrange(other) && impliesPortrange(other);
+        }
+
+        private boolean impliesHostrange(Authority that) {
+            String thishost = this.p.hostname();
+            String thathost = that.p.hostname();
+
+            if (p.wildcard() && thishost.equals("")) {
+                // this "*" implies all others
+                return true;
+            }
+            if (that.p.wildcard() && thathost.equals("")) {
+                // that "*" can only be implied by this "*"
+                return false;
+            }
+            if (thishost.equals(thathost)) {
+                // covers all cases of literal IP addresses and fixed
+                // domain names.
+                return true;
+            }
+            if (this.p.wildcard()) {
+                // this "*.foo.com" implies "bub.bar.foo.com"
+                return thathost.endsWith(thishost);
+            }
+            return false;
+        }
+
+        private boolean impliesPortrange(Authority that) {
+            int[] thisrange = this.p.portrange();
+            int[] thatrange = that.p.portrange();
+            if (thisrange[0] == -1) {
+                /* port not specified non http/s URL */
+                return true;
+            }
+            return thisrange[0] <= thatrange[0] &&
+                        thisrange[1] >= thatrange[1];
+        }
+
+        boolean equals(Authority that) {
+            return this.p.equals(that.p);
+        }
+
+        public int hashCode() {
+            return p.hashCode();
+        }
+    }
