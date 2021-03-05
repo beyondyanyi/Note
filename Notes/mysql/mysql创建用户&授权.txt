@@ -36,6 +36,10 @@ grant all privileges  on db1.* to "alex"@'%';
 #mjj用户对所有数据库中文件有任何操作
 grant all privileges  on *.*  to "alex"@'%';
 
+##刷新权限
+flush privileges;
+
+
 #取消权限
 
 # 取消mjj用户对db1的t1文件的任意操作

@@ -1,0 +1,25 @@
+1.SYN (同步序列编号(Synchronize Sequence Numbers))
+2.SYN+ACK (确认字符(Acknowledge character))
+3.ACK
+
+
+
+
+##TCP
+Flags:
+	SYN、FIN、ACK、PSH、RST、URG
+	
+	
+	
+	SYN表示建立连接，
+
+	FIN表示关闭连接，
+
+	ACK表示响应，
+
+	PSH表示有 DATA数据传输，
+
+	RST表示连接重置。
+	
+	
+	 其中，ACK是可能与SYN，FIN等同时使用的
