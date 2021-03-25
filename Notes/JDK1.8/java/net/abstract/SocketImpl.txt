@@ -1,0 +1,115 @@
+实现SocketOptions
+
+
+    Socket socket = null;
+	
+    ServerSocket serverSocket = null;
+
+    protected FileDescriptor fd;
+
+    protected InetAddress address; //远程socket地址对象
+
+    protected int port;//远程socket端口
+
+    protected int localport;//本地socket端口
+
+    protected abstract void create(boolean stream) throws IOException;  //创建
+
+    protected abstract void connect(String host, int port) throws IOException; //连接（host,ip）
+
+    protected abstract void connect(InetAddress address, int port) throws IOException;//连接（InetAddress,ip）
+
+    protected abstract void connect(SocketAddress address, int timeout) throws IOException;//连接（SocketAddress,ip）
+
+    protected abstract void bind(InetAddress host, int port) throws IOException;//绑定此socket到特殊的ip和端口（InetAddress,ip）
+
+    protected abstract void listen(int backlog) throws IOException;//设置连接序列端最大长度
+
+    protected abstract void accept(SocketImpl s) throws IOException;//接收一个连接（SocketImpl）
+
+    protected abstract InputStream getInputStream() throws IOException; //返回这个socket的输入流
+
+    protected abstract OutputStream getOutputStream() throws IOException; //返回这个socket的输出流
+ 
+    protected abstract int available() throws IOException; //返回这个socket能被读取的字节数量
+
+    protected abstract void close() throws IOException; //关闭这个socket
+
+    protected void shutdownInput() throws IOException;//此套接字的输入流置于“流的末尾”。
+
+    protected void shutdownOutput() throws IOException//禁用此套接字的输出流
+ 
+    protected FileDescriptor getFileDescriptor() //FileDescriptor属性 get方法
+
+    protected InetAddress getInetAddress() //InetAddress属性 get方法
+
+    protected int getPort()//Port属性 get方法
+ 
+    protected boolean supportsUrgentData () //返回这个socketImpl是否支持发送紧急数据（默认返回false）,除非这个方法被覆盖
+    
+    protected abstract void sendUrgentData (int data) throws IOException; //发送一字节的紧急数据 （这个字节是一个低八位参数）
+
+    protected int getLocalPort() // localPort get方法
+
+    void setSocket(Socket soc) //Socket set方法
+   
+    Socket getSocket()  //Socket get方法
+
+    void setServerSocket(ServerSocket soc) //Socket set方法
+
+    ServerSocket getServerSocket() //ServerSocket get方法
+    
+    public String toString()//toString方法
+	
+    void reset() throws IOException //重置方法
+        address = null;
+        port = 0;
+        localport = 0;
+    }
+
+    protected void setPerformancePreferences(int connectionTime,
+                                          int latency,
+                                          int bandwidth)  //设定连接时间、延迟和带宽的相对重要性
+    {
+        /* Not implemented yet */
+    }
+
+    <T> void setOption(SocketOption<T> name, T value) throws IOException {
+        if (name == StandardSocketOptions.SO_KEEPALIVE) {
+            setOption(SocketOptions.SO_KEEPALIVE, value);
+        } else if (name == StandardSocketOptions.SO_SNDBUF) {
+            setOption(SocketOptions.SO_SNDBUF, value);
+        } else if (name == StandardSocketOptions.SO_RCVBUF) {
+            setOption(SocketOptions.SO_RCVBUF, value);
+        } else if (name == StandardSocketOptions.SO_REUSEADDR) {
+            setOption(SocketOptions.SO_REUSEADDR, value);
+        } else if (name == StandardSocketOptions.SO_LINGER) {
+            setOption(SocketOptions.SO_LINGER, value);
+        } else if (name == StandardSocketOptions.IP_TOS) {
+            setOption(SocketOptions.IP_TOS, value);
+        } else if (name == StandardSocketOptions.TCP_NODELAY) {
+            setOption(SocketOptions.TCP_NODELAY, value);
+        } else {
+            throw new UnsupportedOperationException("unsupported option");
+        }
+    }
+
+    <T> T getOption(SocketOption<T> name) throws IOException {
+        if (name == StandardSocketOptions.SO_KEEPALIVE) {
+            return (T)getOption(SocketOptions.SO_KEEPALIVE);
+        } else if (name == StandardSocketOptions.SO_SNDBUF) {
+            return (T)getOption(SocketOptions.SO_SNDBUF);
+        } else if (name == StandardSocketOptions.SO_RCVBUF) {
+            return (T)getOption(SocketOptions.SO_RCVBUF);
+        } else if (name == StandardSocketOptions.SO_REUSEADDR) {
+            return (T)getOption(SocketOptions.SO_REUSEADDR);
+        } else if (name == StandardSocketOptions.SO_LINGER) {
+            return (T)getOption(SocketOptions.SO_LINGER);
+        } else if (name == StandardSocketOptions.IP_TOS) {
+            return (T)getOption(SocketOptions.IP_TOS);
+        } else if (name == StandardSocketOptions.TCP_NODELAY) {
+            return (T)getOption(SocketOptions.TCP_NODELAY);
+        } else {
+            throw new UnsupportedOperationException("unsupported option");
+        }
+    }

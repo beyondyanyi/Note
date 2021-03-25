@@ -1,0 +1,5 @@
+继承IOException
+
+public SocketException(String msg) {
+        super(msg);
+    }
