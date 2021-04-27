@@ -14,6 +14,7 @@
     firewall-cmd --zone=public --list-service
 	开启端口
 	firewall-cmd --zone=public --add-port=80/tcp --permanent
+	firewall-cmd --zone=public --add-port=60000-60020/tcp --permanent
 		--zone #作用域
 		--add-port=80/tcp #添加端口，格式为：端口/通讯协议
 		--permanent #永久生效，没有此参数重启后失效
