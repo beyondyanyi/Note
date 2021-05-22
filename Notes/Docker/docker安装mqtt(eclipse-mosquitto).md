@@ -21,8 +21,8 @@ mkdir -p /software/mqtt-ordinary/log
 输入内容
 
 persistence true
-persistence_location /software/mqtt-ordinaryo/data
-log_dest file /software/mqtt-ordinary/log/mosquitto.log
+persistence_location /mosquitto/data
+log_dest file /mosquitto/log/mosquitto.log
 
 2）目录授权
 chmod -R 777 /mosquitto
@@ -33,7 +33,7 @@ chmod -R 777 /mosquitto
 
 ```
 docker run -it --name=mosquitto --privileged \
--p 18883:1883 -p 9001:9001 \
+-p 1883:1883 -p 9001:9001 \
 -v /software/mqtt-ordinary/config/mosquitto.conf:/mosquitto/config/mosquitto.conf \
 -v /software/mqtt-ordinary/data:/mosquitto/data \
 -v /software/mqtt-ordinary/log:/mosquitto/log \
@@ -63,5 +63,23 @@ chmod -R 777 /mosquitto/config/pwfile.conf
 
 # 使用mosquitto_passwd命令创建用户，第一个test是用户名，第二个test2020是密码
 mosquitto_passwd -b /mosquitto/config/pwfile.conf admin password
+```
+
+
+
+
+
+
+
+最终配置
+
+```
+persistence true
+listener 8883
+persistence_location /mosquitto/data
+log_dest file /mosquitto/log/mosquitto.log
+allow_anonymous false
+# 指定密码文件
+password_file /mosquitto/config/pwfile.conf
 ```
 
