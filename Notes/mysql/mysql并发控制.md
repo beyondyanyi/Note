@@ -1,4 +1,4 @@
-#### 读锁（共享锁 shared lock）
+#### 行级锁-读锁（共享锁 shared lock）
 
 ```
 SELECT * FROM table_name WHERE ... LOCK IN SHARE MODE
@@ -41,7 +41,7 @@ COMMIT;
 
 
 
-#### 写锁（排他锁 exclusive lock）
+#### 行级锁-写锁（排他锁 exclusive lock）
 
 ```
 SELECT * FROM table_name WHERE ... FOR UPDATE
@@ -65,7 +65,7 @@ SELECT * FROM table_name WHERE ... FOR UPDATE
 
 
 
-#### 乐观锁
+#### 逻辑锁-乐观锁
 
 - 上述介绍的是**行级锁**，可以最大程度地支持并发处理（同时也带来了最大的锁开销）乐观锁是一种逻辑锁，通过数据的版本号（vesion）的机制来实现，极大降低了数据库的性能开销。
 
@@ -87,3 +87,12 @@ set status=2,version=version+1
 where id=#{id} and version = #{version}; // 更新前version 不自增
 ```
 
+
+
+#### 表锁
+
+
+
+#### 间隙锁
+
+#### 临建锁

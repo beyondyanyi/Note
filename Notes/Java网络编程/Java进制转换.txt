@@ -1,0 +1,112 @@
+有符号的类型转换:
+ 
+ //short类型转换byte[]
+    public byte[] shortToByteArray(short s, boolean littleEndian) {
+        //littleEndian:true 高位在前 false 低位在前
+        byte[] bytes = new byte[2];
+        for (int i = 0; i < 2; i++) {
+            int i1 = (littleEndian ? i : (1 - i)) << 3;
+            //int i1 = (littleEndian?i:(1-i))*8;
+            bytes[i] = (byte) ((s >> i1) & 0xff);
+        }
+        return bytes;
+    }
+ 
+    //int类型转换byte[]
+    public byte[] IntToByteArray(long l, boolean littleEndian) {
+        byte[] bytes = new byte[4];
+        for (int i = 0; i < 4; i++) {
+            int i1 = (littleEndian ? i : (3 - i)) << 3;
+            bytes[i] = (byte) ((l >> i1) & 0xff);
+        }
+        return bytes;
+    }
+ 
+    //long类型转换byte[]
+    public byte[] longToByteArray(long l, boolean littleEndian) {
+        byte[] bytes = new byte[8];
+        for (int i = 0; i < 8; i++) {
+            int i1 = (littleEndian ? i : (7 - i)) << 3;
+            bytes[i] = (byte) ((l >> i1) & 0xff);
+        }
+        return bytes;
+    }
+无符号的类型转换:
+ 
+//int类型转换byte[]
+    public byte[] unIntToByteArray(long l, boolean littleEndian) {
+        byte[] bytes = new byte[2];
+        for (int i = 0; i < 2; i++) {
+            int i1 = (littleEndian ? i : (1 - i)) << 3;
+            bytes[i] = (byte) ((l >> i1) & 0xff);
+        }
+        return bytes;
+    }
+ 
+    //long类型转换byte[]
+    public byte[] unlongToByteArray(long l, boolean littleEndian) {
+        byte[] bytes = new byte[4];
+        for (int i = 0; i < 4; i++) {
+            int i1 = (littleEndian ? i : (3 - i)) << 3;
+            bytes[i] = (byte) ((l >> i1) & 0xff);
+        }
+        return bytes;
+    }
+ 
+
+有符号的类型转换://偏移位置，为偏移传0
+ 
+    //byte转long
+    public static long longFrom8Bytes(byte[] input, int offset, boolean littleEndian) {
+        long value = 0; // 循环读取每个字节通过移位运算完成long的4个字节拼装
+        for (int count = 0; count < 8; ++count) {
+            int shift = (littleEndian ? count : (7 - count)) << 3;
+            value |= ((long) 0xff << shift) & ((long) input[offset + count] << shift);
+        }
+        return value;
+    }
+    //byte转int
+    public static int intFrom4Bytes(byte[] input, int offset, boolean littleEndian) {
+        int value = 0;
+        // 循环读取每个字节通过移位运算完成long的8个字节拼装
+        for (int count = 0; count < 4; ++count) {
+            int shift = (littleEndian ? count : (3 - count)) << 3;
+            value |= ((long) 0xff << shift) & ((long) input[offset + count] << shift);
+        }
+        return value;
+    }
+    //byte转short
+    public static int shortFrom2Bytes(byte[] input, int offset, boolean littleEndian) {
+        int value = 0;
+        // 循环读取每个字节通过移位运算完成long的8个字节拼装
+        for (int count = 0; count < 2; ++count) {
+            int shift = (littleEndian ? count : (1 - count)) << 3;
+            value |= ((long) 0xff << shift) & ((long) input[offset + count] << shift);
+        }
+        return value;
+    }
+ 
+ 
+
+ 
+
+无符号的类型转换：
+   //byte转long
+    public static long unlongFrom4Bytes(byte[] input, int offset, boolean littleEndian) {
+        long value = 0; // 循环读取每个字节通过移位运算完成long的4个字节拼装
+        for (int count = 0; count < 4; ++count) {
+            int shift = (littleEndian ? count : (3 - count)) << 3;
+            value |= ((long) 0xff << shift) & ((long) input[offset + count] << shift);
+        }
+        return value;
+    }
+    //byte转int
+    public static int unintFrom2Bytes(byte[] input, int offset, boolean littleEndian) {
+        int value = 0;
+        // 循环读取每个字节通过移位运算完成long的8个字节拼装
+        for (int count = 0; count < 2; ++count) {
+            int shift = (littleEndian ? count : (1 - count)) << 3;
+            value |= ((long) 0xff << shift) & ((long) input[offset + count] << shift);
+        }
+        return value;
+    }
