@@ -184,6 +184,8 @@ TCP 456=Hackers paradise,FuseSpark
 
 TCP 458=苹果公司QuickTime
 
+TCP 500=L2TP（VPN协议）
+
 TCP 513=Grlogin
 
 TCP 514=RPC Backdoor
@@ -355,6 +357,8 @@ TCP 1600=Shivka-Burka
 TCP 1703=Exloiter 1.1
 
 TCP 1720=NetMeeting H.233 call Setup
+
+TCP 1723=PPTP(vpn协议)
 
 TCP 1731=NetMeeting音频调用控制
 

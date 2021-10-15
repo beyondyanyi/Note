@@ -39,7 +39,24 @@
 
 #### 测试工具
 
+
+
+集成式测试工具：
+
+```
+ab
+http_load
+JMeter
 ```
 
+单组件式测试工具:
+
+```
+mysqlslap
+MySQL Benchmark Suite(sql-bench)
+Super Smack
+Database Test Suite
+Percona's TPCC-MYSQL Tools
+sysbench
 ```
 

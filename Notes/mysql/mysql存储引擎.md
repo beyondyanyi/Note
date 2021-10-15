@@ -68,3 +68,49 @@ InnoDB存储引擎提供了具有提交、回滚等事务功能，支持外键�
 4.特有的特性
 ```
 
+
+
+
+
+1.文件系统中，
+
+​	创建数据库（schema）时，Mysql将每个保存为数据目录下的一个子目录。
+
+​    创建表（table）时,Mysql将表（table）数据库子目录下创建一个和表同名的.frm文件保存表的定义
+
+​    可以使用 show table status like 'tableName' 查询表的相关信息
+
+
+
+
+
+
+
+##### 转换表的引擎
+
+###### 1.ALTER TABLE
+
+```
+例如：ALTER TABLE mytable ENGINE=InnoDB;
+此语法可以适用于任何存储引擎，但是需要执行很长时间，Mysql会将数据从原表复制到一张新表中，在复制期间可能会消耗系统所有的I/O能力，同事原表上会加上读锁。所以繁忙的表上执行此操作要特别小心
+```
+
+###### 2.导入与导出
+
+```
+为了更好地控制转换的过程，可以使用mysqldump工具将数据导出到文件，然后修改文件中CREATE TABLE语句中的存储引擎选项，注意同事修改表名，因为同一个数据库中不能存在相同的表名，即使他们是不通的存储引擎。同时要注意mysqldump默认会自动在CRATE TABLE语句前加上DROP TABLE语句，可能会导致数据丢失
+```
+
+###### 3.创建与查询
+
+```
+第三种转换的技术综合了第一种方法的高效和第二种方法的安全。不需要导出整个表的数据，而是先创建一个新的存储引擎的表，然后利用INSERT...SELECT语法来导入数据
+
+CREATE TABLE innodb_table like myisam_table;
+ALTER TABLE innodo_table ENGINE=InnoDB;
+INSERT INTO innodb_table SELECT * FROM myisam_table;
+这样操作完成以后，新表是原表的一个全量复制，原表还在，如果需要可以删除原表。
+```
+
+备注：pt-online-schema-change工具可以比较简单、方便地执行上述过程，避免手工操作可能导致的失误和繁琐
+

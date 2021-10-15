@@ -1,0 +1,67 @@
+https://github.com/core-lib/xjar
+
+
+1.pom加入插件依赖 （记得修改password选项）
+
+
+<project>
+    <!-- 设置 jitpack.io 插件仓库 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <!-- 添加 XJar Maven 插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.core-lib</groupId>
+                <artifactId>xjar-maven-plugin</artifactId>
+                <version>4.0.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <!-- 或使用
+                        <phase>install</phase>
+                        -->
+                        <configuration>
+                            <password>io.xjar</password>
+                            <!-- optional
+                            <algorithm/>
+                            <keySize/>
+                            <ivSize/>
+                            <includes>
+                                <include/>
+                            </includes>
+                            <excludes>
+                                <exclude/>
+                            </excludes>
+                            <sourceDir/>
+                            <sourceJar/>
+                            <targetDir/>
+                            <targetJar/>
+                            -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
+
+2.maven  clean && maven install
+
+
+3.编译go脚本，生成启动器
+
+go build xjar.go
+
+
+4.启动运行(xjar是第3步编译后生成的启动器xjar.exe,给到现场的只有xjar.exe和加密后的jar包)
+xjar java -jar xxxx.jar
