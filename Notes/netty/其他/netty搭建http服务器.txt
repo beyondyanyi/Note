@@ -1,0 +1,24 @@
+http:
+
+	1.FullHttpRequest:
+
+	HttpRequest   包含头的信息
+	HttpContent    包含数据，可有多个
+	LastHttpContent 标记http request的结束，同时可能包含头的尾部信息
+	
+	2.FullHttpResponse:
+	
+	HttpResponse   包含头的信息
+	HttpContent    包含数据，可有多个
+	LastHttpContent 标记http request的结束，同时可能包含头的尾部信息
+	
+	
+	
+	
+	
+	
+HttpRequestDecoder  用于解码request
+
+HttpResponseEncoder  用于编码response
+
+aggregator    消息聚合器

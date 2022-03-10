@@ -1,0 +1,9 @@
+##登陆&验证
+redis-cli
+auth password
+##选择db
+select 0
+##查看所有key
+keys *
+##批量删除db0中所有DEV开头的key
+eval "redis.call('del', unpack(redis.call('keys','DEV*')))" 0 

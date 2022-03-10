@@ -1,0 +1,11 @@
+netty Handler分两类:
+	ChannelInboundHandle:从客户端发往服务器的报文处理
+		按注册先后顺序执行
+		
+	ChannelOutboundHandler：从服务器发往客户端的报文处理
+		按注册先后顺序逆执行
+	
+	
+
+
+

@@ -1,2 +1,0 @@
-固定长度解码器
-pipeline.addLast(new FixedLengthFrameDecoder(23));

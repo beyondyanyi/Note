@@ -1,8 +1,8 @@
 1.下载、解压
 cd /usr/local/src/
-wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
-tar zxf apache-maven-3.1.1-bin.tar.gz
-mv apache-maven-3.1.1 /usr/local/maven3
+wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
+tar zxf apache-maven-3.8.4-bin.tar.gz
+mv apache-maven-3.8.4 /usr/local/maven3
 
 2.配置环境变量
 	vi /etc/profile
