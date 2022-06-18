@@ -87,3 +87,29 @@
 | 85   | [ST_Within()](https://dev.mysql.com/doc/refman/8.0/en/spatial-relation-functions-object-shapes.html#function_st-within) | 一个几何是否在另一个之内             |
 | 86   | [ST_Distance()](https://dev.mysql.com/doc/refman/8.0/en/spatial-relation-functions-object-shapes.html#function_st-distance) | 一个几何与另一个几何的距离           |
 | 87   | [ST_IsEmpty()](https://dev.mysql.com/doc/refman/8.0/en/gis-general-property-functions.html#function_st-isempty) | 占位符功能                           |
+
+
+
+
+
+
+
+字符串转point
+
+```
+UPDATE myTable 
+SET coords = GeometryFromText(CONCAT('POINT(', substring_index(coord_field, ',',-1), ' ', substring_index(coord_field, ',',1), ')')); 
+```
+
+
+
+
+
+[`SUBSTRING_INDEX(*`str`*,*`delim`*,*`count`*)`](https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_substring-index)
+
+```
+str  字符串
+delim 分隔符
+count 从1开始，正数从左算个数，负数从右算数量
+```
+
