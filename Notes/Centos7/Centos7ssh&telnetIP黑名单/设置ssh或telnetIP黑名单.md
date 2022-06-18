@@ -16,3 +16,10 @@ vi /etc/hosts.allow
 sshd:192.168.1.16:allow
 ```
 
+
+
+
+
+
+
+11
