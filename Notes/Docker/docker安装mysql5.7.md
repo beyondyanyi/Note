@@ -4,7 +4,7 @@ docker run --name mysqlserver -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs 
 
 
 
-#### docker安装mysql
+#### docker安装mysql5.7
 
 ##### 1.拉取镜像
 
