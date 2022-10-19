@@ -66,3 +66,14 @@ docker compose up -d
 docker compose ps mysql8
 ```
 
+#### 6.修改远程访问
+
+```
+mysql -uroot -p
+
+select host,user,plugin,authentication_string from mysql.user;
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'pwd';
+
+flush privileges;
+```
