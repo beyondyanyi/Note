@@ -1,0 +1,53 @@
+##nssm配置nginx
+1.nssm install HuaXinNginx
+
+2.填入path和startup directory
+serviceName:   HuaXinNginx
+
+path: D:\nginx-1.24.0\nginx.exe
+
+startup directory: D:\nginx-1.24.0
+
+
+description:华新水泥nginx服务
+
+
+
+
+#nssm配置jar
+
+  #生产环境
+1.nssm install HuaXinJarProd
+2.
+
+path: D:\nginx-1.24.0\start_jar_with_prod_CMD.BAT
+
+startup directory: D:\nginx-1.24.0
+
+ #测试环境
+1.nssm install HuaXinJarTest
+2.
+path: D:\nginx-1.24.0\start_jar_with_test_CMD.BAT
+
+startup directory: D:\nginx-1.24.0
+
+
+#nssm配置webrtc-streamer
+1.nssm install WebRtcServer
+
+2.填入path和startup directory
+serverName: WebRtcServer
+path:D:\webrtc-streamer-server\webrtc-streamer-v0.8.2-dirty-Windows-AMD64-Release\webrtc-streamer.exe
+
+startup directory: D:\webrtc-streamer-server\webrtc-streamer-v0.8.2-dirty-Windows-AMD64-Release\
+
+description:webrtc信令服务器
+
+
+
+
+
+
+其他指令：
+nssm remove HuaXinJarProd
+nssm remove HuaXinJarTest

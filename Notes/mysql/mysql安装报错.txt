@@ -1,0 +1,16 @@
+https://blog.csdn.net/zlting_/article/details/127296680
+
+
+问题：
+Unknown error: 发生一个或多个错误。
+Waiting 5 seconds before the next connection attempt...
+Retry 2: Attempting to connect to Mysql@localhost:3306 with user root with no password...
+
+
+
+解决方法：
+1、检查是否安装了Microsoft Visual C++ Redistributable
+2、windows权限管理问题
+
+打开电脑管理–>本地用户和组–>组–>双击Administrators–>添加–>高级–>立即查找–>
+选中NETWORK SERVICE添加到Administrators组

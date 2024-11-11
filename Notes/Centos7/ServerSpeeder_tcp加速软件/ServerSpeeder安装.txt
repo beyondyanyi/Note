@@ -1,4 +1,9 @@
-﻿1.下载锐速破解版
+﻿
+一件安装脚本：
+https://www.vultrcn.com/38.html
+
+
+1.下载锐速破解版
 	wget -N --no-check-certificate https://raw.githubusercontent.com/wn789/serverspeeder/master/serverspeeder.sh
 
 2.运行脚本
@@ -18,4 +23,6 @@
 		uname -r
 
 	（3）重新安装锐速
-【https://blog.csdn.net/bittersweet0324/article/details/78963460】
+
+
+

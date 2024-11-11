@@ -1,0 +1,18 @@
+    ##显示系统时间：＃date
+    ##修改系统时间： #\
+
+
+
+
+ 
+
+    ##显示硬件时间：＃hwclock --show
+    ##设置硬件时间：＃hwclock --set --date '08/02/2012 12:00:00'
+
+    ##硬件时间同步到系统时间：#hwclock --hctosys 
+
+    ##强制把系统时间写入CMOS：#clock -w
+
+
+
+  ##更改时区：#ln -sf /usr/share/zoneinfor/Asia/Shanghai /etc/localtime     

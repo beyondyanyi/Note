@@ -10,8 +10,6 @@ docker pull nacos/nacos-server:v2.1.0
 https://github.com/alibaba/nacos/blob/master/config/src/main/resources/META-INF/nacos-db.sql
 ```
 
-
-
 ```
 /*
  * Copyright 1999-2018 Alibaba Group Holding Ltd.
@@ -213,15 +211,15 @@ CREATE TABLE `tenant_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='tenant_info';
 
 CREATE TABLE users (
-	username varchar(50) NOT NULL PRIMARY KEY,
-	password varchar(500) NOT NULL,
-	enabled boolean NOT NULL
+    username varchar(50) NOT NULL PRIMARY KEY,
+    password varchar(500) NOT NULL,
+    enabled boolean NOT NULL
 );
 
 CREATE TABLE roles (
-	username varchar(50) NOT NULL,
-	role varchar(50) NOT NULL,
-	constraint uk_username_role UNIQUE (username,role)
+    username varchar(50) NOT NULL,
+    role varchar(50) NOT NULL,
+    constraint uk_username_role UNIQUE (username,role)
 );
 
 CREATE TABLE permissions (
@@ -236,8 +234,6 @@ INSERT INTO users (username, password, enabled) VALUES ('nacos', '$2a$10$EuWPZHz
 INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
 ```
 
-
-
 #### 3.启动容器
 
 ```
@@ -246,6 +242,12 @@ docker run --env MODE=standalone --name nacos2.1.0 \
 -v /software/nacos-server/logs:/home/nacos/logs \
 --restart always \
 -d -p 8848:8848 nacos/nacos-server:v2.1.0
-
 ```
 
+```
+docker run --env MODE=standalone --name nacos2.1.0 \
+-v /software/nacos-server/init.d/custom.properties:/home/nacos/init.d/custom.properties \
+-v /software/nacos-server/logs:/home/nacos/logs \
+--restart always \
+-d -p 7848:7848 -p 8848:8848 -p 9848:9848 nacos/nacos-server:v2.1.0
+```

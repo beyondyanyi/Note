@@ -2,7 +2,7 @@
 
 ```bash
 sudo yum remove docker \
-	docker-client \
+    docker-client \
     docker-client-latest \
     docker-common \
     docker-latest \
@@ -31,7 +31,6 @@ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
   sudo yum-config-manager \
     --add-repo \
     http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-
 ```
 
 #### 5.安装docker
@@ -58,8 +57,6 @@ sudo systemctl restart docker
 sudo docker info
 ```
 
-
-
 #### 7.启动、加入开机启动
 
 ```
@@ -84,12 +81,7 @@ curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compos
 sudo chmod +x /usr/local/bin/docker-compose
 # 查看版本
 docker-compose --version
-
 ```
-
-
-
-
 
 #### 其他：
 
@@ -103,6 +95,4 @@ yum remove docker-ce docker-ce-cli containerd.io
 # 删除相关文件
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
-
 ```
-
